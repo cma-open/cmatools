@@ -16,5 +16,3 @@ sphinx-apidoc -f -o $INPUT_DIR $CODE_DIR/cmatools
 
 # Build sphinx docs and make html
 sphinx-build -v -b html $INPUT_DIR $OUTPUT_DIR
-cd $DOCS_DIR
-make html
