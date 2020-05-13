@@ -1,4 +1,6 @@
-![](https://github.com/jonathan-winn-geo/cmatools/workflows/cmatools/badge.svg)
+# https://github.com/<OWNER>/<REPOSITORY>/workflows/<WORKFLOW_NAME>/badge.svg
+
+![](https://github.com/jonathan-winn-geo/cmatools/workflows/.github/workflows/python3-7.yml/badge.svg)
 
 [![Python 3.7](https://img.shields.io/badge/python-3.7-blue.svg)](https://www.python.org/downloads/release/python-370/)
 
@@ -10,7 +12,7 @@
 
 [![Project Status: WIP – Initial development is in progress, but there has not yet been a stable, usable release suitable for the public.](https://www.repostatus.org/badges/latest/wip.svg)](https://www.repostatus.org/#wip)
 
-[![Code style] (https://img.shields.io/badge/code%20style-black-000000.svg)](https://github.com/psf/black)
+[![Code style](https://img.shields.io/badge/code%20style-black-000000.svg)](https://github.com/psf/black)
 
 
 ---
