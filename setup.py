@@ -11,7 +11,7 @@ setuptools.setup(
     description="Training example package",
     long_description=long_description,
     long_description_content_type="text/markdown",
-    url="https://github.com/jonathan-winn-geo/cmatools",
+    url="https://github.com/cma-open/cmatools",
     packages=setuptools.find_packages(),
     classifiers=[
         "Programming Language :: Python :: 3",
