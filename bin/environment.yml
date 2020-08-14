@@ -16,6 +16,8 @@ dependencies:
  - cdsapi
  - holoviews
  - geoviews
+ - numpy
+ - pandas
  - xarray
  - jupyter
  - pip
