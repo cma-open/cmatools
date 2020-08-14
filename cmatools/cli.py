@@ -3,6 +3,9 @@ import pkg_resources
 
 import pandas as pd
 
+# TODO add notes to clarify normal split of funtionality out into seperate files, but data kept
+# here for ease of building prototype
+
 # command line interface / command line application
 # cli tool to list all observations datasets, or subdivided by marine or land
 
@@ -12,7 +15,7 @@ import pandas as pd
 
 # commands: all (list all) or pick (random)
 # options:  limit the selection to netcdf
-# argument:  dataset (ocean, land, blended)
+# argument:  dataset (marine, land, blended)
 
 # the output is a printout of the pandas dataframe object
 
@@ -47,7 +50,7 @@ def all(args):
 
 def pick(args):
     obs = check_netcdf(args, observations(args))
-    # sample returns 1 value as default, usin n=1 for clarity and testing of other values
+    # sample returns 1 value as default, using n=1 for clarity and testing of other values
     sample = obs.sample(n=1)
     return sample
 
