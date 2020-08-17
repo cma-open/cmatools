@@ -98,5 +98,5 @@ jobs:
 
         git push --force-with-lease origin gh-pages
       env:
-        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        #GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         DEPLOY_TOKEN: ${{ secrets.DEPLOY_TOKEN }}
