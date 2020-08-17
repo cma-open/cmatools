@@ -12,6 +12,8 @@ Welcome to cmatools's documentation!
 
    modules
 
+.. automodule:: cmatools.observation
+   :members:
 
 
 Indices and tables

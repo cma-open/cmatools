@@ -1,3 +1,17 @@
+"""
+
+Command line application tool for CMATOOLS
+
+Allows CMA observation datasets to be examined by type
+
+"""
+
+
+
+
+
+
+
 import argparse
 import pkg_resources
 
@@ -33,12 +47,22 @@ datapd = pd.DataFrame(data)
 
 
 def observations(args):
+    """ Select and return the type of cma observation from user defined selection
+
+    :param args:
+    :return:
+    """
+
     # Select from the dataframe based on the input dataset category
     obs_selection = datapd.loc[datapd['category'] == args.dataset]
     # There should always be a selection, all data entries should have a category
     return obs_selection
 
 def check_netcdf(args, obs_selection):
+    """ Check for netcdf flag and if present, select only netcdf records
+
+    """
+
     if args.netcdf:
         obs_netcdf = obs_selection.loc[obs_selection['format'] == '.netcdf']
         return obs_netcdf

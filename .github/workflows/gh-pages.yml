@@ -24,7 +24,7 @@ jobs:
       run: |
         conda update conda
         conda env create -f bin/environment.yml
-    - name: Install cmascience
+    - name: Install cmatools
       run: |
         source /usr/share/miniconda/etc/profile.d/conda.sh
         conda activate cmatools-env
