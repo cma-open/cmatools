@@ -6,19 +6,26 @@
 Welcome to cmatools's documentation!
 ====================================
 
+The CMATOOLS was developed for training purposes only
+
+This package, and associated subpackages, provide a range of commonly used functions,
+for import and use in CMA projects.
+
+The package and repo also serve for use via training tutorials and as a template project
+
+
 .. toctree::
    :maxdepth: 2
-   :caption: Contents:
 
-   modules
+   userguide/gettingstarted
+   userguide/examplecode
+   api/api
 
-.. automodule:: cmatools.observation
-   :members:
 
 
 Indices and tables
 ==================
 
 * :ref:`genindex`
-* :ref:`modindex`
+####* :ref:`modindex`
 * :ref:`search`
