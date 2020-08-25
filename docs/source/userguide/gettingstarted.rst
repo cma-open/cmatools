@@ -3,11 +3,24 @@
 Getting started
 ***************
 
-Installing your doc directory
-=============================
+Installing CMATOOLS
+===================
 
-You may already have sphinx `sphinx <http://sphinx.pocoo.org/>`_
-installed -- you can check by
+The CMATOOLS package canbe installed int ways, as a standalone package for use directly, or
+as part of the installatino of on eof the main CMA based projects, where CMATOOLS is a dependency
+of those projects.
+
+
+TODO - move this
+================
+
+This sectino shows example sof how pythoncode can be used in examples, taken from source
+rather needing to be re tryped
+
+ .. todo::
+
+    Replace these examples with real use cases elsewhere in the user guide,
+    then remove
 
 
 Other sections can easily be referenced e.g.

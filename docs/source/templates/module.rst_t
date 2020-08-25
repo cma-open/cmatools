@@ -1,5 +1,4 @@
 %- if show_headings %}
-##{{- [basename, "module"] | join(' ') | e | heading }}
 {{- submodule | e | heading(2) }}
 {% endif -%}
 .. automodule:: {{ qualname }}
