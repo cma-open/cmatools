@@ -45,9 +45,17 @@ extensions = ['sphinx.ext.autodoc',
               'sphinx.ext.coverage',
               'sphinx.ext.todo',
               'sphinx.ext.viewcode',
-              #'sphinxcontrib.mermaid'   # mermaid requires pip install
+              'sphinxarg.ext',
+              'sphinxcontrib.mermaid'   # mermaid requires pip install
               # 'numpydoc'
               ]
+# Set docstring style options
+napoleon_google_docstring = False
+napoleon_numpy_docstring = True
+
+# Allow todo panels to be highlighted in outputs docs
+# Relates to the sphinx.ext.todo extension
+todo_include_todos = True
 
 # Add any paths that contain templates here, relative to this directory.
 templates_path = ['_templates']
