@@ -3,23 +3,51 @@
    You can adapt this file completely to your liking, but it should at least
    contain the root `toctree` directive.
 
-Welcome to cmatools's documentation!
-====================================
+CMATOOLS Documentation
+======================
 
-The CMATOOLS was developed for training purposes only
+The CMATOOLS python package was developed for training purposes only.
+
+Do not use for production purposes.
 
 This package, and associated subpackages, provide a range of commonly used functions,
 for import and use in CMA projects.
 
-The package and repo also serve for use via training tutorials and as a template project
+The package and associated GitHub repo also serve for use via training tutorials
+and as a template project.
 
 
 .. toctree::
-   :maxdepth: 2
+   :maxdepth: 1
 
+   readme
    userguide/gettingstarted
    userguide/examplecode
-   api/api
+   changelog
+
+
+CMATOOLS package API
+--------------------
+
+This section lists the content and use of the subpackages and command lines tools
+provided by the CMATOOLS package
+
+.. toctree::
+   :maxdepth: 3
+
+   api/modules
+
+
+CMATOOLS cli
+------------
+
+This section lists the command line tools and options
+
+
+.. toctree::
+   :maxdepth: 3
+
+   cmd/cmd
 
 
 
@@ -27,5 +55,3 @@ Indices and tables
 ==================
 
 * :ref:`genindex`
-####* :ref:`modindex`
-* :ref:`search`
