@@ -7,11 +7,6 @@ Allows CMA observation datasets to be examined by type
 """
 
 
-
-
-
-
-
 import argparse
 import pkg_resources
 
