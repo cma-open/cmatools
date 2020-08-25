@@ -16,7 +16,10 @@ TEMPLATEDIR=$CODE_DIR/docs/source/templates
 echo " ---- * ----"
 
 # Generate source files from current installed package / subpackages
+# sphinx-apidoc -f  --module-first --no-headings --templatedir=$TEMPLATEDIR -o $API_DIR $CODE_DIR/cmatools
+
 sphinx-apidoc -f  --module-first --templatedir=$TEMPLATEDIR -o $API_DIR $CODE_DIR/cmatools
+
 
 # Build sphinx docs and make html
 sphinx-build -v -b html $INPUT_DIR $OUTPUT_DIR
