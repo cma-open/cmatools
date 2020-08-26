@@ -1,3 +1,10 @@
+# resources
+# https://stackoverflow.com/questions/7498595/python-argparse-add-argument-to-multiple-subparsers
+# https://stackoverflow.com/questions/33645859/how-to-add-common-arguments-to-argparse-subcommands
+# http://www.chiark.greenend.org.uk/doc/python3/html/library/argparse.html
+# https://sphinx-argparse.readthedocs.io/en/stable/sample.html
+# https://stackoverflow.com/questions/60209079/how-to-test-if-name-main-with-passing-command-line-arguments?noredirect=1&lq=1
+
 """
 
 Command line application tool for CMATOOLS
@@ -6,7 +13,7 @@ Allows CMA observation datasets to be examined by type
 
 """
 
-
+import sys
 import argparse
 import pkg_resources
 
@@ -28,7 +35,7 @@ import pandas as pd
 
 # the output is a printout of the pandas dataframe object
 
-DEBUG = False
+DEBUG = True
 
 # Input data, TODO move to be read from file
 
@@ -76,47 +83,75 @@ def pick(args):
 # Take the version nunmber from the package version in setup
 pkg_version = pkg_resources.get_distribution("cmatools").version
 
-# Create parser object. Add description that will appear in the cli app help output
-parser = argparse.ArgumentParser(
-    prog='CMATOOLS',
-    description=f'A simple app to list CMA observations datasets. Version {pkg_version}',
-    epilog='  ---  '
-)
-# Can also add prog title to output, prog='CMATOOLS', if ommitted the filename is used (e.g. cli,py)
-
-# Set optional flag to show the app version
-parser.add_argument('--version', action='version', help='The current tool version', version=f'{parser.prog} {pkg_version}')
-
-# Set the positional argument name
-parser.add_argument('dataset', default='all', choices=['blended', 'marine', 'land'], help='Type of dataset to select')
-
-# Set optional flag
-parser.add_argument('--netcdf', action='store_true',  help='Limit selection to netcdf datasets')
+# change name to set_parser or similar
+def parse_args(argv=None):
+    """Function to wrap parsing of arguments from the command line """
 
 
-subparsers = parser.add_subparsers(title='subcommands', description='Valid subcommands',
-                                   help='Data selection method', dest='Subcommand', required=True)
-# Set the commands - by using subparsers
-all_parser = subparsers.add_parser('all', help='List all datasets')
-pick_parser = subparsers.add_parser('pick', help='Pick an example dataset at random')
+    # Create parent parser object. Paren tis used to ensure common arguments for optional subcommands
+    parent_parser = argparse.ArgumentParser(prog='CMATOOLS',
+                                        add_help=False
+                                        )
+    # add_help=False is used to avoid conflict with subparsers, when parents is used to inherit options
+    # https://docs.python.org/3/library/argparse.html#parents
 
-# Set the positional argument
-#all_parser.add_argument('dataset', default='all', help='Type of dataset to select')
+    # Can also add prog title to output, prog='CMATOOLS', if ommitted the filename is used (e.g. cli,py)
 
-# Set the optional arguments (flags)
-#all_parser.add_argument('--netcdf', action='store_true',  help='Limit selection to netcdf datasets')
-all_parser.set_defaults(func=all)
+    # Set optional flag to show the app version
+    parent_parser.add_argument('--version',
+                               action='version',
+                               help='Display the current version of the cmatool package',
+                               version=f'{parent_parser.prog} {pkg_version}')
 
-# set the positional argument
-#pick_parser.add_argument('dataset', default='all', help='Type of dataset to select')
+    # Set the positional argument name
+    parent_parser.add_argument('dataset',
+                               default='blended',
+                               choices=['blended', 'marine', 'land'],
+                               nargs='?', # specify number of arg, required to ensure default is applied
+                               help='Type of dataset to select')
 
-# set the optional argument (flags)
-#pick_parser.add_argument('--netcdf',  action='store_true', help='Limit selection to netcdf datasets')
-pick_parser.set_defaults(func=pick)
+    # Set optional flag
+    parent_parser.add_argument('--netcdf',
+                               action='store_true',
+                               help='Limit selection to netcdf datasets only')
+
+    # Create parent parser object. Add description that will appear in the cli app help output
+    parser = argparse.ArgumentParser(
+        prog='CMATOOLS',
+        description=f'A simple app to list CMA observations datasets. Version {pkg_version}',
+        epilog='  ---  ',
+        formatter_class=argparse.ArgumentDefaultsHelpFormatter,
+        parents=[parent_parser]
+    )
+
+    subparsers = parser.add_subparsers(title='sub-commands', description='Valid sub-commands',
+                                       help='Choose the data selection method', dest='Subcommand', required=True)
+
+    # Set the commands - by using subparsers
+    all_parser = subparsers.add_parser('all', help='List all categories of datasets', parents=[parent_parser])
+    pick_parser = subparsers.add_parser('pick', help='Pick one example dataset category at random', parents=[parent_parser])
+
+    all_parser.set_defaults(func=all)
+
+    pick_parser.set_defaults(func=pick)
+
+    # ArgumentParser.parse_args processes whatever list of strings you pass it.
+    # When you pass None, it uses sys.argv[1:] instead
+    # This allows testing
+
+    #return parser.parse_args(argv)
+    return parser
 
 
-def obsdata():
-    args = parser.parse_args()
+
+def main(args):
+
+    # Read arguments from the command line
+    #parser = parse_args(sys.argv[1:])
+    #args = parse_args()
+    #args = parser.parse_args()
+    #args = sub_parser.parse_args()
+
     if DEBUG:
         print(args)
     output = args.func(args) # Call the default function, based on the command arguments passed
@@ -125,8 +160,19 @@ def obsdata():
     else:
         print('Search criteria returned no datasets')
 
+def cli_entry_point(argv=None):
+    # Read arguments from the command line
+    #args = parse_args(argv)
+    args = parse_args(argv)
+    args_parsed = args.parse_args(args)
+
+    # args = parse_args(argv)
+    main(args_parsed)
+
+    #main(args)
+
 if __name__ == '__main__':
-    obsdata()
+    cli_entry_point()
 
 # TODO list options
 # Add logging, as example to log each run, inputs and outputs
