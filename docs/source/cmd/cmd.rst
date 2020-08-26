@@ -5,4 +5,5 @@ Command line utilities
    :maxdepth: 1
 
    cmd_main
-   cmd_subcommand
+   cmd_simple
+

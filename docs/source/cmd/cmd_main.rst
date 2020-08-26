@@ -1,11 +1,8 @@
-Fancytool command
+CMATOOLS CLI tool
 *****************
 
 .. argparse::
-   :module: ../../../cli.py
-   :func: parser
+   :filename: ../cmatools/cli.py
+   :func: parse_args
    :prog: CMATOOLS
 
-   subcommand
-        Here we add a reference to subcommand, to simplify navigation.
-        See :doc:`cmd_subcommand`
