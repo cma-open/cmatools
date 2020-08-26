@@ -3,12 +3,11 @@
 
 """ Example module showing codestyle defaults
 
-A range of codestyle examples are shown
-including x, y, z,
+A range of codestyle examples are shown including x, y, z,
 List the classes, exceptions and functions (and any other objects)
 that are exported by the module, with a one-line summary of each.
-Todo:
-   * Review content
+Todo: Review content
+
 """
 
 # import stand library imports
