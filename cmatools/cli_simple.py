@@ -19,7 +19,7 @@ def cli_parser() -> argparse.ArgumentParser :
     # Can also add prog title to output, if ommitted the filename is used (e.g. cli-simple,py)
 
     parser = argparse.ArgumentParser(
-        prog='SIMPLE',
+        prog='CLI-SIMPLE',
         description=f'A simple app',
         epilog='  ---  ',
         formatter_class=argparse.ArgumentDefaultsHelpFormatter
@@ -35,6 +35,14 @@ def cli_parser() -> argparse.ArgumentParser :
     return parser
 
 def cli_parse_args(argv=None) -> argparse.Namespace:
+    """
+    Functino to parse the passed arguments into an argparse namspace object
+    :param argv:
+    :return: argpase.Namespace
+
+
+    """
+
     # instantiate cli parser object
     parser = cli_parser()
     # Parse the arguments
@@ -45,6 +53,13 @@ def cli_parse_args(argv=None) -> argparse.Namespace:
     return parser.parse_args(argv)
 
 def cli_analysis(parsed_args):
+
+    """
+    Function to run simple sum analysis on the passed x and y arguments
+
+    :param parsed_args:
+    :return:
+    """
 
     if DEBUG:
         print(parsed_args)
@@ -59,6 +74,14 @@ def cli_analysis(parsed_args):
 
 
 def cli_simple_entry_point(argv=None):
+
+    """
+    Function to wrap passing the parsed command line arguments to
+    the analysis function
+
+    :param argv:
+    :return: None
+    """
 
     # Read arguments from the command line
     # Parsed arguments are present as object attributes
