@@ -14,6 +14,14 @@ from cmatools.cli import cli_entry_point
 def test_version():
     """ Test of cli tool version
     """
+
+    # def test_cli_simple_version():
+    #    """ Test of cli tool version
+    #    """
+    #    out = subprocess.run(["python", str(CLI), "--version"], text=True, check=True, stdout=subprocess.PIPE)
+    #    assert out.returncode == 0
+    #    assert out.stdout.strip() == 'SIMPLE 0.0.1'
+
     #cli_output = cli_entry_point(argv=['--version'])
     #print(cli_output)
 
@@ -27,5 +35,6 @@ def test_version():
 
 
     #assert hello_world.hello_world() == "hello cma"
+
 
     assert 1 == 1
