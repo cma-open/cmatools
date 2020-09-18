@@ -27,7 +27,7 @@ def test_cli_parser():
     # Confirm output object is correct parser type
     assert  isinstance(out, argparse.ArgumentParser)
     # Confirm cli tool name is correct
-    assert out.prog == 'SIMPLE'
+    assert out.prog == 'CLI-SIMPLE'
 
 
 def test_cli_parse_args():
