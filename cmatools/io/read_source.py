@@ -19,7 +19,7 @@ class SourceData():
 
         config.read(configfile)
 
-        if self.service is 'COP':
+        if self.service == 'COP':
 
             self.dataset = config.get("SOURCES", "COP_DATASET")
             self.format = config.get("SOURCES", "COP_FORMAT")
