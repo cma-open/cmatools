@@ -9,6 +9,8 @@ for use by other modules
 
 import os
 
-""" The root directory for CMATOOLS package """
+""" Constants for CMATOOLS package """
 
 ROOT_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+CONFIGFILE = f"{ROOT_DIR}/cmatools/config.ini"
+CONFIGLOGS = f"{ROOT_DIR}/cmatools/config-logs.ini"
