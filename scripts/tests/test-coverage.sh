@@ -1,7 +1,12 @@
 #!/bin/bash
 
+echo "--------------------------------"
+echo "Test coverage"
 testdir="$(dirname "$PWD")"
 echo "$testdir"
+echo "--------------------------------"
+
+cd "$testdir"
 
 # Discover and run tests on code path,  -v verbose flag, with coverage stats
 coverage run -m pytest  $testdir
@@ -9,4 +14,4 @@ coverage run -m pytest  $testdir
 coverage report -m
 coverage html
 # Open test coverage report with firefox
-firefox  htmlcov/index.html
+firefox  logs/tests/htmlcov/index.html
