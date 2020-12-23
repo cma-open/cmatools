@@ -1,0 +1,5 @@
+# Config file for coverage.py
+
+# Set output location for html coverage report
+[html]
+directory = logs/tests/htmlcov
