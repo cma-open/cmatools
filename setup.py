@@ -26,11 +26,9 @@ setuptools.setup(
     # register command line scripts from the relevant package module
     entry_points={
         'console_scripts': [
-            'cli-simple=cmatools.cli_simple:'
-            'cli_simple_entry_point',
-
-            'cli-analysis=cmatools.cli_analysis:'
-            'cli_analysis_entry_point',
+            # Name the tool, link to the package function
+            'cli-hello='
+            'cmatools.cli_hello_world:cli_entry_point',
                         ]
     }
 )
