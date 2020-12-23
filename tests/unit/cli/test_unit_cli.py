@@ -11,12 +11,12 @@ import argparse
 from pathlib import Path
 from contextlib import redirect_stdout
 
-from cmatools.cli_simple import cli_parse_args, cli_parser, cli_analysis
+from cmatools.cli_hello_world import cli_parse_args, cli_parser, cli_hello
 
 from cmatools.definitions import ROOT_DIR
 
 # Define cli filepath
-CLI = Path(ROOT_DIR, 'cmatools','cli_simple.py')
+CLI = Path(ROOT_DIR, "cmatools", "cli_hello_world.py")
 
 
 def test_cli_parser():
@@ -25,16 +25,16 @@ def test_cli_parser():
 
     out = cli_parser()
     # Confirm output object is correct parser type
-    assert  isinstance(out, argparse.ArgumentParser)
+    assert isinstance(out, argparse.ArgumentParser)
     # Confirm cli tool name is correct
-    assert out.prog == 'SIMPLE'
+    assert out.prog == "CLI-HELLO"
 
 
 def test_cli_parse_args():
 
     """Test for cli_parse_args() function"""
 
-    user_args = ['--x', '1', '--y', '2']
+    user_args = ["John"]
 
     parsed_args = cli_parse_args(user_args)
 
@@ -43,12 +43,11 @@ def test_cli_parse_args():
 
     assert isinstance(parsed_args, argparse.Namespace)
 
-    assert parsed_args.x == 1
-    assert parsed_args.y == 2
+    assert parsed_args.user == "John"
 
-def test_cli_analysis():
-    """Test for cli_analysis() function """
-    parsed_args = argparse.Namespace(x=1, y=2)
-    output = cli_analysis(parsed_args)
-    assert output == 2
 
+def test_cli_hello():
+    """Test for cli_hello() function """
+    parsed_args = argparse.Namespace(user="John")
+    output = cli_hello(parsed_args)
+    assert output == "Hello: John"
