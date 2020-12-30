@@ -10,25 +10,24 @@ jobs:
     - name: Install dependencies
       run: |
         conda update conda
-        conda env create -f bin/environment.yml
-        # conda create --name cmatools-env --file bin/environment_conda_spec_file.txt
+        conda env create -f environment_docs.yml
     - name: conda check
       run: |
         source /usr/share/miniconda/etc/profile.d/conda.sh
-        conda activate cmatools-env
+        conda activate cmadocs-env
         which python
         python --version
         conda info --envs
         conda info
-    - name: Install cmatools
+    - name: Install package
       run: |
         source /usr/share/miniconda/etc/profile.d/conda.sh
-        conda activate cmatools-env
+        conda activate cmadocs-env
         python setup.py install
     - name: Test Sphinx docs build
       run: |
         source /usr/share/miniconda/etc/profile.d/conda.sh
-        conda activate cmatools-env
-        cd bin
+        conda activate cmadocs-env
+        cd scripts/docs
         chmod +x build-sphinx-docs.sh
         ./build-sphinx-docs.sh
