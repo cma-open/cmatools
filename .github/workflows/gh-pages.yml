@@ -26,6 +26,8 @@ jobs:
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@v2
+      with:
+        fetch-depth: 0 # Ensure all branches are available
     - name: Install dependencies
       run: |
         conda update conda
@@ -48,7 +50,7 @@ jobs:
         # Rebase wil create new commits and apply them to the specified base, to give a linear history
         git config pull.rebase true
 
-        # Show all current git branches, for debugginh
+        # Show all current git branches, for debugging
         git branch -a
 
         # Checkout the gh-pages branch, force checkout to override any recent changes in master
