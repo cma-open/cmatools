@@ -1,4 +1,7 @@
 
+[![Project Status: WIP – Initial development is in progress, but there has not yet been a stable, usable release suitable for the public.](https://www.repostatus.org/badges/latest/wip.svg)](https://www.repostatus.org/#wip)
+---
+
 ![](https://github.com/jonathan-winn-geo/cmatools/workflows/docs/badge.svg)
 ![](https://github.com/jonathan-winn-geo/cmatools/workflows/unit-tests/badge.svg)
 
@@ -11,15 +14,15 @@
 
 [![GitHub code size in bytes](https://img.shields.io/github/languages/code-size/jonathan-winn-geo/cmatools)](https://github.com/code-size/jonathan-winn-geo/cmatools)
 
-[![Project Status: WIP – Initial development is in progress, but there has not yet been a stable, usable release suitable for the public.](https://www.repostatus.org/badges/latest/wip.svg)](https://www.repostatus.org/#wip)
 
 [![Code style](https://img.shields.io/badge/code%20style-black-000000.svg)](https://github.com/psf/black)
 
 ---
 
 
-
 # cmatools
 Example shared tools repo - FOR TRAINING USE
 
 --- 
+
+Read the full system [documention](https://cma-open.github.io/cmatools/docs/build/index.html)
