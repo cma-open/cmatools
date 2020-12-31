@@ -44,6 +44,11 @@ jobs:
         source /usr/share/miniconda/etc/profile.d/conda.sh
         conda activate $CONDA_ENV
 
+       # Confirm repo and conda env
+        echo "${GITHUB_REPOSITORY}"
+        echo "$CONDA_ENV"
+        echo " ------- *** ------"
+
         # Setup the username and email for git
         git config user.name "$GITHUB_ACTOR"
         git config user.email "${GITHUB_ACTOR}@users.noreply.github.com"
@@ -77,6 +82,15 @@ jobs:
         #git rm -rf .
 
         git clean -dfx
+
+        echo " ----------------------------------------------------------"
+        echo " ----------------------------------------------------------"
+        echo " ***   git remote - list   ***"
+        git remote -v
+        echo " ----------------------------------------------------------"
+        echo " ----------------------------------------------------------"
+
+
 
         git commit -m "Update documentation on gh-pages" -a || true
 
