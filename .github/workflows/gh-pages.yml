@@ -67,6 +67,8 @@ jobs:
 
         #git rm -rf .
 
+        git clean -dfx
+
         git commit -m "Update documentation on gh-pages" -a || true
 
         # Set the remote url for the github repo,
