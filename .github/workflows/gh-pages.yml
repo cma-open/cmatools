@@ -59,6 +59,12 @@ jobs:
         # This brings in the last published version of the documentation in gh-pages
         git checkout -f gh-pages
 
+        git status
+        git config --list --show-origin
+        echo " ----------------------------------------------------------"
+        echo " ----------------------------------------------------------"
+
+
         # Remove all files to ensure a new clean build of the documentation
 
         git rm -r cmatools
