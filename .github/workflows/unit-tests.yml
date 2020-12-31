@@ -1,21 +1,26 @@
+# Name for workflow (also displayed on the associated badges)
 name: unit-tests
 
 on: [push]
+
+# Set environment variables so this workflow action is easy tore-use in other repos
+env:
+  REPO_NAME: cmatools
+  CONDA_ENV: cmatools-env
 
 jobs:
   build:
     runs-on: ubuntu-latest
     steps:
-    - uses: actions/checkout@v1
+    - uses: actions/checkout@v2
     - name: Install dependencies
       run: |
         conda update conda
-        conda env create -f bin/environment.yml
-        # conda create --name cmatools-env --file bin/environment_conda_spec_file.txt
+        conda env create -f environment.yml
     - name: conda check
       run: |
         source /usr/share/miniconda/etc/profile.d/conda.sh
-        conda activate cmatools-env
+        conda activate $CONDA_ENV
         which python
         python --version
         conda info --envs
@@ -23,12 +28,12 @@ jobs:
     - name: Install cmatools
       run: |
         source /usr/share/miniconda/etc/profile.d/conda.sh
-        conda activate cmatools-env
+        conda activate $CONDA_ENV
         python setup.py install
-    - name: Test with coverage
+    - name: Run unit tests
       run: |
         source /usr/share/miniconda/etc/profile.d/conda.sh
-        conda activate cmatools-env
-        cd bin
-        chmod +x test-coverage-remote.sh
-        ./test-coverage-remote.sh
+        conda activate $CONDA_ENV
+        cd scripts/tests
+        chmod +x test-unit.sh
+        ./test-unit.sh
