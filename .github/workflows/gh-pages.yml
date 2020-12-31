@@ -67,20 +67,28 @@ jobs:
         git checkout -f origin/master scripts/
         git checkout -f origin/master docs/
 
+        echo " --- Building documentation --- "
+        echo $PWD
+
         # Build the html documentation with sphinx
         cd scripts/docs
         chmod +x build-sphinx-docs.sh
         ./build-sphinx-docs.sh
 
+        echo " ---------- * ----------"
         echo "Documentation built"
-        cd  ..
+        cd  ../..
+        echo $PWD
         cd docs/build
         echo $PWD
+        echo " ---------- * ----------"
 
         # Confirm git status, for debugging
+        echo "-- git status --"
         git status
         echo "-- end git status --"
         echo $PWD
+        echo " ---------- * ----------"
 
         # Add the newly created files and directories to git
         git add -f _static
