@@ -40,7 +40,7 @@ jobs:
     - name: Test with coverage
       run: |
         source /usr/share/miniconda/etc/profile.d/conda.sh
-        conda activate %CONDA_ENV
+        conda activate $CONDA_ENV
         cd bin
         chmod +x test-coverage-remote.sh
         ./test-coverage-remote.sh
