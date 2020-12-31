@@ -67,6 +67,15 @@ jobs:
 
         #git rm -rf .
 
+        git commit -m "Update documentation on gh-pages" -a || true
+
+        # Set the remote url for the github repo,
+        # Uses deploy token to allow authentication from the workflow to repo
+        git remote set-url origin "$REPO_URI"
+
+        echo "Push changes to the gh-pages branch"
+        git push --force-with-lease origin gh-pages
+
 
 #        # Clean up the working repo, deletes any untracked files from the current checkout out repo
 #        # (force, includes directories, removes ignored files)
@@ -116,12 +125,12 @@ jobs:
 #
 #        # Commit all the changes, inc message
 #        # Always exit with status 0
-
-        git commit -m "Update documentation on gh-pages" -a || true
-
-        # Set the remote url for the github repo,
-        # Uses deploy token to allow authentication from the workflow to repo
-        git remote set-url origin "$REPO_URI"
-
-        echo "Push changes to the gh-pages branch"
-        git push --force-with-lease origin gh-pages
+#
+#        git commit -m "Update documentation on gh-pages" -a || true
+#
+#        # Set the remote url for the github repo,
+#        # Uses deploy token to allow authentication from the workflow to repo
+#        git remote set-url origin "$REPO_URI"
+#
+#        echo "Push changes to the gh-pages branch"
+#        git push --force-with-lease origin gh-pages
