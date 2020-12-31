@@ -9,7 +9,7 @@
 readonly CODE_DIR="$(dirname "$(dirname "$PWD")")"
 # Set documentation directories
 readonly DOCS_DIR=$CODE_DIR/docs
-readonly INPUT_DIR=$CODE_DIR/docs/source/
+readonly INPUT_DIR=$CODE_DIR/docs/source
 readonly OUTPUT_DIR=$CODE_DIR/docs/build
 # Set named docs subdirectories
 readonly API_DIR=$CODE_DIR/docs/source/api
@@ -21,8 +21,8 @@ echo "Creating Sphinx system documentation"
 echo "Python package root: $CODE_DIR"
 echo "Sphinx source doc files: $INPUT_DIR"
 echo "Sphinx output build files: $OUTPUT_DIR"
-echo "Main API dir: $API_DIR"
-echo "PShinx template dir: $TEMPLATE_DIR"
+echo "Sphinx API dir: $API_DIR"
+echo "Sphinx template dir: $TEMPLATE_DIR"
 echo " ---- * ----"
 
 # Generate source files from current installed package / subpackages, sphinx-apidoc is a tool for automatic
