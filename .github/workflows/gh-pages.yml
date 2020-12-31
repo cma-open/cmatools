@@ -44,7 +44,7 @@ jobs:
         source /usr/share/miniconda/etc/profile.d/conda.sh
         conda activate $CONDA_ENV
 
-       # Confirm repo and conda env
+        # Confirm repo and conda env
         echo "${GITHUB_REPOSITORY}"
         echo "$CONDA_ENV"
         echo " ------- *** ------"
