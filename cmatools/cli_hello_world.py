@@ -60,6 +60,25 @@ def cli_arguments(parser) -> argparse.ArgumentParser:
     return parser
 
 
+def build_parser() -> argparse.ArgumentParser:
+    """Function to build a parser with program details and arguments set
+
+    Returns
+    -------
+    parser : argparse.ArgumentParser
+
+    """
+
+    # Instantiate cli parser object
+    parser = cli_parser()
+
+    # Add the arguments
+    cli_arguments(parser)
+
+    # Returns a parser object, with the arguments set
+    return parser
+
+
 def cli_parse_args(argv=None) -> argparse.Namespace:
     """Function to parse the passed arguments into an argparse namespace object
 
@@ -77,10 +96,8 @@ def cli_parse_args(argv=None) -> argparse.Namespace:
     """
 
     # Instantiate cli parser object
-    parser = cli_parser()
-
     # Add the arguments
-    cli_arguments(parser)
+    parser = build_parser()
 
     # Parse the arguments
     # ArgumentParser.parse_args processes whatever list of strings you pass it.
