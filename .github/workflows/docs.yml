@@ -1,7 +1,7 @@
 # Name for workflow (also displayed on the associated badges)
 name: docs
 
-on: [push]
+#on: [push]
 
 # Set environment variables so this workflow action is easy tore-use in other repos
 env:
