@@ -68,7 +68,7 @@ jobs:
         git checkout -f origin/master docs/
 
         # Build the html documentation with sphinx
-        cd scripts
+        cd scripts/docs
         chmod +x build-sphinx-docs.sh
         ./build-sphinx-docs.sh
 
