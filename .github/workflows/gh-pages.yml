@@ -65,55 +65,57 @@ jobs:
         git rm -r docs
         git rm -r tests
 
+        #git rm -rf .
 
-        # Clean up the working repo, deletes any untracked files from the current checkout out repo
-        # (force, includes directories, removes ignored files)
-        git clean -dfx
 
-        # Checkout only the directories needed to build the documentation from master
-        git checkout -f origin/master scripts/
-        git checkout -f origin/master docs/
-        git checkout -f origin/master .nojekyll
-        echo " --- Building documentation --- "
-        echo $PWD
-
-        # Build the html documentation with sphinx
-        cd scripts/docs
-        chmod +x build-sphinx-docs.sh
-        ./build-sphinx-docs.sh
-
-        echo " ---------- * ----------"
-        echo "Documentation built"
-        cd  ../..
-        echo $PWD
-        cd docs/build
-        echo $PWD
-        echo " ---------- * ----------"
-
-        # Confirm git status, for debugging
-        echo "-- git status --"
-        git status
-        echo "-- end git status --"
-        echo $PWD
-        echo " ---------- * ----------"
-
-        # Add the newly created files and directories to git
-        git add -f _static
-        git add -f _sources
-        git add -f *.html
-        git add -f *.inv
-        git add -f *.js
-        cd ../..
-        git add docs/
-
-        # Confirm git status, for debugging
-        echo "---*  git status *---"
-        git status
-        echo "-- end git status --"
-        git status
-
-        # Commit all the changes, inc message
-        # Always exit with status 0
+#        # Clean up the working repo, deletes any untracked files from the current checkout out repo
+#        # (force, includes directories, removes ignored files)
+#        git clean -dfx
+#
+#        # Checkout only the directories needed to build the documentation from master
+#        git checkout -f origin/master scripts/
+#        git checkout -f origin/master docs/
+#        git checkout -f origin/master .nojekyll
+#        echo " --- Building documentation --- "
+#        echo $PWD
+#
+#        # Build the html documentation with sphinx
+#        cd scripts/docs
+#        chmod +x build-sphinx-docs.sh
+#        ./build-sphinx-docs.sh
+#
+#        echo " ---------- * ----------"
+#        echo "Documentation built"
+#        cd  ../..
+#        echo $PWD
+#        cd docs/build
+#        echo $PWD
+#        echo " ---------- * ----------"
+#
+#        # Confirm git status, for debugging
+#        echo "-- git status --"
+#        git status
+#        echo "-- end git status --"
+#        echo $PWD
+#        echo " ---------- * ----------"
+#
+#        # Add the newly created files and directories to git
+#        git add -f _static
+#        git add -f _sources
+#        git add -f *.html
+#        git add -f *.inv
+#        git add -f *.js
+#        cd ../..
+#        git add docs/
+#
+#        # Confirm git status, for debugging
+#        echo "---*  git status *---"
+#        git status
+#        echo "-- end git status --"
+#        git status
+#
+#        # Commit all the changes, inc message
+#        # Always exit with status 0
 
         git commit -m "Update documentation on gh-pages" -a || true
 
