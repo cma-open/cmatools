@@ -59,6 +59,13 @@ jobs:
         # This brings in the last published version of the documentation in gh-pages
         git checkout -f gh-pages
 
+        # Remove all files to ensure a new clean build of the documentation
+
+        git rm -r cmatools
+        git rm -r docs
+        git rm -r tests
+
+
         # Clean up the working repo, deletes any untracked files from the current checkout out repo
         # (force, includes directories, removes ignored files)
         git clean -dfx
@@ -66,7 +73,7 @@ jobs:
         # Checkout only the directories needed to build the documentation from master
         git checkout -f origin/master scripts/
         git checkout -f origin/master docs/
-
+        git checkout -f origin/master .nojekyll
         echo " --- Building documentation --- "
         echo $PWD
 
