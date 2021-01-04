@@ -174,8 +174,26 @@ jobs:
     - name: Build gh-pages
       run: |
         curl \
+        -X POST \
         -H "Accept: application/vnd.github.v3+json" \
-        "https://api.github.com/repos/${{ github.repository }}/pages/builds"
+        -u ${{ secrets.ACCESS_TOKEN }} \
+        https://api.github.com/repos/${{ github.repository }}/pages/builds
+
+#curl \
+#  -X POST \
+#  -H "Accept: application/vnd.github.v3+json" \
+#  https://api.github.com/repos/octocat/hello-world/pages/builds
+
+
+#  echo "${GITHUB_REPOSITORY}"
+
+    - name: Create a repo level dispatches event
+      run: |
+        curl -X POST \
+        -H "Accept: application/vnd.github.v3+json" \
+        -u ${{ secrets.ACCESS_TOKEN }} \
+        https://api.github.com/repos/cma-open/cmatools/dispatches \
+        -d '{"event_type":"docs-build-true"}'
 
 # https://api.github.com/repos/octocat/hello-world/pages
 
