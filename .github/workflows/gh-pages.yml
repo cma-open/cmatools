@@ -84,6 +84,11 @@ jobs:
 
         git clean -dfx
 
+        # Show all current git branches, for debugging
+        echo "--- Git branches ---"
+        git branch -a
+        echo "---              ---"
+
         echo " ----------------------------------------------------------"
         echo " ----------------------------------------------------------"
         echo " ***   git remote - list   ***"
@@ -93,11 +98,21 @@ jobs:
 
 
 
-        git commit -m "Update documentation on gh-pages" -a || true
+
 
         # Set the remote url for the github repo,
         # Uses deploy token to allow authentication from the workflow to repo
         git remote set-url origin "$REPO_URI"
+
+        git commit -m "Update documentation on gh-pages" -a || true
+
+        echo " ----------------------------------------------------------"
+        echo " ----------------------------------------------------------"
+        echo " ***   git remote - list   ***"
+        git remote -v
+        echo " ----------------------------------------------------------"
+        echo " ----------------------------------------------------------"
+
 
         echo "Push changes to the gh-pages branch"
         git push --force-with-lease origin gh-pages
