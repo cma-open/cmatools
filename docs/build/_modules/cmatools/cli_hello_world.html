@@ -1,0 +1,376 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>cmatools.cli_hello_world &mdash; cmatools 0.0.1 documentation</title>
+  
+
+  
+  <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../../_static/graphviz.css" type="text/css" />
+
+  
+  
+  
+  
+
+  
+  <!--[if lt IE 9]>
+    <script src="../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../../" src="../../_static/documentation_options.js"></script>
+        <script src="../../_static/jquery.js"></script>
+        <script src="../../_static/underscore.js"></script>
+        <script src="../../_static/doctools.js"></script>
+    
+    <script type="text/javascript" src="../../_static/js/theme.js"></script>
+
+    
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="../../index.html" class="icon icon-home" alt="Documentation Home"> cmatools
+          
+
+          
+          </a>
+
+          
+            
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <ul>
+<li class="toctree-l1"><a class="reference internal" href="../../readme.html">Readme</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../userguide/gettingstarted.html">Getting started</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../userguide/examplecode.html">Example code</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../changelog.html">Changelog</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../api/modules.html">cmatools</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../cmd/cmd.html">Command line utilities</a></li>
+</ul>
+
+            
+          
+        </div>
+        
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">cmatools</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../../index.html" class="icon icon-home"></a> &raquo;</li>
+        
+          <li><a href="../index.html">Module code</a> &raquo;</li>
+        
+      <li>cmatools.cli_hello_world</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <h1>Source code for cmatools.cli_hello_world</h1><div class="highlight"><pre>
+<span></span><span class="sd">&quot;&quot;&quot;</span>
+
+<span class="sd">A &quot;hello-world&quot; Command line application tool</span>
+
+<span class="sd">Allows development and testing of a simple command line tool</span>
+
+<span class="sd">&quot;&quot;&quot;</span>
+
+<span class="c1"># Standard library imports.</span>
+<span class="kn">import</span> <span class="nn">argparse</span>
+<span class="kn">import</span> <span class="nn">pkg_resources</span>
+<span class="kn">import</span> <span class="nn">sys</span>
+
+<span class="n">DEBUG</span> <span class="o">=</span> <span class="kc">True</span>
+
+<span class="c1"># Take the version number from the package version in setup</span>
+<span class="n">pkg_version</span> <span class="o">=</span> <span class="n">pkg_resources</span><span class="o">.</span><span class="n">get_distribution</span><span class="p">(</span><span class="s2">&quot;cmatools&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">version</span>
+
+
+<div class="viewcode-block" id="cli_parser"><a class="viewcode-back" href="../../api/cmatools.html#cmatools.cli_hello_world.cli_parser">[docs]</a><span class="k">def</span> <span class="nf">cli_parser</span><span class="p">()</span> <span class="o">-&gt;</span> <span class="n">argparse</span><span class="o">.</span><span class="n">ArgumentParser</span><span class="p">:</span>
+    <span class="sd">&quot;&quot;&quot;Factory function to create parser object for arguments from the command line</span>
+
+<span class="sd">    Returns</span>
+<span class="sd">    -------</span>
+<span class="sd">    parser : argparse.ArgumentParser</span>
+
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">parser</span> <span class="o">=</span> <span class="n">argparse</span><span class="o">.</span><span class="n">ArgumentParser</span><span class="p">(</span>
+        <span class="c1"># Adds cli app title, if ommitted the filename is used (e.g. cli-simple.py)</span>
+        <span class="n">prog</span><span class="o">=</span><span class="s2">&quot;CLI-HELLO&quot;</span><span class="p">,</span>
+        <span class="n">description</span><span class="o">=</span><span class="sa">f</span><span class="s2">&quot;A simple hello-world command line app&quot;</span><span class="p">,</span>
+        <span class="n">epilog</span><span class="o">=</span><span class="s2">&quot;  ---  &quot;</span><span class="p">,</span>
+        <span class="n">formatter_class</span><span class="o">=</span><span class="n">argparse</span><span class="o">.</span><span class="n">ArgumentDefaultsHelpFormatter</span><span class="p">,</span>
+    <span class="p">)</span>
+    <span class="c1"># Returns a parser object, with the metadata and arguments set</span>
+    <span class="k">return</span> <span class="n">parser</span></div>
+
+
+<div class="viewcode-block" id="cli_arguments"><a class="viewcode-back" href="../../api/cmatools.html#cmatools.cli_hello_world.cli_arguments">[docs]</a><span class="k">def</span> <span class="nf">cli_arguments</span><span class="p">(</span><span class="n">parser</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">argparse</span><span class="o">.</span><span class="n">ArgumentParser</span><span class="p">:</span>
+    <span class="sd">&quot;&quot;&quot;Adds cli tool arguments to an existing parser</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    parser : argparse.ArgumentParser</span>
+<span class="sd">        An argparse parser</span>
+
+<span class="sd">    Returns</span>
+<span class="sd">    -------</span>
+<span class="sd">    parser : argparse.ArgumentParser</span>
+<span class="sd">        Parser object, with specified arguments</span>
+
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="c1"># Arguments in argparse can be optional, positional or required, set to required to force user input</span>
+    <span class="c1"># Add named arguments (required for the tool to run)</span>
+    <span class="c1"># Set the argument type (e.g. int) and limit choices from a list</span>
+    <span class="n">parser</span><span class="o">.</span><span class="n">add_argument</span><span class="p">(</span><span class="s2">&quot;user&quot;</span><span class="p">,</span> <span class="nb">type</span><span class="o">=</span><span class="nb">str</span><span class="p">,</span> <span class="n">help</span><span class="o">=</span><span class="s2">&quot;Enter username&quot;</span><span class="p">)</span>
+
+    <span class="c1"># Returns a parser object, with the arguments set</span>
+    <span class="k">return</span> <span class="n">parser</span></div>
+
+
+<div class="viewcode-block" id="build_parser"><a class="viewcode-back" href="../../api/cmatools.html#cmatools.cli_hello_world.build_parser">[docs]</a><span class="k">def</span> <span class="nf">build_parser</span><span class="p">()</span> <span class="o">-&gt;</span> <span class="n">argparse</span><span class="o">.</span><span class="n">ArgumentParser</span><span class="p">:</span>
+    <span class="sd">&quot;&quot;&quot;Function to build a parser with program details and arguments set</span>
+
+<span class="sd">    Returns</span>
+<span class="sd">    -------</span>
+<span class="sd">    parser : argparse.ArgumentParser</span>
+
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="c1"># Instantiate cli parser object</span>
+    <span class="n">parser</span> <span class="o">=</span> <span class="n">cli_parser</span><span class="p">()</span>
+
+    <span class="c1"># Add the arguments</span>
+    <span class="n">cli_arguments</span><span class="p">(</span><span class="n">parser</span><span class="p">)</span>
+
+    <span class="c1"># Returns a parser object, with the arguments set</span>
+    <span class="k">return</span> <span class="n">parser</span></div>
+
+
+<div class="viewcode-block" id="cli_parse_args"><a class="viewcode-back" href="../../api/cmatools.html#cmatools.cli_hello_world.cli_parse_args">[docs]</a><span class="k">def</span> <span class="nf">cli_parse_args</span><span class="p">(</span><span class="n">argv</span><span class="o">=</span><span class="kc">None</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">argparse</span><span class="o">.</span><span class="n">Namespace</span><span class="p">:</span>
+    <span class="sd">&quot;&quot;&quot;Function to parse the passed arguments into an argparse namespace object</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    argv : str</span>
+<span class="sd">       The arguments from the command line</span>
+
+
+<span class="sd">    Returns</span>
+<span class="sd">    -------</span>
+<span class="sd">    parser.parse_args(argv) : argparse.Namespace</span>
+<span class="sd">        The namespace object holding the command line arguments</span>
+
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="c1"># Instantiate cli parser object</span>
+    <span class="c1"># Add the arguments</span>
+    <span class="n">parser</span> <span class="o">=</span> <span class="n">build_parser</span><span class="p">()</span>
+
+    <span class="c1"># Parse the arguments</span>
+    <span class="c1"># ArgumentParser.parse_args processes whatever list of strings you pass it.</span>
+    <span class="c1"># When you pass None, it uses sys.argv[1:] instead, this allows testing</span>
+
+    <span class="k">return</span> <span class="n">parser</span><span class="o">.</span><span class="n">parse_args</span><span class="p">(</span><span class="n">argv</span><span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="cli_hello"><a class="viewcode-back" href="../../api/cmatools.html#cmatools.cli_hello_world.cli_hello">[docs]</a><span class="k">def</span> <span class="nf">cli_hello</span><span class="p">(</span><span class="n">parsed_args</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
+
+    <span class="sd">&quot;&quot;&quot;Function to print text to the terminal</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    parsed_args : argparse.Namespace</span>
+<span class="sd">        The command line arguments parsed into a namespace object</span>
+
+<span class="sd">    Returns</span>
+<span class="sd">    -------</span>
+<span class="sd">    analysis_product : int</span>
+<span class="sd">        The result of the multiplication of `parsed_args.x` and `parsed_args.y`</span>
+
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="n">terminal_output</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">&quot;Hello: </span><span class="si">{</span><span class="n">parsed_args</span><span class="o">.</span><span class="n">user</span><span class="si">}</span><span class="s2">&quot;</span>
+
+    <span class="k">if</span> <span class="n">DEBUG</span><span class="p">:</span>
+        <span class="nb">print</span><span class="p">(</span><span class="n">parsed_args</span><span class="p">)</span>
+        <span class="c1"># Simple print to show the cli tool is working</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;The cli hello-world tool has run&quot;</span><span class="p">)</span>
+        <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;The user value is: </span><span class="si">{</span><span class="n">parsed_args</span><span class="o">.</span><span class="n">user</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+        <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;The output is: </span><span class="si">{</span><span class="n">terminal_output</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+
+    <span class="k">return</span> <span class="n">terminal_output</span></div>
+
+
+<div class="viewcode-block" id="cli_entry_point"><a class="viewcode-back" href="../../api/cmatools.html#cmatools.cli_hello_world.cli_entry_point">[docs]</a><span class="k">def</span> <span class="nf">cli_entry_point</span><span class="p">(</span><span class="n">argv</span><span class="o">=</span><span class="kc">None</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+
+    <span class="sd">&quot;&quot;&quot;Function to wrap passing the parsed command line arguments to</span>
+<span class="sd">    the analysis function</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    argv : str</span>
+<span class="sd">       The command line arguments</span>
+
+<span class="sd">    Returns</span>
+<span class="sd">    -------</span>
+<span class="sd">    None</span>
+
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="c1"># Read arguments from the command line</span>
+    <span class="c1"># Parsed arguments are present as object attributes</span>
+    <span class="c1"># Pass the parsed arguments to the cli analysis function</span>
+
+    <span class="n">cli_hello</span><span class="p">(</span><span class="n">cli_parse_args</span><span class="p">(</span><span class="n">argv</span><span class="p">))</span></div>
+
+    <span class="c1"># The entrypoint returns none</span>
+
+
+<span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s2">&quot;__main__&quot;</span><span class="p">:</span>
+    <span class="c1"># Runs entry point function when called as main</span>
+    <span class="n">cli_entry_point</span><span class="p">()</span>
+
+    <span class="k">if</span> <span class="n">DEBUG</span><span class="p">:</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;------&quot;</span><span class="p">)</span>
+        <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Number of arguments:&quot;</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">sys</span><span class="o">.</span><span class="n">argv</span><span class="p">),</span> <span class="s2">&quot;arguments.&quot;</span><span class="p">)</span>
+        <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Argument List:&quot;</span><span class="p">,</span> <span class="nb">str</span><span class="p">(</span><span class="n">sys</span><span class="o">.</span><span class="n">argv</span><span class="p">))</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;------&quot;</span><span class="p">)</span>
+</pre></div>
+
+           </div>
+           
+          </div>
+          <footer>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        
+        &copy; Copyright 2020, jonathan winn
+
+    </p>
+  </div>
+    
+    
+    
+    Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a
+    
+    <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a>
+    
+    provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>
