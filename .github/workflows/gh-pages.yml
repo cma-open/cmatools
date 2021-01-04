@@ -31,7 +31,7 @@ jobs:
       with:
         fetch-depth: 0 # Ensure all branches are available
         #token: $DEPLOY_TOKEN
-        persist-credentials: false
+        #persist-credentials: false
     - name: Install dependencies
       run: |
         conda update conda
