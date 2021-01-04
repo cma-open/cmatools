@@ -17,11 +17,12 @@
 # Name for workflow (also displayed on the associated badges)
 name: gh-pages
 
-# Ensure pages only re-built after pushes to master branch not feature branches
+# Controls when the action will run.
+# Triggers the workflow ................
 on:
-  push:
-    branches:
-      - master
+  # repo dispatch, not workflow dispatch
+  repository_dispatch:
+      types: [docs-build-true]
 
 # Set environment variables so this workflow action is easy to re-use in other repos
 env:
