@@ -1,9 +1,15 @@
+# ####################################################################
+# GitHub workflow action file
+# Tests that the Sphinx documentation builds successfully
+# ####################################################################
+
 # Name for workflow (also displayed on the associated badges)
 name: docs
 
+# Runs on all pushes to the repo
 on: [push]
 
-# Set environment variables so this workflow action is easy tore-use in other repos
+# Set environment variables so this workflow action is easy to re-use in other repos
 env:
   REPO_NAME: cmatools
   CONDA_ENV: cmadocs-env
@@ -29,7 +35,7 @@ jobs:
       run: |
         source /usr/share/miniconda/etc/profile.d/conda.sh
         conda activate $CONDA_ENV
-        python setup.py install
+        pip  install .
     - name: Test Sphinx docs build
       run: |
         source /usr/share/miniconda/etc/profile.d/conda.sh
