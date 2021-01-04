@@ -49,11 +49,11 @@ jobs:
         cd scripts/docs
         chmod +x build-sphinx-docs.sh
         ./build-sphinx-docs.sh
-      # Dispatch event will only be created if the rest of the steps have completed first
-      - name: Create a repo level dispatches event
-        run: |
-          curl -X POST \
-          -H "Accept: application/vnd.github.v3+json" \
-          -u ${{ secrets.ACCESS_TOKEN }} \
-          https://api.github.com/repos/cma-open/cmatools/dispatches \
-          -d '{"event_type":"docs-build-true"}'
+# Dispatch event will only be created if the rest of the steps have completed first
+    - name: Create a repo level dispatches event
+      run: |
+        curl -X POST \
+        -H "Accept: application/vnd.github.v3+json" \
+        -u ${{ secrets.ACCESS_TOKEN }} \
+        https://api.github.com/repos/cma-open/cmatools/dispatches \
+        -d '{"event_type":"docs-build-true"}'
