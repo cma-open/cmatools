@@ -1,1 +1,0 @@
-""" docstring for subpackage b"""
