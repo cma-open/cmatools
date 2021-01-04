@@ -171,6 +171,13 @@ jobs:
 
         echo "Push changes to the gh-pages branch"
         git push --force-with-lease origin gh-pages
+
+    - name: Confirm current page build status
+      run: |
+        curl \
+          -H "Accept: application/vnd.github.v3+json" \
+          https://api.github.com/repos/cma-open/cmatools/pages/builds/latest
+
     - name: Build gh-pages
       run: |
         curl \
