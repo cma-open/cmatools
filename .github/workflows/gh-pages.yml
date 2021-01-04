@@ -12,13 +12,12 @@
 # https://github.com/JacksonMaxfield/github-pages-deploy-action-python/blob/master/entrypoint.sh
 # https://stackoverflow.com/questions/58257140/unable-to-commit-and-push-back-changes-made-by-github-action-invalid-user?rq=1
 
-# This workflow action builds and pushes any recent changes to the sphinx documentation to the gh-pages branch
+
 
 # Name for workflow (also displayed on the associated badges)
 name: gh-pages
 
-# Controls when the action will run.
-# Triggers the workflow ................
+# Controls when the action will run. Triggers the workflow only if docs workflow succeeds
 on:
   # repo dispatch, not workflow dispatch
   repository_dispatch:
@@ -97,9 +96,6 @@ jobs:
         git remote -v
         echo " ----------------------------------------------------------"
         echo " ----------------------------------------------------------"
-
-
-
 
 
         # Set the remote url for the github repo,
