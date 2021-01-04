@@ -177,7 +177,9 @@ jobs:
         -X POST \
         -H "Accept: application/vnd.github.v3+json" \
         -u ${{ secrets.ACCESS_TOKEN }} \
-        https://api.github.com/repos/${{ github.repository }}/pages/builds
+        https://api.github.com/repos/cma-open/cmatools/pages/builds
+
+#        https://api.github.com/repos/${{ github.repository }}/pages/builds
 
 #curl \
 #  -X POST \
