@@ -120,6 +120,7 @@ jobs:
         git checkout -f origin/master scripts/docs
         git checkout -f origin/master docs/
         git checkout -f origin/master .nojekyll
+        git checkout -f origin/master index.html
         git checkout -f origin/master CHANGELOG.rst
         git checkout -f origin/master cmatools
 
@@ -153,6 +154,7 @@ jobs:
         git add -f *.js
         cd ../..
         git add docs/
+        git add index.html
 
         # Confirm git status, for debugging
         echo "---*  git status *---"
