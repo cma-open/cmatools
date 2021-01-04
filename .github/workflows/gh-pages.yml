@@ -82,12 +82,7 @@ jobs:
 
         # Remove all files to ensure a new clean build of the documentation
 
-        #git rm -r cmatools
-        #git rm -r docs
-        #git rm -r tests
-
         git rm -rf .
-
         git clean -dfx
 
         # Show all current git branches, for debugging
@@ -120,23 +115,19 @@ jobs:
         echo " ----------------------------------------------------------"
         echo " ----------------------------------------------------------"
 
-
-        #echo "Push changes to the gh-pages branch"
-        #git push --force-with-lease origin gh-pages
-
-
-
         # Clean up the working repo, deletes any untracked files from the current checkout out repo
         # (force, includes directories, removes ignored files)
         git clean -dfx
 
         # Checkout only the directories needed to build the documentation from master
-        git checkout -f origin/master scripts/
+        git checkout -f origin/master scripts/docs
         git checkout -f origin/master docs/
         git checkout -f origin/master .nojekyll
+        git checkout -f origin/master .CHANGELOG.rst
+        git checkout -f origina/master cmatools
+
         echo " --- Building documentation --- "
         echo $PWD
-
         # Build the html documentation with sphinx
         cd scripts/docs
         chmod +x build-sphinx-docs.sh
