@@ -4,6 +4,7 @@ name: cmadocs-env
 channels:
  - conda-forge
 dependencies:
+ - python=3.7
  - black
  - sphinx
  - sphinx_rtd_theme
