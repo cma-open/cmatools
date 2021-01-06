@@ -44,5 +44,4 @@ jobs:
       run: |
         echo ${{ steps.check.outputs.date }}
         echo ${{ steps.check.outcome }}
-        echo ${{ steps.check.outputs }}
-        echo ${{ steps.alt.body }}
+        echo ${{ steps.alt.outputs.body }}
