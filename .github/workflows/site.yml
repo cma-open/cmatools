@@ -21,8 +21,15 @@ jobs:
           https://api.github.com/repos/cma-open/cmatools/pages
 
     - name: Confirm current page build status
+      id: check
       run: |
         curl \
           -H "Accept: application/vnd.github.v3+json" \
           -u ${{ secrets.ACCESS_TOKEN }} \
-          https://api.github.com/repos/cma-open/cmatools/pages/builds/latest
+          https://api.github.com/repos/cma-open/cmatools/pages/builds/latest >> $SITE
+        echo "::set-output name=date::$(date +'%Y.%m.%d.%Hh%Mm')"
+        echo "$SITE"
+
+    - name: Test the job steps outputs
+      run: |
+        echo ${{ steps.check.outputs.date }}
