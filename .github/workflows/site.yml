@@ -37,9 +37,13 @@ jobs:
       run: |
         ath="Accept: application/vnd.github.v3+json"
         url="https://api.github.com/repos/cma-open/cmatools/pages/builds/latest"
-        response=${{fromJson(curl -H "$ath" -u ${{ secrets.ACCESS_TOKEN }} "$url")}}
+        response=$(curl -H "$ath" -u ${{ secrets.ACCESS_TOKEN }} "$url")
+        response2=${{fromJson($response)}}
         echo " ---- "
         echo "$response"
+        echo " ---- "
+        echo "$response2"
+        echo " --- "
         echo "::set-output name=body::${{ toJson($response) }}"
 
     - name: Test the job steps outputs
