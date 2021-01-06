@@ -39,7 +39,7 @@ jobs:
         url="https://api.github.com/repos/cma-open/cmatools/pages/builds/latest"
         response=$(curl -H "$ath" -u ${{ secrets.ACCESS_TOKEN }} "$url")
         echo "$response"
-        echo "::set-output name=body::$response"
+        echo "::set-output name=body::${{ toJson($response) }}"
 
     - name: Test the job steps outputs
       run: |
