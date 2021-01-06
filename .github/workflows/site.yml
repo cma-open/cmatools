@@ -42,7 +42,7 @@ jobs:
         echo "$response"
         echo " ---- "
         echo " --- "
-        echo "::set-output name=body::${{ toJson("$response") }}"
+        echo "::set-output name=body::$(curl -H "$ath" -u ${{ secrets.ACCESS_TOKEN }} "$url")
 
     - name: Test the job steps outputs
       run: |
