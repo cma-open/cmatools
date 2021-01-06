@@ -31,7 +31,6 @@ jobs:
           -u ${{ secrets.ACCESS_TOKEN }} \
           https://api.github.com/repos/cma-open/cmatools/pages/builds/latest
         echo "::set-output name=date::$(date +'%Y.%m.%d.%Hh%Mm')"
-        ${{ job.status }}
 
     - name: Test the job steps outputs
       run: |
