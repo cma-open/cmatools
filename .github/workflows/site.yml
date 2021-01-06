@@ -1,0 +1,28 @@
+# ####################################################################
+# GitHub workflow action file
+# Checks recent gh-pages website builds
+# ####################################################################
+
+# Name for workflow (also displayed on the associated badges)
+name: site
+
+# Controls when the action will run. Triggers the workflow only if docs workflow succeeds
+on: [push]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+    - name: Confirm pages
+      run: |
+        curl \
+          -H "Accept: application/vnd.github.v3+json" \
+          https://api.github.com/repos/cma-open/cmatools/pages
+
+    - name: Confirm current page build status
+      run: |
+        curl \
+          -H "Accept: application/vnd.github.v3+json" \
+          https://api.github.com/repos/cma-open/cmatools/pages/builds/latest
+
+#        -u ${{ secrets.ACCESS_TOKEN }} \
