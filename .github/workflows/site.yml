@@ -35,13 +35,15 @@ jobs:
     - name: Confirm current page build status
       id: alt
       run: |
-        echo "::set-output name=body::$(curl \
-          -H "Accept: application/vnd.github.v3+json" \
-          -u ${{ secrets.ACCESS_TOKEN }} \
-          https://api.github.com/repos/cma-open/cmatools/pages/builds/latest)"
+        ath="Accept: application/vnd.github.v3+json"
+        url="https://api.github.com/repos/cma-open/cmatools/pages/builds/latest"
+        response=$(curl -H "$ath" -u ${{ secrets.ACCESS_TOKEN }} "$url")
+        echo "$response"
+        echo "::set-output name=body::$response"
 
     - name: Test the job steps outputs
       run: |
         echo ${{ steps.check.outputs.date }}
         echo ${{ steps.check.outcome }}
         echo ${{ steps.alt.outputs.body }}
+        echo ${{fromJson(steps.alt.outputs.body).status}}
