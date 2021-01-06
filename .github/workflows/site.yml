@@ -9,6 +9,9 @@ name: site
 # Controls when the action will run. Triggers the workflow only if docs workflow succeeds
 on: [push]
 
+env:
+  SITE: ""
+
 jobs:
   build:
     runs-on: ubuntu-latest
@@ -29,7 +32,9 @@ jobs:
           https://api.github.com/repos/cma-open/cmatools/pages/builds/latest >> $SITE
         echo "::set-output name=date::$(date +'%Y.%m.%d.%Hh%Mm')"
         echo "$SITE"
+        ${{ job.status }}
 
     - name: Test the job steps outputs
       run: |
         echo ${{ steps.check.outputs.date }}
+        echo ${{ steps.check.outputs }}
