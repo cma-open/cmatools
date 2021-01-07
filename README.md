@@ -1,7 +1,8 @@
 <h2 align="center">cmatools</h2>
 
  - Development status: 
- - [![Project Status: WIP – Initial development is in progress, but there has not yet been a stable, usable release suitable for the public.](https://www.repostatus.org/badges/latest/wip.svg)](https://www.repostatus.org/#wip) ![](https://github.com/jonathan-winn-geo/cmatools/workflows/unit-tests/badge.svg) ![](https://github.com/cma-open/cmatools/workflows/end-to-end-tests/badge.svg)  ![](https://github.com/cma-open/cmatools/workflows/docs/badge.svg)  ![](https://github.com/cma-open/cmatools/workflows/gh-pages/badge.svg) ![](https://github.com/cma-open/cmatools/workflows/site/badge.svg)
+ - [![Project Status: WIP – Initial development is in progress, but there has not yet been a stable, usable release suitable for the public.](https://www.repostatus.org/badges/latest/wip.svg)](https://www.repostatus.org/#wip) ![](https://github.com/jonathan-winn-geo/cmatools/workflows/unit-tests/badge.svg) ![](https://github.com/cma-open/cmatools/workflows/end-to-end-tests/badge.svg) ![](https://github.com/cma-open/cmatools/workflows/user-interface-tests/badge.svg)
+  ![](https://github.com/cma-open/cmatools/workflows/docs/badge.svg)  ![](https://github.com/cma-open/cmatools/workflows/gh-pages/badge.svg) ![](https://github.com/cma-open/cmatools/workflows/site/badge.svg)
 
 - Code quality: 
 - [![Codacy Badge](https://api.codacy.com/project/badge/Grade/bc11e8877db94af394b794def1c4c585)](https://app.codacy.com/manual/jonathan.winn/cmatools?utm_source=github.com&utm_medium=referral&utm_content=jonathan-winn-geo/cmatools&utm_campaign=Badge_Grade_Dashboard) ![coverage](https://img.shields.io/badge/coverage-80%25-yellowgreen)
