@@ -26,10 +26,10 @@ jobs:
     - name: Test the job steps outputs
       id: check
       run: |
-        echo "${{ steps.check.outcome }}"
+        echo "${{ steps.built.outcome }}"
         echo "${{ steps.built.outputs.body }}"
         echo "${{fromJson(steps.built.outputs.body).status}}"
         echo "::set-output name=status::"${{fromJson(steps.built.outputs.body).status}}""
     - name: Check failures
-      if: (${{ steps.check.outputs.status }} == 'not' )
+      if: (${{ steps.check.outputs.status }} !== 'built' )
       run: exit 1
