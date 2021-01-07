@@ -45,5 +45,6 @@ jobs:
         echo ${{ steps.check.outputs.date }}
         echo ${{ steps.check.outcome }}
         echo ${{ steps.alt.outputs.body }}
+        echo ${{ steps.alt.outputs.body1 }}
         echo ${{ steps.alt.outputs.body2 }}
-#echo ${{fromJson(steps.alt.outputs.body).status}}
+        echo ${{fromJson(steps.alt.outputs.body1).status}}
