@@ -36,17 +36,17 @@ jobs:
         echo "${response}"
         echo " ---- "
         echo " --- "
-        echo "::set-output name=body::${response}"
-        echo "::set-output name=body1::$(echo $'\'' "$response" $'\'')"
-        echo "::set-output name=body2::$(echo $'\''{"$response"}$'\'')"
-
-    - name: Test the job steps outputs
-      run: |
-        echo "${{ steps.check.outputs.date }}"
-        echo "${{ steps.check.outcome }}"
-        echo "${{ steps.alt.outputs.body }}"
-        echo "${{ steps.alt.outputs.body1 }}"
-        echo "${{ steps.alt.outputs.body2 }}"
-        echo " --- "
-        echo "${{  toJson(steps.alt.outputs.body1) }}"
-        echo "${{fromJson(steps.alt.outputs.body1).status}}"
+#        echo "::set-output name=body::${response}"
+#        echo "::set-output name=body1::$(echo $'\'' "$response" $'\'')"
+#        echo "::set-output name=body2::$(echo $'\''{"$response"}$'\'')"
+#
+#    - name: Test the job steps outputs
+#      run: |
+#        echo "${{ steps.check.outputs.date }}"
+#        echo "${{ steps.check.outcome }}"
+#        echo "${{ steps.alt.outputs.body }}"
+#        echo "${{ steps.alt.outputs.body1 }}"
+#        echo "${{ steps.alt.outputs.body2 }}"
+#        echo " --- "
+#        echo "${{  toJson(steps.alt.outputs.body1) }}"
+#        echo "${{fromJson(steps.alt.outputs.body1).status}}"
