@@ -1,9 +1,14 @@
+# ####################################################################
+# GitHub workflow action file
+# Runs the unit tests against installed system on the runner
+# ####################################################################
+
 # Name for workflow (also displayed on the associated badges)
 name: unit-tests
 
-#on: [push]
+on: [push]
 
-# Set environment variables so this workflow action is easy tore-use in other repos
+# Set environment variables so this workflow action is easy to re-use in other repos
 env:
   REPO_NAME: cmatools
   CONDA_ENV: cmatools-env
