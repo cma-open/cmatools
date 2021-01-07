@@ -1,9 +1,24 @@
 #!/bin/bash
 
-testdir="$(dirname "$PWD")"
-echo "$testdir"
+#######################################
+# Script to run system tests
+#######################################
 
-# Discover and run tests on code path,  -v verbose flag
+# Set python package root dir as script constant
+readonly CODE_DIR="$(dirname "$(dirname "${PWD}")")"
+# Set tests directory
+readonly TESTS_DIR="${CODE_DIR}"/tests
+
+echo " ---- * ----"
+echo "Running system tests with pytest"
+echo "Python package root: "${CODE_DIR}""
+echo "Tests directory: "${TESTS_DIR}""
+echo " ---- * ----"
+
+# Discover and run tests on code path,
+# -v verbose flag
+# -r displays “short test summary info” at end of session, -A lists all info
+
 #pytest -r -l --tb=long  $testdir
-#pytest --tb=long  $testdir
-pytest -rA  $testdir
+
+pytest -rA  "${TESTS_DIR}"
