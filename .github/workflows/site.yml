@@ -31,5 +31,5 @@ jobs:
         echo "${{fromJson(steps.built.outputs.body).status}}"
         echo "::set-output name=status::"${{fromJson(steps.built.outputs.body).status}}""
     - name: Check failures
-      if: (${{ steps.check.outputs.status }} !== 'built' )
+      if: (${{ steps.check.outputs.status }} != 'built' )
       run: exit 1
