@@ -32,11 +32,11 @@ jobs:
         ath="Accept: application/vnd.github.v3+json"
         url="https://api.github.com/repos/cma-open/cmatools/pages"
         response=$(curl -H "${ath}" -u ${{ secrets.ACCESS_TOKEN }} "${url}")
-        echo " ---- "
+        echo " --***-- "
         echo "${response}"
-        echo " ---- "
+        echo " --XXX-- "
         echo " --- "
-        echo "::set-output name=body::${response}"
+        echo "::set-output name=body::"${response}""
 #        echo "::set-output name=body1::$(echo $'\'' "$response" $'\'')"
 #        echo "::set-output name=body2::$(echo $'\''{"$response"}$'\'')"
 #
