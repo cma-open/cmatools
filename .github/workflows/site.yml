@@ -31,7 +31,7 @@ jobs:
       run: |
         ath="Accept: application/vnd.github.v3+json"
         url="https://api.github.com/repos/cma-open/cmatools/pages"
-        response=$(curl -H "$ath" -u ${{ secrets.ACCESS_TOKEN }} "$url")
+        response=$(curl -H "${ath}" -u ${{ secrets.ACCESS_TOKEN }} "${url}")
         echo " ---- "
         echo "${response}"
         echo " ---- "
