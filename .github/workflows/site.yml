@@ -9,44 +9,27 @@ name: site
 # Controls when the action will run. Triggers the workflow only if docs workflow succeeds
 on: [push]
 
-env:
-  SITE: ""
-
 jobs:
   job:
     runs-on: ubuntu-latest
     steps:
-    - name: Confirm current page build status
-      id: check
-      run: |
-        curl \
-          -H "Accept: application/vnd.github.v3+json" \
-          -u ${{ secrets.ACCESS_TOKEN }} \
-          https://api.github.com/repos/cma-open/cmatools/pages/builds/latest
-        echo "::set-output name=date::$(date +'%Y.%m.%d.%Hh%Mm')"
-
-    - name: Confirm documentation gh=pages has built
-      id: alt
-      # Escape chars in output used to format output as required (single quotes around double quotes)
+    - name: Confirm documentation gh-pages has built
+      id: built
       run: |
         ath="Accept: application/vnd.github.v3+json"
         url="https://api.github.com/repos/cma-open/cmatools/pages"
         response=$(curl -H "${ath}" -u ${{ secrets.ACCESS_TOKEN }} "${url}")
         echo " --***-- "
         echo "${response}"
-        echo " --XXX-- "
-        echo " --- "
+        echo " --***-- "
         echo "::set-output name=body::"${response}""
-#        echo "::set-output name=body1::$(echo $'\'' "$response" $'\'')"
-#        echo "::set-output name=body2::$(echo $'\''{"$response"}$'\'')"
-#
     - name: Test the job steps outputs
+      id: check
       run: |
-        echo "${{ steps.check.outputs.date }}"
         echo "${{ steps.check.outcome }}"
-        echo "${{ steps.alt.outputs.body }}"
-        echo " --- "
-        echo "${{fromJson(steps.alt.outputs.body).status}}"
-#        echo "${{ steps.alt.outputs.body1 }}"
-#        echo "${{ steps.alt.outputs.body2 }}"
-#        echo "${{  toJson(steps.alt.outputs.body1) }}"
+        echo "${{ steps.built.outputs.body }}"
+        echo "${{fromJson(steps.built.outputs.body).status}}"
+        echo "::set-output name=status::"${{fromJson(steps.built.outputs.body).status}}""
+    - name: Check failures
+      if: (${{ steps.check.outputs.status }} == 'not' )
+      run: exit 1
