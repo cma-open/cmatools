@@ -1,6 +1,6 @@
 # ####################################################################
 # GitHub workflow action file
-# Checks recent gh-pages website builds
+# Checks the Sphinx documentation site is built and active
 # ####################################################################
 
 # Name for workflow (also displayed on the associated badges)
