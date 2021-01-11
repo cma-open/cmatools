@@ -34,7 +34,7 @@ jobs:
     - name: Confirm documentation gh-pages is accessible (public pages)
       id: up
       run: |
-        url=steps.check.outputs.url
+        url="${{ steps.check.outputs.url }}"
         response=$(curl -Li "${url}" -o /dev/null -w '%{http_code}\n' -s)
         echo " --***-- "
         echo "Status code: ${response}"
