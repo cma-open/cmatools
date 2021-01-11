@@ -45,9 +45,10 @@ jobs:
         echo "${{ steps.check.outputs.status }}"
         exit 1
     - name: Check if site is up
-      if: steps.check.outputs.url != '200' || steps.check.outputs.url != '301'
+      if: steps.check.outputs.url != '200' && steps.check.outputs.url != '301'
       run: |
         echo "Site not accessible"
         echo "${{ steps.check.outputs.url }}"
         exit 1
 # curl -Li mazgi.com -o /dev/null -w '%{http_code}\n' -s
+#|| steps.check.outputs.url != '301'
