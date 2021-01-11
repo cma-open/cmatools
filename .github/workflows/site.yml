@@ -11,9 +11,12 @@ on: [push]
 
 jobs:
   job:
+    # Max timeout for action, before termination
+    timeout-minutes: 2
     runs-on: ubuntu-latest
     steps:
     - name: Confirm documentation gh-pages has built
+      # an explanation here
       id: built
       run: |
         ath="Accept: application/vnd.github.v3+json"
