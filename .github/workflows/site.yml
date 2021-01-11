@@ -30,8 +30,24 @@ jobs:
         echo "${{ steps.built.outputs.body }}"
         echo "${{fromJson(steps.built.outputs.body).status}}"
         echo "::set-output name=status::"${{fromJson(steps.built.outputs.body).status}}""
+        echo "::set-output name=url::"${{fromJson(steps.built.outputs.body).html_url}}""
+    - name: Confirm documentation gh-pages is accessible (public pages)
+      id: up
+      run: |
+        url=steps.check.outputs.url
+        response=$(curl -Li "${url}" -o /dev/null -w '%{http_code}\n' -s)
+        echo " --***-- "
+        echo "Status code: ${response}"
+        echo " --***-- "
     - name: Check failures
       if: steps.check.outputs.status != 'built'
       run: |
         echo "${{ steps.check.outputs.status }}"
         exit 1
+    - name: Check if site is up
+      if: steps.check.outputs.url != 200 || steps.check.outputs.url != 301
+      run: |
+        echo "Site not accessible"
+        echo "${{ steps.check.outputs.url }}"
+        exit 1
+# curl -Li mazgi.com -o /dev/null -w '%{http_code}\n' -s
