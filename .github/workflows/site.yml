@@ -40,17 +40,21 @@ jobs:
         echo "Status code: ${response}"
         echo " --***-- "
         echo "::set-output name=status::"${response}""
-    - name: Check failures
+    - name: Check build failures
       if: steps.check.outputs.status != 'built'
       run: |
         echo "${{ steps.check.outputs.status }}"
         exit 1
-    - name: Check if site is up
+    - name: Confirm site is accessible
+      if: steps.up.outputs.status == 200 || steps.up.outputs.status == 301
+      run: |
+        echo "Site  accessible"
+        echo "${{ steps.check.outputs.url }}"
+        echo "${{ steps.up.outputs.status }}"
+    - name: Check if site is down
       if: steps.up.outputs.status != 200 && steps.up.outputs.status != 301
       run: |
         echo "Site not accessible"
         echo "${{ steps.check.outputs.url }}"
         echo "${{ steps.up.outputs.status }}"
         exit 1
-# curl -Li mazgi.com -o /dev/null -w '%{http_code}\n' -s
-#|| steps.check.outputs.url != '301'
