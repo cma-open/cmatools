@@ -43,6 +43,8 @@ jobs:
         pip install .
     - name: Test code against code style
       run: |
+        source /usr/share/miniconda/etc/profile.d/conda.sh
+        conda activate $CONDA_ENV
         black $PACKAGE
         black $TESTS
     - name: Create a repo level dispatches event
