@@ -1,10 +1,10 @@
 # #################################################################################################################
 # GitHub workflow action file
-# Runs flake8 code lint tools
+# Tests that the Sphinx documentation files build successfully
 # #################################################################################################################
 
 # Name for workflow (also displayed on the associated badges)
-name: lint
+name: docs-files
 
 # on: controls when the action will run. Triggers the workflow on push or pull request events
 # Limits run only for the master branch
@@ -14,15 +14,15 @@ on:
   pull_request:
     branches: [ master ]
 
-# Set environment variables so this workflow action is easy tore-use in other repos
+# Set environment variables so this workflow action is easy to re-use in other repos
 env:
   REPO_NAME: cmatools
-  CONDA_ENV: cmatools-env # Name is set in the $ENV_FILE
-  ENV_FILE: environment.yml
-
+  CONDA_ENV: cmadocs-env # Name is set in the $ENV_FILE
+  ENV_FILE: environment_docs.yml
+  DISPATCH_NAME: docs-build-true # Name to use for dispatch event type
 
 jobs:
-  code-lint:
+  docs-build:
     timeout-minutes: 5 # Limit total time use of the workflow action, in case of problems
     runs-on: ubuntu-latest
     steps:
@@ -39,24 +39,31 @@ jobs:
         python --version
         conda info --envs
         conda info
-    - name: Install cmatools
+    - name: Install package
       run: |
         source /usr/share/miniconda/etc/profile.d/conda.sh
         conda activate $CONDA_ENV
-        pip install .
-    - name: Lint with flake8
+        pip  install .
+    - name: Test Sphinx docs build
       run: |
         source /usr/share/miniconda/etc/profile.d/conda.sh
         conda activate $CONDA_ENV
-        pip install flake8
-        flake8 . --count --select=E9,F63,F7,F82 --show-source --statistics
-        flake8 . --count --exit-zero --max-complexity=10 --max-line-length=127 --statistics
-    - name: Test with coverage
+        cd scripts/docs
+        chmod +x build-sphinx-docs.sh
+        ./build-sphinx-docs.sh
+    - name: Format event type name
+      id: event
       run: |
-        source /usr/share/miniconda/etc/profile.d/conda.sh
-        conda activate $CONDA_ENV
-        cd bin
-        chmod +x test-coverage-remote.sh
-        ./test-coverage-remote.sh
+        # Format the dispatch event type name as json ready for data body in curl
+        echo ::set-output name=event::$(echo $'\''{"$EVENT_NAME"}$'\'')
       env:
-        REMOTE_TESTS: True
+        EVENT_NAME: '"event_type":"${{ env. DISPATCH_NAME }}"'
+    - name: Create a repo level dispatches event
+      # Dispatch event will only be created if the rest of the steps have completed first
+      run: |
+        curl -X POST \
+        -H "Accept: application/vnd.github.v3+json" \
+        -u ${{ secrets.ACCESS_TOKEN }} \
+        https://api.github.com/repos/cma-open/cmatools/dispatches \
+        -d ${{ steps.event.outputs.event }}
+        # Steps outputs are used to format the json data body

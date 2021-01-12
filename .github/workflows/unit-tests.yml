@@ -1,27 +1,36 @@
-# ####################################################################
+# #################################################################################################################
 # GitHub workflow action file
-# Runs the unit tests against installed system on the runner
-# ####################################################################
+# Runs the unit tests against the installed system on the runner
+# #################################################################################################################
+
 
 # Name for workflow (also displayed on the associated badges)
 name: unit-tests
 
-on: [push]
+# on: controls when the action will run. Triggers the workflow on push or pull request events
+# Limits run only for the master branch
+on:
+  push:
+    branches: [ master ]
+  pull_request:
+    branches: [ master ]
 
 # Set environment variables so this workflow action is easy to re-use in other repos
 env:
   REPO_NAME: cmatools
-  CONDA_ENV: cmatools-env
+  CONDA_ENV: cmatools-env # Name is set in the $ENV_FILE
+  ENV_FILE: environment.yml
 
 jobs:
-  build:
+  run-tests:
+    timeout-minutes: 10 # Limit total time use of the workflow action, in case of problems
     runs-on: ubuntu-latest
     steps:
-    - uses: actions/checkout@v2
+    - uses: actions/checkout@v2 # checkout code to the runner workspace root
     - name: Install dependencies
       run: |
         conda update conda
-        conda env create -f environment.yml
+        conda env create -f $ENV_FILE
     - name: conda check
       run: |
         source /usr/share/miniconda/etc/profile.d/conda.sh
@@ -34,7 +43,7 @@ jobs:
       run: |
         source /usr/share/miniconda/etc/profile.d/conda.sh
         conda activate $CONDA_ENV
-        python setup.py install
+        pip  install .
     - name: Run unit tests
       run: |
         source /usr/share/miniconda/etc/profile.d/conda.sh
@@ -42,3 +51,16 @@ jobs:
         cd scripts/tests
         chmod +x test-unit.sh
         ./test-unit.sh
+    - name: Test with coverage
+      # Re-run the unit tests an report test coverage
+      # Does not fail with error code if any tests fail, output is for info only
+      # The separate unit-tests step is also needed to ensure the job fails if there are failing tests
+      # This enables the code coverage stats to be visible via the actions workflow page on GitHub
+      run: |
+        source /usr/share/miniconda/etc/profile.d/conda.sh
+        conda activate $CONDA_ENV
+        cd scripts/tests
+        chmod +x test-coverage-remote.sh
+        ./test-coverage-remote.sh
+      env:
+        REMOTE_TESTS: True

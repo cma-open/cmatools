@@ -1,27 +1,35 @@
-# ####################################################################
+# #################################################################################################################
 # GitHub workflow action file
 # Runs the user interface tests against installed system on the runner
-# ####################################################################
+# #################################################################################################################
 
 # Name for workflow (also displayed on the associated badges)
 name: user-interface-tests
 
-on: [push]
+# on: controls when the action will run. Triggers the workflow on push or pull request events
+# Limits run only for the master branch
+on:
+  push:
+    branches: [ master ]
+  pull_request:
+    branches: [ master ]
 
 # Set environment variables so this workflow action is easy to re-use in other repos
 env:
   REPO_NAME: cmatools
-  CONDA_ENV: cmatools-env
+  CONDA_ENV: cmatools-env # Name is set in the $ENV_FILE
+  ENV_FILE: environment.yml
 
 jobs:
-  build:
+  run-tests:
+    timeout-minutes: 8 # Limit total time use of the workflow action, in case of problems
     runs-on: ubuntu-latest
     steps:
-    - uses: actions/checkout@v2
+    - uses: actions/checkout@v2 # checkout code to the runner workspace root
     - name: Install dependencies
       run: |
         conda update conda
-        conda env create -f environment.yml
+        conda env create -f $ENV_FILE
     - name: conda check
       run: |
         source /usr/share/miniconda/etc/profile.d/conda.sh
@@ -34,7 +42,7 @@ jobs:
       run: |
         source /usr/share/miniconda/etc/profile.d/conda.sh
         conda activate $CONDA_ENV
-        python setup.py install
+        pip install .
     - name: Run unit tests
       run: |
         source /usr/share/miniconda/etc/profile.d/conda.sh

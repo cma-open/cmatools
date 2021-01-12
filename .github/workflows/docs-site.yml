@@ -1,22 +1,29 @@
-# ####################################################################
+# #################################################################################################################
 # GitHub workflow action file
 # Checks the Sphinx documentation site is built and active
-# ####################################################################
+# #################################################################################################################
+
 
 # Name for workflow (also displayed on the associated badges)
-name: site
+name: docs-site
 
-# Controls when the action will run. Triggers the workflow only if docs workflow succeeds
-on: [push]
+# on: controls when the action will run. Triggers the workflow on push or pull request events
+# Limits run only for the master branch
+on:
+  push:
+    branches: [ master ]
+  pull_request:
+    branches: [ master ]
 
 jobs:
-  job:
+  site-check:
     # Max timeout for action, before termination
-    timeout-minutes: 2
+    timeout-minutes: 2 # Limit total time use of the workflow action, in case of problems
     runs-on: ubuntu-latest
     steps:
     - name: Confirm documentation gh-pages has built
-      # an explanation here
+      # This step (built) creates an output with response code from curl to GitHub pages api
+      # Code accessible via steps.built.outputs.body
       id: built
       run: |
         ath="Accept: application/vnd.github.v3+json"
@@ -25,25 +32,33 @@ jobs:
         echo " --***-- "
         echo "${response}"
         echo " --***-- "
+        # Create a step output
         echo "::set-output name=body::"${response}""
     - name: Test the job steps outputs
+      # Create new step outputs with just the extracted json status and url values from previous step output
       id: check
       run: |
+        # Print step outcome and content for debugging
         echo "${{ steps.built.outcome }}"
         echo "${{ steps.built.outputs.body }}"
+        # Print step json response status code for debugging
         echo "${{fromJson(steps.built.outputs.body).status}}"
+        # Assign json response values to new step outputs, for use in subsequent steps
         echo "::set-output name=status::"${{fromJson(steps.built.outputs.body).status}}""
         echo "::set-output name=url::"${{fromJson(steps.built.outputs.body).html_url}}""
     - name: Confirm documentation gh-pages is accessible (public pages)
       id: up
       run: |
+        # Call the page and store http response code in variable
         url="${{ steps.check.outputs.url }}"
         response=$(curl -Li "${url}" -o /dev/null -w '%{http_code}\n' -s)
         echo " --***-- "
         echo "Status code: ${response}"
         echo " --***-- "
+        # Assign the response code to step output, for use in subsequent steps
         echo "::set-output name=status::"${response}""
     - name: Check build failures
+      # Fail the job if the page has not built successfully
       if: steps.check.outputs.status != 'built'
       run: |
         echo "${{ steps.check.outputs.status }}"
@@ -51,10 +66,12 @@ jobs:
     - name: Confirm site is accessible
       if: steps.up.outputs.status == 200 || steps.up.outputs.status == 301
       run: |
+        # Print the website url and status codes
         echo "Site  accessible"
         echo "${{ steps.check.outputs.url }}"
         echo "${{ steps.up.outputs.status }}"
     - name: Check if site is down
+      # Fail the job if the website page is not currently accessible
       if: steps.up.outputs.status != 200 && steps.up.outputs.status != 301
       run: |
         echo "Site not accessible"

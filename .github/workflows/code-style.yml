@@ -1,8 +1,8 @@
-# ####################################################################
+# #################################################################################################################
 # GitHub workflow action file
 # Tests that the code has already been formatted with correct code style
 # Selected code style = black
-# ####################################################################
+# #################################################################################################################
 
 # Name for workflow (also displayed on the associated badges)
 name: code-style
@@ -15,23 +15,21 @@ on:
   pull_request:
     branches: [ master ]
 
-
 # Set environment variables so this workflow action is easy to re-use in other repos
 env:
   REPO_NAME: cmatools
-  CONDA_ENV: cmatools-min
+  CONDA_ENV: cmatools-min # Name is set in the $ENV_FILE
   ENV_FILE: environment_minimum.yml
   PACKAGE: cmatools # Name of package directory within repo
   TESTS: tests # Name of tests directory within repo
-  DISPATCH_NAME: style
-
+  DISPATCH_NAME: code-style-true # Name to use for dispatch event type
 
 jobs:
   check-code-style:
     timeout-minutes: 5 # Limit total time use of the workflow action, in case of problems
     runs-on: ubuntu-latest
     steps:
-    - uses: actions/checkout@v2 # checkout code to the runner workspace root
+    - uses: actions/checkout@v2 # Checkout code to the runner workspace root
     - name: Install dependencies
       # Keep dependency install to minimum - as only checking code style, not running the system
       run: |
@@ -43,20 +41,32 @@ jobs:
         conda activate $CONDA_ENV
         pip install .
     - name: Test code against code style
+      id: black
       run: |
         source /usr/share/miniconda/etc/profile.d/conda.sh
         conda activate $CONDA_ENV
-        black $PACKAGE
-        black $TESTS
-    - name: Check event type
+        response_package=$(black --check $PACKAGE)
+        response_tests=$(black --check $TESTS)
+        # Option --check returns the status. Return code 0 means nothing would change.
+        # Return code 1 means some files would be reformatted. Return code 123 means internal error.
+        echo " --***-- "
+        echo "Response codes: ${response_package}, ${response_tests}"
+        echo " --***-- "
+        echo "::set-output name=package::"${response_package}""
+        echo "::set-output name=tests::"${response_tests}""
+    - name: Check if site is down
+        # Fail the job and exit if code style still needs formatting
+        if: steps.black.outputs.packages != 0 || steps.black.outputs.tests != 0
+        run: |
+          echo "Code fails style format tests"
+          exit 1
+    - name: Format event type name
       id: event
       run: |
-        echo "test"
-        echo "$EVENT_NAME"
+        # Format the dispatch event type name as json ready for data body in curl
         echo ::set-output name=event::$(echo $'\''{"$EVENT_NAME"}$'\'')
       env:
         EVENT_NAME: '"event_type":"${{ env. DISPATCH_NAME }}"'
-      #EVENT_NAME: '"event_type":"${{ steps.notes.outputs.notes }}"'
     - name: Create a repo level dispatches event
       # Dispatch event will only be created if the rest of the steps have completed first
       run: |
@@ -69,4 +79,4 @@ jobs:
         -u ${{ secrets.ACCESS_TOKEN }} \
         https://api.github.com/repos/cma-open/cmatools/dispatches \
         -d ${{ steps.event.outputs.event }}
-#  -d '{"event_type":"code-style-true"}'
+        # Steps outputs are used to format the json data body

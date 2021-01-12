@@ -1,8 +1,8 @@
-# ####################################################################
+# #################################################################################################################
 # GitHub workflow action file
 # Build the Sphinx documentation on the GitHub workflow runner
 # Pushes the docs to the gh-pages branch, enabling the website
-# ####################################################################
+# #################################################################################################################
 
 # Content inspired from these sources
 # https://github.com/ammaraskar/sphinx-action-test/blob/master/.github/workflows/default.yml
@@ -16,7 +16,7 @@
 # Name for workflow (also displayed on the associated badges)
 name: gh-pages
 
-# Controls when the action will run. Triggers the workflow only if docs workflow succeeds
+# Controls when the action will run. Triggers the workflow only if docs-files workflow succeeds
 on:
   # repo dispatch, not workflow dispatch
   repository_dispatch:
@@ -26,24 +26,27 @@ on:
 env:
   DEPLOY_TOKEN: ${{ secrets.DEPLOY_TOKEN }}
   REPO_NAME: cmatools
-  CONDA_ENV: cmadocs-env
+  CONDA_ENV: cmadocs-env # Name is set in the $ENV_FILE
+  ENV_FILE: environment_docs.yml
+
 
 jobs:
-  build:
+  rebuild-pages:
+    timeout-minutes: 10 # Limit total time use of the workflow action, in case of problems
     runs-on: ubuntu-latest
     steps:
-    - uses: actions/checkout@v2
+    - uses: actions/checkout@v2 # Checkout code to the runner workspace root
       with:
         fetch-depth: 0 # Ensure all branches are available
     - name: Install dependencies
       run: |
         conda update conda
-        conda env create -f environment_docs.yml
+        conda env create -f $ENV_FILE
     - name: Install the package
       run: |
         source /usr/share/miniconda/etc/profile.d/conda.sh
         conda activate $CONDA_ENV
-        python setup.py install
+        pip install .
     - name: Build and publish Sphinx documentation to gh-pages
       run: |
         source /usr/share/miniconda/etc/profile.d/conda.sh
@@ -63,14 +66,10 @@ jobs:
         # Rebase wil create new commits and apply them to the specified base, to give a linear history
         git config pull.rebase true
 
-        # Show all current git branches, for debugging
-        git branch -a
-
-        # Checkout the gh-pages branch, force checkout to override any recent changes in master
+        # Checkout the gh-pages branch, force checkout to override any recent changes
         # This brings in the last published version of the documentation in gh-pages
         git checkout -f gh-pages
 
-        git status
         echo " ----------------------------------------------------------"
         echo " ----------------------------------------------------------"
         echo " ***   git config - list origin   ***"
@@ -86,12 +85,9 @@ jobs:
         echo "--- Git branches ---"
         git branch -a
         echo "---              ---"
-
-        echo " ----------------------------------------------------------"
         echo " ----------------------------------------------------------"
         echo " ***   git remote - list   ***"
         git remote -v
-        echo " ----------------------------------------------------------"
         echo " ----------------------------------------------------------"
 
         # Clean up the working repo, deletes any untracked files from the current checkout out repo
@@ -99,12 +95,14 @@ jobs:
         git clean -dfx
 
         # Checkout only the directories needed to build the documentation from master
+        # This brings these files into current workspace, which is gh-pages branch
         git checkout -f origin/master scripts/docs
         git checkout -f origin/master docs/
         git checkout -f origin/master .nojekyll
         git checkout -f origin/master index.html
         git checkout -f origin/master CHANGELOG.rst
         git checkout -f origin/master cmatools
+        git checkout -f origin/master tests
 
         echo " --- Building documentation --- "
         echo $PWD
