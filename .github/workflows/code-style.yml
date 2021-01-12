@@ -25,6 +25,7 @@ env:
   TESTS: tests # Name of tests directory within repo
   DISPATCH_NAME: style
 
+
 jobs:
   check-code-style:
     timeout-minutes: 5 # Limit total time use of the workflow action, in case of problems
@@ -47,6 +48,13 @@ jobs:
         conda activate $CONDA_ENV
         black $PACKAGE
         black $TESTS
+    - name: Check event type
+      run: |
+        echo "test"
+        echo "$EVENT_NAME"
+      env:
+        EVENT_NAME: '"event_type":"${{ env. DISPATCH_NAME }}"'
+#EVENT_NAME: '"event_type":"${{ steps.notes.outputs.notes }}"'
     - name: Create a repo level dispatches event
       # Dispatch event will only be created if the rest of the steps have completed first
       run: |
