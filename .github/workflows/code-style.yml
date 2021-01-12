@@ -49,18 +49,23 @@ jobs:
         black $PACKAGE
         black $TESTS
     - name: Check event type
+      id: event
       run: |
         echo "test"
         echo "$EVENT_NAME"
+        echo ::set-output name=event::$(echo $'\''{"$EVENT_NAME"}$'\'')
       env:
         EVENT_NAME: '"event_type":"${{ env. DISPATCH_NAME }}"'
-#EVENT_NAME: '"event_type":"${{ steps.notes.outputs.notes }}"'
+      #EVENT_NAME: '"event_type":"${{ steps.notes.outputs.notes }}"'
     - name: Create a repo level dispatches event
       # Dispatch event will only be created if the rest of the steps have completed first
       run: |
+        echo "${{ env.DISPATCH_NAME }}"
+        echo  "${{ env.EVENT_NAME }}"
+        echo ${{ steps.event.outputs.event }}
         curl -X POST \
         -H "Accept: application/vnd.github.v3+json" \
         -u ${{ secrets.ACCESS_TOKEN }} \
         https://api.github.com/repos/cma-open/cmatools/dispatches \
-        -d '{"event_type": ${{ env.DISPATCH_NAME }} }'
+        -d '{"event_type": ${{ steps.event.outputs.event }} }'
 #  -d '{"event_type":"code-style-true"}'
