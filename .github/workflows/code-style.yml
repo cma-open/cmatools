@@ -19,6 +19,8 @@ on:
 # Set environment variables so this workflow action is easy to re-use in other repos
 env:
   REPO_NAME: cmatools
+  CONDA_ENV: cmatools-min
+  ENV_FILE: environment_minimum.yml
   PACKAGE: cmatools # Name of package directory within repo
   TESTS: tests # Name of tests directory within repo
   DISPATCH_NAME: style
@@ -32,9 +34,12 @@ jobs:
     - name: Install dependencies
       # Keep dependency install to minimum - as only checking code style, not running the system
       run: |
-        pip install black
+        conda update conda
+        conda env create -f $ENV_FILE
     - name: Install package
       run: |
+        source /usr/share/miniconda/etc/profile.d/conda.sh
+        conda activate $CONDA_ENV
         pip install .
     - name: Test code against code style
       run: |
@@ -48,4 +53,4 @@ jobs:
         -u ${{ secrets.ACCESS_TOKEN }} \
         https://api.github.com/repos/cma-open/cmatools/dispatches \
         -d '{"event_type": ${{ env.DISPATCH_NAME }} }'
-#         -d '{"event_type":"code-style-true"}'
+#  -d '{"event_type":"code-style-true"}'
