@@ -15,10 +15,10 @@
 
 
 - Code quality: 
-- [![Codacy Badge](https://api.codacy.com/project/badge/Grade/bc11e8877db94af394b794def1c4c585)]
-(https://app.codacy.com/manual/jonathan.winn/cmatools?utm_source=github.com&utm_medium=referral&utm_content=jonathan-winn-geo/cmatools&utm_campaign=Badge_Grade_Dashboard)
+- [![Codacy Badge](https://api.codacy.com/project/badge/Grade/bc11e8877db94af394b794def1c4c585)](https://app.codacy.com/manual/jonathan.winn/cmatools?utm_source=github.com&utm_medium=referral&utm_content=jonathan-winn-geo/cmatools&utm_campaign=Badge_Grade_Dashboard)
 ![coverage](https://img.shields.io/badge/coverage-80%25-yellowgreen)
 ![](https://github.com/cma-open/cmatools/workflows/lint/badge.svg)
+[](https://github.com/cma-open/cmatools/workflows/code-style/badge.svg)
 
 - Repo metadata:
 - [![Python 3.7](https://img.shields.io/badge/python-3.7-blue.svg)](https://www.python.org/downloads/release/python-370/)
