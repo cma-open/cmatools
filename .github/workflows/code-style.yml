@@ -1,0 +1,51 @@
+# ####################################################################
+# GitHub workflow action file
+# Tests that the code has already been formatted with correct code style
+# Selected code style = black
+# ####################################################################
+
+# Name for workflow (also displayed on the associated badges)
+name: code-style
+
+# on: controls when the action will run. Triggers the workflow on push or pull request events
+# Limits run only for the master branch
+on:
+  push:
+    branches: [ master ]
+  pull_request:
+    branches: [ master ]
+
+
+# Set environment variables so this workflow action is easy to re-use in other repos
+env:
+  REPO_NAME: cmatools
+  PACKAGE: cmatools # Name of package directory within repo
+  TESTS: tests # Name of tests directory within repo
+  DISPATCH_NAME: style
+
+jobs:
+  check-code-style:
+    timeout-minutes: 5 # Limit total time use of the workflow action, in case of problems
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v2 # checkout code to the runner workspace root
+    - name: Install dependencies
+      # Keep dependency install to minimum - as only checking code style, not running the system
+      run: |
+        pip install black
+    - name: Install package
+      run: |
+        pip install .
+    - name: Test code against code style
+      run: |
+        black $PACKAGE
+        black $TESTS
+    - name: Create a repo level dispatches event
+      # Dispatch event will only be created if the rest of the steps have completed first
+      run: |
+        curl -X POST \
+        -H "Accept: application/vnd.github.v3+json" \
+        -u ${{ secrets.ACCESS_TOKEN }} \
+        https://api.github.com/repos/cma-open/cmatools/dispatches \
+        -d '{"event_type": ${{ env.DISPATCH_NAME }} }'
+#         -d '{"event_type":"code-style-true"}'
