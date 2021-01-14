@@ -20,11 +20,9 @@
 ![coverage](https://img.shields.io/badge/coverage-80%25-yellowgreen)
 ![](https://github.com/cma-open/cmatools/workflows/lint/badge.svg)
 ![](https://github.com/cma-open/cmatools/workflows/code-style/badge.svg)
+[![codecov.io](http://codecov.io/github/cma-open/cmatools/branch/master/graphs/badge.svg)](http://codecov.io/github/cma-open/cmatools)
+[![codecov](https://codecov.io/gh/numpy/numpy/branch/master/graph/badge.svg)](https://codecov.io/gh/numpy/numpy)
 
-# Add Codecov, e.g.
-# [![codecov](https://codecov.io/gh/numpy/numpy/branch/master/graph/badge.svg)](https://codecov.io/gh/numpy/numpy)
-
-[![codecov.io](http://codecov.io/github/codecov/cmatools/branch/master/graphs/badge.svg)](http://codecov.io/github/cma-open/cmatools)
 
 
 
