@@ -1,0 +1,61 @@
+# #################################################################################################################
+# GitHub workflow action file
+# Checks  test code coverage via the CodeCov App
+# #################################################################################################################
+
+# Name for workflow (also displayed on the associated badges)
+name: code-coverage
+
+# on: controls when the action will run. Triggers the workflow on push or pull request events
+# Limits run only for the master branch
+on:
+  push:
+    branches: [ master ]
+  pull_request:
+    branches: [ master ]
+
+# Set environment variables so this workflow action is easy to re-use in other repos
+env:
+  REPO_NAME: cmatools
+  CONDA_ENV: cmatools-min # Name is set in the $ENV_FILE
+  ENV_FILE: environment_minimum.yml
+  PACKAGE: cmatools # Name of package directory within repo
+  TESTS: tests # Name of tests directory within repo
+  DISPATCH_NAME: code-style-true # Name to use for dispatch event type
+
+jobs:
+  check-code-style:
+    timeout-minutes: 10 # Limit total time use of the workflow action, in case of problems
+    runs-on: ubuntu-latest
+    steps:
+    #  - uses: actions/checkout@master
+    - uses: actions/checkout@v2 # Checkout code to the runner workspace root
+    - name: Install dependencies
+      # Keep dependency install to minimum - as only checking code style, not running the system
+      run: |
+        conda update conda
+        conda env create -f $ENV_FILE
+    - name: Install package
+      run: |
+        source /usr/share/miniconda/etc/profile.d/conda.sh
+        conda activate $CONDA_ENV
+        pip install .
+    - name: Test with coverage
+      # Run the unit tests and report test coverage
+      run: |
+        source /usr/share/miniconda/etc/profile.d/conda.sh
+        conda activate $CONDA_ENV
+        # Discover and run tests on code path,  -v verbose flag, with coverage stats
+        coverage run -m pytest $TESTS
+        # Generate test report
+        coverage report -m
+        echo "$(ll)"
+    - name: Upload coverage to Codecov
+    - uses: codecov/codecov-action@v1
+      with:
+        #token: ${{ secrets.CODECOV_TOKEN }} # not required for public repos
+        #files: ./coverage1.xml,./coverage2.xml # optional
+        flags: unittests # optional
+        name: codecov-umbrella # optional
+        fail_ci_if_error: true # optional (default = false)
+        verbose: true # optional (default = false)
