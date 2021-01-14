@@ -17,8 +17,8 @@ on:
 # Set environment variables so this workflow action is easy to re-use in other repos
 env:
   REPO_NAME: cmatools
-  CONDA_ENV: cmatools-min # Name is set in the $ENV_FILE
-  ENV_FILE: environment_minimum.yml
+  CONDA_ENV: cmatools-env # Name is set in the $ENV_FILE
+  ENV_FILE: environment_tests.yml
   PACKAGE: cmatools # Name of package directory within repo
   TESTS: tests # Name of tests directory within repo
   DISPATCH_NAME: code-style-true # Name to use for dispatch event type
