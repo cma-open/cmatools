@@ -26,7 +26,7 @@ env:
 jobs:
   check-code-style:
     timeout-minutes: 10 # Limit total time use of the workflow action, in case of problems
-    runs-on: ubuntu-lates
+    runs-on: ubuntu-latest
     #  - uses: actions/checkout@master
     steps:
     - uses: actions/checkout@v2 # Checkout code to the runner workspace root
