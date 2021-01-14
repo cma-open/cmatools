@@ -26,9 +26,9 @@ env:
 jobs:
   check-code-style:
     timeout-minutes: 10 # Limit total time use of the workflow action, in case of problems
-    runs-on: ubuntu-latest
-    steps:
+    runs-on: ubuntu-lates
     #  - uses: actions/checkout@master
+    steps:
     - uses: actions/checkout@v2 # Checkout code to the runner workspace root
     - name: Install dependencies
       # Keep dependency install to minimum - as only checking code style, not running the system
@@ -51,7 +51,7 @@ jobs:
         coverage report -m
         echo "$(ll)"
     - name: Upload coverage to Codecov
-    - uses: codecov/codecov-action@v1
+      uses: codecov/codecov-action@v1
       with:
         #token: ${{ secrets.CODECOV_TOKEN }} # not required for public repos
         #files: ./coverage1.xml,./coverage2.xml # optional
