@@ -45,18 +45,17 @@ jobs:
       run: |
         source /usr/share/miniconda/etc/profile.d/conda.sh
         conda activate $CONDA_ENV
-        # Discover and run tests on code path,  -v verbose flag, with coverage stats
-        pytest --cov-report=xml --cov=cmatools tests
-        #coverage run -m pytest $TESTS
-        # Generate test report
-        #coverage report -m
-        echo "$(ls)"
-    - name: Upload coverage to Codecov
+        # Run tests and produce output report in xml, with coverage stats
+        pytest --cov-report xml:unit-coverage.xml --cov=cmatools tests/unit
+        # THe xml report will be automatically picked up by the subsequent CodeCov action
+    - name: Upload coverage to CodeCov
+      # This community action uses CodeCov to find localy coverage report files and upload them to CodeCov for use
+      # Also updates and enables the CodCov badge and url on the README page
       uses: codecov/codecov-action@v1
       with:
         #token: ${{ secrets.CODECOV_TOKEN }} # not required for public repos
-        #files: ./coverage1.xml,./coverage2.xml # optional
-        #flags: unittests # optional
+        #files: ./coverage1.xml,./coverage2.xml # optional, if custom report files are created by previous steps
+        flags: unittests # optional
         name: codecov-umbrella # optional
         fail_ci_if_error: true # optional (default = false)
         verbose: true # optional (default = false)
