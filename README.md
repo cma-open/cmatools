@@ -18,25 +18,20 @@
 - Code quality: 
 - [![Codacy Badge](https://api.codacy.com/project/badge/Grade/bc11e8877db94af394b794def1c4c585)](https://app.codacy.com/manual/jonathan.winn/cmatools?utm_source=github.com&utm_medium=referral&utm_content=jonathan-winn-geo/cmatools&utm_campaign=Badge_Grade_Dashboard)
 ![coverage](https://img.shields.io/badge/coverage-80%25-yellowgreen)
+[![codecov.io](http://codecov.io/github/cma-open/cmatools/branch/master/graphs/badge.svg)](http://codecov.io/github/cma-open/cmatools)
 ![](https://github.com/cma-open/cmatools/workflows/lint/badge.svg)
 ![](https://github.com/cma-open/cmatools/workflows/code-style/badge.svg)
-[![codecov.io](http://codecov.io/github/cma-open/cmatools/branch/master/graphs/badge.svg)](http://codecov.io/github/cma-open/cmatools)
-[![codecov](https://codecov.io/gh/numpy/numpy/branch/master/graph/badge.svg)](https://codecov.io/gh/numpy/numpy)
-
-
-
-
-
 
 - Repo metadata:
 - [![Python 3.7](https://img.shields.io/badge/python-3.7-blue.svg)](https://www.python.org/downloads/release/python-370/)
 [![License](https://img.shields.io/badge/License-BSD%203--Clause-blue.svg)](https://opensource.org/licenses/BSD-3-Clause)
-![semver](https://img.shields.io/badge/semver-2.0.0-blue)
 [![GitHub repo size](https://img.shields.io/github/repo-size/cma-open/cmatools)](https://github.com/repo-size/cma-open/cmatools)
 [![GitHub code size in bytes](https://img.shields.io/github/languages/code-size/cma-open/cmatools)](https://github.com/code-size/cma-open/cmatools)
-[![Code style](https://img.shields.io/badge/code%20style-black-000000.svg)](https://github.com/psf/black)
 [![release](https://img.shields.io/github/tag/cma-open/cmatools.svg)](https://github.com/cma-open/cmatools/releases)
 
+- Standards
+- ![semver](https://img.shields.io/badge/semver-2.0.0-blue)
+[![Code style](https://img.shields.io/badge/code%20style-black-000000.svg)](https://github.com/psf/black)
 
 ---
 
