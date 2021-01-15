@@ -46,16 +46,17 @@ jobs:
         source /usr/share/miniconda/etc/profile.d/conda.sh
         conda activate $CONDA_ENV
         # Discover and run tests on code path,  -v verbose flag, with coverage stats
-        coverage run -m pytest $TESTS
+        pytest --cov-report=xml --cov=cmatools tests
+        #coverage run -m pytest $TESTS
         # Generate test report
-        coverage report -m
-        echo "$(ll)"
+        #coverage report -m
+        echo "$(ls)"
     - name: Upload coverage to Codecov
       uses: codecov/codecov-action@v1
       with:
         #token: ${{ secrets.CODECOV_TOKEN }} # not required for public repos
         #files: ./coverage1.xml,./coverage2.xml # optional
-        flags: unittests # optional
+        #flags: unittests # optional
         name: codecov-umbrella # optional
         fail_ci_if_error: true # optional (default = false)
         verbose: true # optional (default = false)
