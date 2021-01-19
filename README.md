@@ -26,11 +26,18 @@
 [![License](https://img.shields.io/badge/License-BSD%203--Clause-blue.svg)](https://opensource.org/licenses/BSD-3-Clause)
 [![GitHub repo size](https://img.shields.io/github/repo-size/cma-open/cmatools)](https://github.com/repo-size/cma-open/cmatools)
 [![GitHub code size in bytes](https://img.shields.io/github/languages/code-size/cma-open/cmatools)](https://github.com/code-size/cma-open/cmatools)
-[![Release](https://img.shields.io/github/tag/cma-open/cmatools.svg)](https://github.com/cma-open/cmatools/releases)
+
 
 - Standards
-- ![SemVer](https://img.shields.io/badge/semver-2.0.0-blue)
+- [![SemVer](https://img.shields.io/badge/semver-2.0.0-blue)](https://semver.org)
 [![Code style](https://img.shields.io/badge/code%20style-black-000000.svg)](https://github.com/psf/black)
+
+- Development (unreleased)
+- [![GitHub release (latest SemVer including pre-releases)](https://img.shields.io/github/v/release/cma-open/cmatools?include_prereleases)](https://github.com/cma-open/cmatools/releases)
+
+- Latest stable release
+- [![GitHub release (latest by date)](https://img.shields.io/github/v/release/cma-open/cmatools)](https://github.com/cma-open/cmatools/releases/latest)
+
 
 ---
 
