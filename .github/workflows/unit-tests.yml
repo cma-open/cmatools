@@ -19,7 +19,7 @@ on:
 env:
   REPO_NAME: cmatools
   CONDA_ENV: cmatools-env # Name is set in the $ENV_FILE
-  ENV_FILE: environment.yml
+  ENV_FILE: environment_tests.yml
 
 jobs:
   run-tests:
@@ -52,19 +52,16 @@ jobs:
         chmod +x test-unit.sh
         ./test-unit.sh
     - name: Test with coverage
-      # Re-run the unit tests an report test coverage
+      # Re-run the tests and report test coverage
       # Does not fail with error code if any tests fail, output is for info only
-      # The separate unit-tests step is also needed to ensure the job fails if there are failing tests
+      # The separate step is also needed to ensure the job fails if there are failing tests
       # This enables the code coverage stats to be visible via the actions workflow page on GitHub
       run: |
         source /usr/share/miniconda/etc/profile.d/conda.sh
         conda activate $CONDA_ENV
-        # cd scripts/tests
         echo "$PWD"
         cd $GITHUB_WORKSPACE
         echo "$PWD"
         pytest --cov-report term-missing:skip-covered --cov=cmatools tests/unit
-        #chmod +x test-coverage-remote.sh
-        #./test-coverage-remote.sh
       env:
         REMOTE_TESTS: True
