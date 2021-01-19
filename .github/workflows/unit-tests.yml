@@ -59,8 +59,12 @@ jobs:
       run: |
         source /usr/share/miniconda/etc/profile.d/conda.sh
         conda activate $CONDA_ENV
-        cd scripts/tests
-        chmod +x test-coverage-remote.sh
-        ./test-coverage-remote.sh
+        # cd scripts/tests
+        echo "$PWD"
+        cd $GITHUB_WORKSPACE
+        echo "$PWD"
+        pytest --cov-report term-missing:skip-covered --cov=cmatools tests/unit
+        #chmod +x test-coverage-remote.sh
+        #./test-coverage-remote.sh
       env:
         REMOTE_TESTS: True
