@@ -62,6 +62,6 @@ jobs:
         echo "$PWD"
         cd $GITHUB_WORKSPACE
         echo "$PWD"
-        pytest --cov-report term-missing:skip-covered --cov=cmatools tests/unit
+        pytest --cov-report term-missing:skip-covered --cov=$GITHUB_WORKSPACE/cmatools $GITHUB_WORKSPACE/tests/unit
       env:
         REMOTE_TESTS: True
