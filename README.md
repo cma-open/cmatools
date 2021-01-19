@@ -3,23 +3,23 @@
  - Development status: 
  - [![Project Status: WIP – Initial development is in progress, but there has not yet been a stable, usable release
  suitable for the public.](https://www.repostatus.org/badges/latest/wip.svg)](https://www.repostatus.org/#wip)
- ![](https://github.com/cma-open/cmatools/workflows/unit-tests/badge.svg)
- ![](https://github.com/cma-open/cmatools/workflows/integration-tests/badge.svg)
- ![](https://github.com/cma-open/cmatools/workflows/end-to-end-tests/badge.svg)
- ![](https://github.com/cma-open/cmatools/workflows/user-interface-tests/badge.svg)
+ [![](https://github.com/cma-open/cmatools/workflows/unit-tests/badge.svg)](https://github.com/cma-open/cmatools/actions)
+ [![](https://github.com/cma-open/cmatools/workflows/integration-tests/badge.svg)](https://github.com/cma-open/cmatools/actions)
+ [![](https://github.com/cma-open/cmatools/workflows/end-to-end-tests/badge.svg)](https://github.com/cma-open/cmatools/actions)
+ [![](https://github.com/cma-open/cmatools/workflows/user-interface-tests/badge.svg)](https://github.com/cma-open/cmatools/actions)
 
 
  - Documentation status:
- - ![](https://github.com/cma-open/cmatools/workflows/docs-files/badge.svg)
- ![](https://github.com/cma-open/cmatools/workflows/gh-pages/badge.svg)
- ![](https://github.com/cma-open/cmatools/workflows/docs-site/badge.svg)
+ - [![](https://github.com/cma-open/cmatools/workflows/docs-files/badge.svg)](https://github.com/cma-open/cmatools/actions)
+ [![](https://github.com/cma-open/cmatools/workflows/gh-pages/badge.svg)](https://github.com/cma-open/cmatools/actions)
+ [![](https://github.com/cma-open/cmatools/workflows/docs-site/badge.svg)](https://github.com/cma-open/cmatools/actions)
 
 
 - Code quality: 
 - [![Codacy Badge](https://api.codacy.com/project/badge/Grade/bc11e8877db94af394b794def1c4c585)](https://app.codacy.com/manual/jonathan.winn/cmatools?utm_source=github.com&utm_medium=referral&utm_content=jonathan-winn-geo/cmatools&utm_campaign=Badge_Grade_Dashboard)
 [![CodeCov unit-tests](https://codecov.io/gh/cma-open/cmatools/branch/master/graph/badge.svg?token=FAH7T9X0F0)](https://codecov.io/gh/cma-open/cmatools)
-![](https://github.com/cma-open/cmatools/workflows/lint/badge.svg)
-![](https://github.com/cma-open/cmatools/workflows/code-style/badge.svg)
+[![](https://github.com/cma-open/cmatools/workflows/lint/badge.svg)](https://github.com/cma-open/cmatools/actions)
+[![](https://github.com/cma-open/cmatools/workflows/code-style/badge.svg)](https://github.com/cma-open/cmatools/actions)
 
 - Repo metadata:
 - [![Python 3.7](https://img.shields.io/badge/python-3.7-blue.svg)](https://www.python.org/downloads/release/python-370/)
