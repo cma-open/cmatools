@@ -59,10 +59,14 @@ jobs:
       run: |
         source /usr/share/miniconda/etc/profile.d/conda.sh
         conda activate $CONDA_ENV
-        echo "$PWD"
-        cd $GITHUB_WORKSPACE
-        echo "$PWD"
-        pytest --cov-report term-missing:skip-covered --debug=trace --cov=$GITHUB_WORKSPACE/cmatools $GITHUB_WORKSPACE/tests/unit
+        cd scripts/tests
+        chmod +x test-unit-coverage.sh
+        ./test-unit-coverage.sh
+        #echo "$PWD"
+        #cd $GITHUB_WORKSPACE
+        #cd $GITHUB_WORKSPACE
+        #echo "$PWD"
+        #pytest --cov-report term-missing:skip-covered --trace --cov=$GITHUB_WORKSPACE/cmatools $GITHUB_WORKSPACE/tests/unit
         #below call works locally via script
         #pytest --cov-report term-missing:skip-covered --cov="${CODE_DIR}"/cmatools "${TESTS_DIR}"/unit
       env:
