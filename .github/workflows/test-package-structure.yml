@@ -42,8 +42,8 @@ jobs:
         source /usr/share/miniconda/etc/profile.d/conda.sh
         conda activate $CONDA_ENV
         cd scripts/tests
-        chmod +x test-package-structure.sh
-        ./test-package-structure.sh
+        chmod +x test-unit-version.sh
+        ./test-unit-version.sh
         #echo ::set-output name=status::$(echo $'\''{"$EVENT_NAME"}$'\'')
         #echo ::set-output name=status::()
         pip show $PACKAGE
@@ -53,8 +53,8 @@ jobs:
         source /usr/share/miniconda/etc/profile.d/conda.sh
         conda activate $CONDA_ENV
         cd scripts/uninstall
-        chmod +x uninstall-cmatools.sh
-        ./uninstall-cmatools.sh
+        chmod +x uninstall.sh
+        ./uninstall.sh
     - name: Install the package - development version
       run: |
         source /usr/share/miniconda/etc/profile.d/conda.sh
@@ -66,8 +66,8 @@ jobs:
         source /usr/share/miniconda/etc/profile.d/conda.sh
         conda activate $CONDA_ENV
         cd scripts/tests
-        chmod +x test-package-structure.sh
-        ./test-package-structure.sh
+        chmod +x test-unit-version.sh
+        ./test-unit-version.sh
         #echo ::set-output name=status::$(echo $'\''{"$EVENT_NAME"}$'\'')
         #echo ::set-output name=status::()
         pip show $PACKAGE
