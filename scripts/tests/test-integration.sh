@@ -1,11 +1,30 @@
 #!/bin/bash
 
-testdir="$(dirname "$PWD")"
-echo "$testdir"
+######################################################################################################################
+# Script to run all integration tests
+######################################################################################################################
 
-# Discover and run tests on code path,  -v verbose flag
-#pytest -r -l --tb=long  $testdir
-#pytest --tb=long  $testdir
+# Set python package root dir as script constant
+readonly CODE_DIR="$(dirname "$(dirname "${PWD}")")"
+# Set tests directory
+readonly TESTS_DIR="${CODE_DIR}"/tests/integration
 
+echo " ---- * ----"
+echo "Running system tests with pytest"
+echo "Python package root: "${CODE_DIR}""
+echo "Tests directory: "${TESTS_DIR}""
+echo " ---- * ----"
 
-pytest -rAx  $testdir/tests/integration
+# Discover and run tests on code path. Options include:
+# -v verbose flag, -r displays “short test summary info” at end of session, -A lists all info
+# --tb traceback print mode (auto/long/short/line/native/no)., e.g. --tb=long
+
+pytest --tb=long -vrA  "${TESTS_DIR}"
+
+######################################################################################################################
+# Code review and system context notes
+# ====================================
+# This script is used during manual testing
+# The script is also called as part of the GitHub actions automated tests
+######################################################################################################################
+

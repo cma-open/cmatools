@@ -1,13 +1,13 @@
 #!/bin/bash
 
 ######################################################################################################################
-# Script to run all system tests
+# Script to run the system end to end tests
 ######################################################################################################################
 
 # Set python package root dir as script constant
 readonly CODE_DIR="$(dirname "$(dirname "${PWD}")")"
 # Set tests directory
-readonly TESTS_DIR="${CODE_DIR}"/tests
+readonly TESTS_DIR="${CODE_DIR}"/tests/end-to-end
 
 echo " ---- * ----"
 echo "Running system tests with pytest"
@@ -21,10 +21,9 @@ echo " ---- * ----"
 
 pytest --tb=long -vrA  "${TESTS_DIR}"
 
-
 ######################################################################################################################
 # Code review and system context notes
 # ====================================
 # This script is used during manual testing
-# Not called by any other scripts, not used as part of the GitHub actions automated tests
+# The script is also called as part of the GitHub actions automated tests
 ######################################################################################################################

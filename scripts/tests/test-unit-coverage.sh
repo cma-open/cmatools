@@ -17,6 +17,8 @@ echo " ---- * ----"
 
 # pytest --tb=long -vrA  "${TESTS_DIR}"
 
+cd "${CODE_DIR}"
+
 # Discover and run tests on specified path, with coverage stats
 pytest --cov-report term-missing:skip-covered --cov="${CODE_DIR}"/cmatools "${TESTS_DIR}"
 echo " ---- "
