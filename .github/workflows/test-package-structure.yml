@@ -64,7 +64,7 @@ jobs:
         echo "::set-output name=error::"${error}""
         echo "::set-output name=message::"warning: No data was collected"
     - name: Check for error, exit if found (full)
-        # Fail the job and exit if code style still needs formatting
+      # Fail the job and exit if code style still needs formatting
         if: contains(steps.full.outputs.error , steps.full.outputs.error)
           echo steps.full.outputs.error
           echo "Package test structure causes warnings, no output for pytest coverage"
