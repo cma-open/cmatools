@@ -37,7 +37,7 @@ jobs:
         conda activate $CONDA_ENV
         pip  install .
     - name: Run unit tests for version to check package test structure is working
-      id: structure
+      id: full
       run: |
         source /usr/share/miniconda/etc/profile.d/conda.sh
         conda activate $CONDA_ENV
@@ -48,7 +48,11 @@ jobs:
         #echo ::set-output name=status::()
         pip show $PACKAGE
         echo "Tests run after full install"
-        pytest --cov-report term-missing:skip-covered --trace --cov=$GITHUB_WORKSPACE/cmatools $GITHUB_WORKSPACE/tests/unit/version
+        response=$(pytest --cov-report= --cov=$GITHUB_WORKSPACE/cmatools $GITHUB_WORKSPACE/tests/unit/version)
+        echo " --- "
+        echo "${response}"
+        echo " --- "
+        #pytest --cov-report term-missing:skip-covered --trace --cov=$GITHUB_WORKSPACE/cmatools $GITHUB_WORKSPACE/tests/unit/version
         #below call works locally via script
         #pytest --cov-report term-missing:skip-covered --cov="${CODE_DIR}"/cmatools "${TESTS_DIR}"/unit
     - name: Un-install the package
@@ -78,3 +82,4 @@ jobs:
         pytest --cov-report term-missing:skip-covered --trace --cov=$GITHUB_WORKSPACE/cmatools $GITHUB_WORKSPACE/tests/unit/version
         #below call works locally via script
         #pytest --cov-report term-missing:skip-covered --cov="${CODE_DIR}"/cmatools "${TESTS_DIR}"/unit
+        #pytest --cov-report term-missing:skip-covered --cov=cmatools tests/unit
