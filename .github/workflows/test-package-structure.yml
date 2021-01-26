@@ -1,6 +1,13 @@
 # #################################################################################################################
 # GitHub workflow action file
-# Run test to check package structure and test files under pip install . vs  pip install -e .
+# Run to check package structure and test files under pip install . vs  pip install -e .
+# Usage
+# Python packages can use different structures to hold the package, subpackages and associated tests
+# These can impact the behaviour of tests under a development based installatino vs a full user installation
+# This workflow outputs useful information for debugging any such problems by installing the system twice and
+# reporting the source location and the results of running a simple test script against each installation
+# Various testing frameworks and packages could be used. Pytest, coverage and pytest-cov were selected here.
+# This workflow will fail if the package test structure does not allow coverage to run against a full user install
 # #################################################################################################################
 
 # Name for workflow (also displayed on the associated badges)
@@ -36,7 +43,7 @@ jobs:
         source /usr/share/miniconda/etc/profile.d/conda.sh
         conda activate $CONDA_ENV
         pip  install .
-    - name: Run unit tests for version to check package test structure is working
+    - name: Run unit tests for version to check package test structure is working (full install)
       id: full
       run: |
         source /usr/share/miniconda/etc/profile.d/conda.sh
@@ -44,21 +51,24 @@ jobs:
         cd scripts/tests
         chmod +x test-unit-version.sh
         ./test-unit-version.sh
-        #echo ::set-output name=status::$(echo $'\''{"$EVENT_NAME"}$'\'')
-        #echo ::set-output name=status::()
+        echo "Simple test: version has run"
+        echo "Summary of package installation (pip show)"
         pip show $PACKAGE
-        echo "Tests run after full install"
-        response=$(pytest --cov-report= --cov=$GITHUB_WORKSPACE/cmatools $GITHUB_WORKSPACE/tests/unit/version 2> file.txt)
-        # Capture standard error to variable, but discard standard out to dev null
-        error=$(pytest --cov-report= --cov=$GITHUB_WORKSPACE/cmatools $GITHUB_WORKSPACE/tests/unit/version  2>&1 > /dev/null)
         echo " --- "
-        echo "${response}"
+        # Run pytest with pytest-cov to exaime the code coverage from one simple unit test (version)
+        # Capture standard error to shell script variable, discard standard out to dev null
+        error=$(pytest --cov-report= --cov=$GITHUB_WORKSPACE/cmatools $GITHUB_WORKSPACE/tests/unit/version  2>&1 > /dev/null)
         echo " --- "
         echo "${error}"
         echo " --- "
-        #pytest --cov-report term-missing:skip-covered --trace --cov=$GITHUB_WORKSPACE/cmatools $GITHUB_WORKSPACE/tests/unit/version
-        #below call works locally via script
-        #pytest --cov-report term-missing:skip-covered --cov="${CODE_DIR}"/cmatools "${TESTS_DIR}"/unit
+        echo "::set-output name=error::"${error}""
+        echo "::set-output name=message::"warning: No data was collected"
+    - name: Check for error, exit if found (full)
+        # Fail the job and exit if code style still needs formatting
+        if: contains(steps.full.outputs.error , steps.full.outputs.error)
+          echo steps.full.outputs.error
+          echo "Package test structure causes warnings, no output for pytest coverage"
+          exit 1
     - name: Un-install the package
       run: |
         source /usr/share/miniconda/etc/profile.d/conda.sh
@@ -66,13 +76,13 @@ jobs:
         cd scripts/uninstall
         chmod +x uninstall.sh
         ./uninstall.sh
-    - name: Install the package - development version
+    - name: Install the package - development install
       run: |
         source /usr/share/miniconda/etc/profile.d/conda.sh
         conda activate $CONDA_ENV
         pip  install -e .
     - name: Run unit tests for version to check package test structure is working
-      id: development
+      id: dev
       run: |
         source /usr/share/miniconda/etc/profile.d/conda.sh
         conda activate $CONDA_ENV
@@ -87,3 +97,30 @@ jobs:
         #below call works locally via script
         #pytest --cov-report term-missing:skip-covered --cov="${CODE_DIR}"/cmatools "${TESTS_DIR}"/unit
         #pytest --cov-report term-missing:skip-covered --cov=cmatools tests/unit
+
+    - name: Run unit tests for version to check package test structure is working (development install)
+      id: dev
+      run: |
+        source /usr/share/miniconda/etc/profile.d/conda.sh
+        conda activate $CONDA_ENV
+        cd scripts/tests
+        chmod +x test-unit-version.sh
+        ./test-unit-version.sh
+        echo "Simple test: version has run"
+        echo "Summary of package installation (pip show)"
+        pip show $PACKAGE
+        echo " --- "
+        # Run pytest with pytest-cov to exaime the code coverage from one simple unit test (version)
+        # Capture standard error to shell script variable, discard standard out to dev null
+        error=$(pytest --cov-report= --cov=$GITHUB_WORKSPACE/cmatools $GITHUB_WORKSPACE/tests/unit/version  2>&1 > /dev/null)
+        echo " --- "
+        echo "${error}"
+        echo " --- "
+        echo "::set-output name=error::"${error}""
+        echo "::set-output name=message::"warning: No data was collected"
+    - name: Check for error, exit if found (dev)
+        # Fail the job and exit if code style still needs formatting
+        if: contains(steps.dev.outputs.error , steps.dev.outputs.error)
+          echo steps.dev.outputs.error
+          echo "Package test structure causes warnings, no output for pytest coverage"
+          exit 1
