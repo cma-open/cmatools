@@ -31,7 +31,7 @@ jobs:
       run: |
         conda update conda
         conda env create -f $ENV_FILE
-    - name: Install the package
+    - name: Install the package - full install
       run: |
         source /usr/share/miniconda/etc/profile.d/conda.sh
         conda activate $CONDA_ENV
@@ -48,9 +48,13 @@ jobs:
         #echo ::set-output name=status::()
         pip show $PACKAGE
         echo "Tests run after full install"
-        response=$(pytest --cov-report= --cov=$GITHUB_WORKSPACE/cmatools $GITHUB_WORKSPACE/tests/unit/version)
+        response=$(pytest --cov-report= --cov=$GITHUB_WORKSPACE/cmatools $GITHUB_WORKSPACE/tests/unit/version 2> file.txt)
+        # Capture standard error to variable, but discard standard out to dev null
+        error=$(pytest --cov-report= --cov=$GITHUB_WORKSPACE/cmatools $GITHUB_WORKSPACE/tests/unit/version  2>&1 > /dev/null)
         echo " --- "
         echo "${response}"
+        echo " --- "
+        echo "${error}"
         echo " --- "
         #pytest --cov-report term-missing:skip-covered --trace --cov=$GITHUB_WORKSPACE/cmatools $GITHUB_WORKSPACE/tests/unit/version
         #below call works locally via script
