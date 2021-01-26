@@ -82,23 +82,6 @@ jobs:
         source /usr/share/miniconda/etc/profile.d/conda.sh
         conda activate $CONDA_ENV
         pip  install -e .
-    - name: Run unit tests for version to check package test structure is working
-      id: dev
-      run: |
-        source /usr/share/miniconda/etc/profile.d/conda.sh
-        conda activate $CONDA_ENV
-        cd scripts/tests
-        chmod +x test-unit-version.sh
-        ./test-unit-version.sh
-        #echo ::set-output name=status::$(echo $'\''{"$EVENT_NAME"}$'\'')
-        #echo ::set-output name=status::()
-        pip show $PACKAGE
-        echo "Tests run after development install"
-        pytest --cov-report term-missing:skip-covered --trace --cov=$GITHUB_WORKSPACE/cmatools $GITHUB_WORKSPACE/tests/unit/version
-        #below call works locally via script
-        #pytest --cov-report term-missing:skip-covered --cov="${CODE_DIR}"/cmatools "${TESTS_DIR}"/unit
-        #pytest --cov-report term-missing:skip-covered --cov=cmatools tests/unit
-
     - name: Run unit tests for version to check package test structure is working (development install)
       id: dev
       run: |
