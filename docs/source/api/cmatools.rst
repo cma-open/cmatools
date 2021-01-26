@@ -12,11 +12,13 @@ Subpackages
 .. toctree::
    :maxdepth: 4
 
+   cmatools.combine
    cmatools.examplesubpackage
    cmatools.helloworld
    cmatools.observations
    cmatools.subpackage
    cmatools.subpackageb
+
 
 
 
