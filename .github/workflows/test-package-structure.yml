@@ -48,6 +48,9 @@ jobs:
         #echo ::set-output name=status::()
         pip show $PACKAGE
         echo "Tests run after full install"
+        pytest --cov-report term-missing:skip-covered --trace --cov=$GITHUB_WORKSPACE/cmatools $GITHUB_WORKSPACE/tests/unit/version
+        #below call works locally via script
+        #pytest --cov-report term-missing:skip-covered --cov="${CODE_DIR}"/cmatools "${TESTS_DIR}"/unit
     - name: Un-install the package
       run: |
         source /usr/share/miniconda/etc/profile.d/conda.sh
