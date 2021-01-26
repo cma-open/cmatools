@@ -1,0 +1,74 @@
+# #################################################################################################################
+# GitHub workflow action file
+# Run test to check package structure and test files under pip install . vs  pip install -e .
+# #################################################################################################################
+
+# Name for workflow (also displayed on the associated badges)
+name: test-structure
+
+# on: controls when the action will run. Triggers the workflow on push or pull request events
+# Limits run only for the master branch
+on:
+  push:
+    branches: [ master ]
+  pull_request:
+    branches: [ master ]
+
+# Set environment variables so this workflow action is easy to re-use in other repos
+env:
+  REPO_NAME: cmatools
+  PACKAGE: cmatools
+  CONDA_ENV: cmatools-env # Name is set in the $ENV_FILE
+  ENV_FILE: environment_tests.yml
+
+jobs:
+  test-structure:
+    timeout-minutes: 10 # Limit total time use of the workflow action, in case of problems
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v2 # checkout code to the runner workspace root
+    - name: Install dependencies
+      run: |
+        conda update conda
+        conda env create -f $ENV_FILE
+    - name: Install the package
+      run: |
+        source /usr/share/miniconda/etc/profile.d/conda.sh
+        conda activate $CONDA_ENV
+        pip  install .
+    - name: Run unit tests for version to check package test structure is working
+      id: structure
+      run: |
+        source /usr/share/miniconda/etc/profile.d/conda.sh
+        conda activate $CONDA_ENV
+        cd scripts/tests
+        chmod +x test-package-structure.sh
+        ./test-package-structure.sh
+        #echo ::set-output name=status::$(echo $'\''{"$EVENT_NAME"}$'\'')
+        #echo ::set-output name=status::()
+        pip show $PACKAGE
+        echo "Tests run after full install"
+    - name: Un-install the package
+      run: |
+        source /usr/share/miniconda/etc/profile.d/conda.sh
+        conda activate $CONDA_ENV
+        cd scripts/uninstall
+        chmod +x uninstall-cmatools.sh
+        ./uninstall-cmatools.sh
+    - name: Install the package - development version
+      run: |
+        source /usr/share/miniconda/etc/profile.d/conda.sh
+        conda activate $CONDA_ENV
+        pip  install -e .
+    - name: Run unit tests for version to check package test structure is working
+      id: development
+      run: |
+        source /usr/share/miniconda/etc/profile.d/conda.sh
+        conda activate $CONDA_ENV
+        cd scripts/tests
+        chmod +x test-package-structure.sh
+        ./test-package-structure.sh
+        #echo ::set-output name=status::$(echo $'\''{"$EVENT_NAME"}$'\'')
+        #echo ::set-output name=status::()
+        pip show $PACKAGE
+        echo "Tests run after development install"
