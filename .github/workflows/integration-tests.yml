@@ -18,7 +18,7 @@ on:
 env:
   REPO_NAME: cmatools
   CONDA_ENV: cmatools-env # Name is set in the $ENV_FILE
-  ENV_FILE: environment.yml
+  ENV_FILE: environment_tests.yml
 
 jobs:
   run-tests:
@@ -48,5 +48,5 @@ jobs:
         source /usr/share/miniconda/etc/profile.d/conda.sh
         conda activate $CONDA_ENV
         cd scripts/tests
-        chmod +x test-unit.sh
-        ./test-unit.sh
+        chmod +x test-integration.sh
+        ./test-integration.sh
