@@ -65,10 +65,11 @@ jobs:
         echo "::set-output name=message::"warning: No data was collected"
     - name: Check for error, exit if found (full)
       # Fail the job and exit if code style still needs formatting
-        if: contains(steps.full.outputs.error , steps.full.outputs.error)
-          echo steps.full.outputs.error
-          echo "Package test structure causes warnings, no output for pytest coverage"
-          exit 1
+      if: contains(steps.full.outputs.error , steps.full.outputs.error)
+      run: |
+        echo steps.full.outputs.error
+        echo "Package test structure causes warnings, no output for pytest coverage"
+        exit 1
     - name: Un-install the package
       run: |
         source /usr/share/miniconda/etc/profile.d/conda.sh
