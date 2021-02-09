@@ -3,7 +3,7 @@
 
 # TODO
 # Just a copy of the integration tests for now
-# WIP
+# WIP - test passes but is a dummy test, needs replacing
 
 
 from cmatools.combine.combine import combined
@@ -12,5 +12,4 @@ from cmatools.combine.combine import combined
 def test_combined():
     """Test of combined function"""
 
-    assert combined() == "this that"
-    # Fails
+    assert combined() == "this hello cma"

@@ -51,12 +51,5 @@ jobs:
         pip install flake8
         flake8 . --count --select=E9,F63,F7,F82 --show-source --statistics
         flake8 . --count --exit-zero --max-complexity=10 --max-line-length=127 --statistics
-    - name: Test with coverage
-      run: |
-        source /usr/share/miniconda/etc/profile.d/conda.sh
-        conda activate $CONDA_ENV
-        cd bin
-        chmod +x test-coverage-remote.sh
-        ./test-coverage-remote.sh
       env:
         REMOTE_TESTS: True
