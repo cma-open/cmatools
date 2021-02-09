@@ -50,13 +50,13 @@ jobs:
       id: full
       run: |
         source /usr/share/miniconda/etc/profile.d/conda.sh
-        conda activate $CONDA_ENV
+        conda activate "$CONDA_ENV"
         cd scripts/tests
         chmod +x test-unit-version.sh
         ./test-unit-version.sh
         echo "Simple test: version has run"
         echo "Summary of package installation (pip show)"
-        pip show $PACKAGE
+        pip show "$PACKAGE"
         echo " --- "
         # Run pytest with pytest-cov to exaime the code coverage from one simple unit test (version)
         # Capture standard error to shell script variable, discard standard out to dev null
@@ -65,11 +65,11 @@ jobs:
         echo "${error}"
         echo " --- "
         # Capture the error to a named step output (as error)
-        echo "::set-output name=error::"${error}""
+        echo "::set-output name=error::${error}"
         # Set an expected, known, error message potentially generate from coverage (as message)
         # This is a bit of a hack, it works because we know the expected error message if the dir structure does
         # not allow the coverage test to complete
-        echo "::set-output name=message::"warning: No data was collected"
+        echo "::set-output name=message::warning: No data was collected"
     - name: Check for error, exit if found (full install)
       # Fail the job and exit if the unit test - with coverage - does not complete
       # Returns true if search contains item. - contains(search, item)
@@ -82,14 +82,14 @@ jobs:
     - name: Un-install the package
       run: |
         source /usr/share/miniconda/etc/profile.d/conda.sh
-        conda activate $CONDA_ENV
+        conda activate "$CONDA_ENV"
         cd scripts/uninstall
         chmod +x uninstall.sh
         ./uninstall.sh
     - name: Install the package - development install
       run: |
         source /usr/share/miniconda/etc/profile.d/conda.sh
-        conda activate $CONDA_ENV
+        conda activate "$CONDA_ENV"
         pip  install -e .
     - name: Run unit tests for version to check package test structure is working (development install)
       id: dev
@@ -110,11 +110,11 @@ jobs:
         echo "${error}"
         echo " --- "
         # Capture the error to a named step output (as error)
-        echo "::set-output name=error::"${error}""
+        echo "::set-output name=error::${error}"
         # Set an expected, known, error message potentially generate from coverage (as message)
         # This is a bit of a hack, it works because we know the expected error message if the dir structure does
         # not allow the coverage test to complete
-        echo "::set-output name=message::"warning: No data was collected"
+        echo "::set-output name=message::warning: No data was collected"
     - name: Check for error, exit if found (dev)
       # Fail the job and exit if code style still needs formatting
       if: contains(steps.dev.outputs.error , steps.dev.outputs.message)
