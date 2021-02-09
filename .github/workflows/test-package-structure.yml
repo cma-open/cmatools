@@ -8,10 +8,12 @@
 # reporting the source location and the results of running a simple test script against each installation
 # Various testing frameworks and packages could be used. Pytest, coverage and pytest-cov were selected here.
 # This workflow will fail if the package test structure does not allow coverage to run against a full user install
-# Confirmed that this test fails
+# Expected behaviour = test always passes for dev build, but may fails on a full install build if there are
+# problems with the package structure or the location or packaging of the tests directory
 # #################################################################################################################
 
-# Solution if this workflow fails: are tests a subpackage to the main package, if placed at root does tests have init?
+# Solution if this workflow fails:
+#   - Check if tests are subpackage to the main package, if placed at root does tests have init?
 
 # Name for workflow (also displayed on the associated badges)
 name: test-structure
@@ -40,28 +42,28 @@ jobs:
     - name: Install dependencies
       run: |
         conda update conda
-        conda env create -f $ENV_FILE
+        conda env create -f "${ENV_FILE}"
 
     - name: Install the package - development install
       run: |
         source /usr/share/miniconda/etc/profile.d/conda.sh
-        conda activate "$CONDA_ENV"
+        conda activate "${CONDA_ENV}"
         pip  install -e .
     - name: Run unit tests for version to check package test structure is working (development install)
       id: dev
       run: |
         source /usr/share/miniconda/etc/profile.d/conda.sh
-        conda activate $CONDA_ENV
+        conda activate "$CONDA_ENV"
         cd scripts/tests
         chmod +x test-unit-version.sh
         ./test-unit-version.sh
         echo "Simple test: version has run"
         echo "Summary of package installation (pip show)"
-        pip show $PACKAGE
+        pip show "$PACKAGE"
         echo " --- "
         # Run pytest with pytest-cov to exaime the code coverage from one simple unit test (version)
         # Capture standard error to shell script variable, discard standard out to dev null
-        error=$(pytest --cov-report= --cov=$GITHUB_WORKSPACE/cmatools $GITHUB_WORKSPACE/tests/unit/version  2>&1 > /dev/null)
+        error=$(pytest --cov-report= --cov="${GITHUB_WORKSPACE}"/cmatools "${GITHUB_WORKSPACE}"/tests/unit/version  2>&1 > /dev/null)
         echo " --- "
         echo "${error}"
         echo " --- "
