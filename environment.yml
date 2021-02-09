@@ -11,6 +11,7 @@ dependencies:
  - libnetcdf
  - coverage
  - pytest
+ - pytest-cov
  - sphinx
  - sphinx_rtd_theme
  - sphinx-argparse

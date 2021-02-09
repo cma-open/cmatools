@@ -15,8 +15,8 @@
  [![](https://github.com/cma-open/cmatools/workflows/docs-site/badge.svg)](https://github.com/cma-open/cmatools/actions)
 
 
-- Code quality: 
-- [![Codacy Badge](https://api.codacy.com/project/badge/Grade/bc11e8877db94af394b794def1c4c585)](https://app.codacy.com/manual/jonathan.winn/cmatools?utm_source=github.com&utm_medium=referral&utm_content=jonathan-winn-geo/cmatools&utm_campaign=Badge_Grade_Dashboard)
+- Code quality:
+- [![Codacy Badge](https://app.codacy.com/project/badge/Grade/e314a711d5ea4ed2a163617ba1d9e731)](https://www.codacy.com/gh/cma-open/cmatools/dashboard?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=cma-open/cmatools&amp;utm_campaign=Badge_Grade)
 [![CodeCov unit-tests](https://codecov.io/gh/cma-open/cmatools/branch/master/graph/badge.svg?token=FAH7T9X0F0)](https://codecov.io/gh/cma-open/cmatools)
 [![](https://github.com/cma-open/cmatools/workflows/lint/badge.svg)](https://github.com/cma-open/cmatools/actions)
 [![](https://github.com/cma-open/cmatools/workflows/code-style/badge.svg)](https://github.com/cma-open/cmatools/actions)

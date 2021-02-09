@@ -1,14 +1,13 @@
 #!/bin/bash
 
-#######################################
-# Script to run system tests
-# Run the unit tests
-#######################################
+######################################################################################################################
+# Script to system unit tests
+######################################################################################################################
 
 # Set python package root dir as script constant
 readonly CODE_DIR="$(dirname "$(dirname "${PWD}")")"
 # Set tests directory
-readonly TESTS_DIR="${CODE_DIR}"/tests
+readonly TESTS_DIR="${CODE_DIR}"/tests/unit
 
 echo " ---- * ----"
 echo "Running system tests with pytest"
@@ -16,12 +15,15 @@ echo "Python package root: "${CODE_DIR}""
 echo "Tests directory: "${TESTS_DIR}""
 echo " ---- * ----"
 
-# Discover and run tests on code path,
-# -v verbose flag
-# -r displays “short test summary info” at end of session, -A lists all info
+# Discover and run tests on code path. Options include:
+# -v verbose flag, -r displays “short test summary info” at end of session, -A lists all info
+# --tb traceback print mode (auto/long/short/line/native/no)., e.g. --tb=long
 
-#pytest -r -l --tb=long  $testdir
+pytest --tb=long -vrA  "${TESTS_DIR}"
 
-# Run pytests on the unit tests subdirectory
-pytest -rA  "${TESTS_DIR}"/unit
-
+######################################################################################################################
+# Code review and system context notes
+# ====================================
+# This script is used during manual testing
+# The script is also called as part of the GitHub actions automated tests
+######################################################################################################################
