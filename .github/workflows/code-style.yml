@@ -54,12 +54,13 @@ jobs:
         echo " --***-- "
         echo "::set-output name=package::"${response_package}""
         echo "::set-output name=tests::"${response_tests}""
-    - name: Check if site is down
+    - name: Check if code has been formatted correctly
       # Fail the job and exit if code style still needs formatting
-        if: steps.black.outputs.packages != 0 || steps.black.outputs.tests != 0
-        run: |
-          echo "Code fails style format tests"
-          exit 1
+      # Code below runs if either the main package OR the tests package have error codes
+      if: steps.black.outputs.packages != 0 || steps.black.outputs.tests != 0
+      run: |
+        echo "Code fails style format tests"
+        exit 1
     - name: Format event type name
       id: event
       run: |
