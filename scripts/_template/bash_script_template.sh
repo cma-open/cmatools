@@ -26,12 +26,12 @@
 
 # Variable expansion
 # quote your variables; prefer "${var}" over "$var".
-"S{var}"
-
+var=0
+"${var}"
+echo "Value is ${var}"
 # Quoting
 
-# Normally Always quote strings containing variables,
-# command substitutions, spaces or shell meta characters,
+# Normally Always quote strings containing variables, command substitutions, spaces or shell meta characters
 # Use arrays for safe quoting of lists of elements, especially command-line flags.
 
 # 'Single' quotes indicate that no substitution is desired.
@@ -43,6 +43,11 @@ flag="$(some_command and its args "$@" 'quoted separately')"
 
 # "quote variables"
 echo "${flag}"
+
+# quote examples
+echo "Python package root: "${CODE_DIR}""   # Incorrect
+echo "Python package root: ${CODE_DIR}"     # Correct
+
 
 # Command substitution
 # Use $(command) instead of backticks.
