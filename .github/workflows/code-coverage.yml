@@ -24,7 +24,7 @@ env:
   DISPATCH_NAME: code-style-true # Name to use for dispatch event type
 
 jobs:
-  check-code-style:
+  check-code-coverage:
     timeout-minutes: 10 # Limit total time use of the workflow action, in case of problems
     runs-on: ubuntu-latest
     #  - uses: actions/checkout@master
