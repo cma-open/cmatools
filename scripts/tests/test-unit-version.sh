@@ -12,16 +12,14 @@ readonly TESTS_DIR="${CODE_DIR}"/tests
 
 echo " ---- * ----"
 echo "Running system tests with pytest"
-echo "Python package root: "${CODE_DIR}""
-echo "Tests directory: "${TESTS_DIR}""
+echo "Python package root: ${CODE_DIR}"
+echo "Tests directory: ${TESTS_DIR}"
 echo " ---- * ----"
 
 # Discover and run tests on code path,
 # -v verbose flag
 # -r displays “short test summary info” at end of session, -A lists all info
 
-#pytest -r -l --tb=long  $testdir
-
 # Run pytests on the unit tests subdirectory - version check only
-pytest -rA  "${TESTS_DIR}"/unit/version
+pytest -rAv  "${TESTS_DIR}"/unit/version
 
