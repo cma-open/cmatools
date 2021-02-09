@@ -31,7 +31,7 @@ CONSTANT_ALT = 55
 
 
 def top_level_function(indate):
-    """ A simple example function (one line summary)
+    """A simple example function (one line summary)
 
     Further details, notes examples and param detail
     summarize behavior
@@ -52,7 +52,7 @@ def top_level_function(indate):
 
 
 class ExampleClass:
-    """ One line class summary
+    """One line class summary
 
     Summarize class behaviour and list the public methods and instance variables.
     If the class is intended to be subclassed, and has an additional interface for subclasses,
@@ -61,7 +61,7 @@ class ExampleClass:
     """
 
     def __init__(self, name, form):
-        """ One line summary
+        """One line summary
         Document the class constructor
 
         """
@@ -70,7 +70,7 @@ class ExampleClass:
         self.form = form
 
     def addfunction(self):
-        """  A simple example function (one line summary)
+        """A simple example function (one line summary)
         Further details, notes examples and param detail
         summarize behavior
         document arguments, return value(s), side effects, exceptions raised,
