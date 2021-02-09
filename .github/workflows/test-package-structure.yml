@@ -3,12 +3,15 @@
 # Run to check package structure and test files under pip install . vs  pip install -e .
 # Usage
 # Python packages can use different structures to hold the package, subpackages and associated tests
-# These can impact the behaviour of tests under a development based installatino vs a full user installation
+# These can impact the behaviour of tests under a development based installation vs a full user installation
 # This workflow outputs useful information for debugging any such problems by installing the system twice and
 # reporting the source location and the results of running a simple test script against each installation
 # Various testing frameworks and packages could be used. Pytest, coverage and pytest-cov were selected here.
 # This workflow will fail if the package test structure does not allow coverage to run against a full user install
+# Confirmed that this test fails
 # #################################################################################################################
+
+# Solution if this workflow fails: are tests a subpackage to the main package, if placed at root does tests have init?
 
 # Name for workflow (also displayed on the associated badges)
 name: test-structure
@@ -26,7 +29,7 @@ env:
   REPO_NAME: cmatools
   PACKAGE: cmatools
   CONDA_ENV: cmatools-env # Name is set in the $ENV_FILE
-  ENV_FILE: environment_tests.yml
+  ENV_FILE: environment_tests.yml # File to list environment dependencies
 
 jobs:
   test-structure:
@@ -61,14 +64,20 @@ jobs:
         echo " --- "
         echo "${error}"
         echo " --- "
+        # Capture the error to a named step output (as error)
         echo "::set-output name=error::"${error}""
+        # Set an expected, known, error message potentially generate from coverage (as message)
+        # This is a bit of a hack, it works because we know the expected error message if the dir structure does
+        # not allow the coverage test to complete
         echo "::set-output name=message::"warning: No data was collected"
-    - name: Check for error, exit if found (full)
-      # Fail the job and exit if code style still needs formatting
-      if: contains(steps.full.outputs.error , steps.full.outputs.error)
+    - name: Check for error, exit if found (full install)
+      # Fail the job and exit if the unit test - with coverage - does not complete
+      # Returns true if search contains item. - contains(search, item)
+      if: contains(steps.full.outputs.error , steps.full.outputs.message)
       run: |
         echo steps.full.outputs.error
         echo "Package test structure causes warnings, no output for pytest coverage"
+        echo "Test fails - for a full install"
         exit 1
     - name: Un-install the package
       run: |
@@ -100,12 +109,17 @@ jobs:
         echo " --- "
         echo "${error}"
         echo " --- "
+        # Capture the error to a named step output (as error)
         echo "::set-output name=error::"${error}""
+        # Set an expected, known, error message potentially generate from coverage (as message)
+        # This is a bit of a hack, it works because we know the expected error message if the dir structure does
+        # not allow the coverage test to complete
         echo "::set-output name=message::"warning: No data was collected"
     - name: Check for error, exit if found (dev)
       # Fail the job and exit if code style still needs formatting
-      if: contains(steps.dev.outputs.error , steps.dev.outputs.error)
+      if: contains(steps.dev.outputs.error , steps.dev.outputs.message)
       run: |
         echo steps.dev.outputs.error
         echo "Package test structure causes warnings, no output for pytest coverage"
+        echo "Test fails - for a dev install"
         exit 1
