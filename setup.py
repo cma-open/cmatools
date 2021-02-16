@@ -15,6 +15,8 @@ setuptools.setup(
     url="https://github.com/cma-open/cmatools",
     # find and install all packages
     packages=setuptools.find_packages(),
+    # If required, once development is complete, the test subpackage can be excluded from the install
+    # packages=setuptools.find_packages(exclude=["*tests.*", "*tests"]),
     classifiers=[
         "Programming Language :: Python :: 3",
         #"License :: OSI Approved :: MIT License",
