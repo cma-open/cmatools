@@ -14,10 +14,10 @@ setuptools.setup(
     long_description_content_type="text/markdown",
     url="https://github.com/cma-open/cmatools",
     # find and install all packages
-    package_dir={"" : "lib"},
+    package_dir={"" : "src"},
     # Legacy / Maintenance note: As the package dir is  specified, then don't need to also exclude the tests here
     # However being retained as a failsafe in case future tests are accidentally added in the main package
-    packages=setuptools.find_packages(where="lib", exclude=["*tests.*", "*tests"]),
+    packages=setuptools.find_packages(where="src", exclude=["*tests.*", "*tests"]),
     license="BSD",
     classifiers=[
         "Programming Language :: Python :: 3",
