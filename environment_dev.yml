@@ -1,0 +1,31 @@
+# Env definition file for creating environment via conda
+
+name: cmatools-env
+channels:
+ - conda-forge
+dependencies:
+ - python=3.9
+ - iris>=3.0
+ - black
+ - nccmp
+ - libnetcdf
+ - coverage
+ - pytest
+ - pytest-cov
+ - sphinx
+ - sphinx_rtd_theme
+ - sphinx-argparse
+ - sphinx-gallery
+ - cdsapi
+ - holoviews
+ - geoviews
+ - numpy>=1.19
+ - pandas
+ - pip
+
+ - pip:
+   - sphinxcontrib-mermaid
+
+# Removed from dev environment to speed up builds, installs, uninstalls
+# - xarray
+# - jupyter
