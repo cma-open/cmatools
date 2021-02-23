@@ -1,6 +1,6 @@
 # Env definition file for creating environment via conda
 
-name: cmatools-env
+name: cmatools-tests
 channels:
  - conda-forge
 dependencies:
