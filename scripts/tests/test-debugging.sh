@@ -14,7 +14,7 @@ echo
 
 # Confirm current python path, view local, installed paths
 echo
-echo "Pythonpaths:"
+echo "Python paths:"
 echo
 python -c "import sys; print('\n'.join(x for x in sys.path if x))"
 echo
@@ -22,6 +22,8 @@ echo
 echo "Package install status"
 pip show "${PACKAGE}"
 
+#cRun quick test - against version, as quick test example
+pytest -rAv  "${TESTS_DIR}"/unit/version
 
 ######################################################################################################################
 # Code review and system context notes
