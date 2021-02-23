@@ -1,4 +1,0 @@
-"""
-docstring for combine subpackage
-
-"""
