@@ -26,7 +26,7 @@ on:
 env:
   DEPLOY_TOKEN: ${{ secrets.DEPLOY_TOKEN }}
   REPO_NAME: cmatools
-  CONDA_ENV: cmadocs-env # Name is set in the $ENV_FILE
+  CONDA_ENV: cmatools-docs-env # Name is set in the $ENV_FILE
   ENV_FILE: environment_docs.yml
 
 

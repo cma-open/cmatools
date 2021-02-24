@@ -30,7 +30,7 @@ on:
 env:
   REPO_NAME: cmatools
   PACKAGE: cmatools
-  CONDA_ENV: cmatools-env # Name is set in the $ENV_FILE
+  CONDA_ENV: cmatools-docs-env # Name is set in the $ENV_FILE
   ENV_FILE: environment_tests.yml # File to list environment dependencies
 
 jobs:
