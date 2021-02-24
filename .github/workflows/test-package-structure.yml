@@ -87,7 +87,7 @@ jobs:
       run: |
         source /usr/share/miniconda/etc/profile.d/conda.sh
         conda activate "$CONDA_ENV"
-        pip uninstall "${PACKAGE}"
+        pip uninstall -y "${PACKAGE}"
 
     - name: Install the package - full install
       run: |
