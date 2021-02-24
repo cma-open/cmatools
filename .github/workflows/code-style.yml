@@ -45,8 +45,10 @@ jobs:
       run: |
         source /usr/share/miniconda/etc/profile.d/conda.sh
         conda activate $CONDA_ENV
+        # Test the main package within the src/ dir
         response_package=$(black --check src/$PACKAGE)
-        response_tests=$(black --check src/$TESTS)
+        # Test the tests dir, at project root
+        response_tests=$(black --check $TESTS)
         # Option --check returns the status. Return code 0 means nothing would change.
         # Return code 1 means some files would be reformatted. Return code 123 means internal error.
         echo " --***-- "
