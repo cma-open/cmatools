@@ -18,7 +18,7 @@ on:
 # Set environment variables so this workflow action is easy to re-use in other repos
 env:
   REPO_NAME: cmatools
-  CONDA_ENV: cmatools-docs-env # Name is set in the $ENV_FILE
+  CONDA_ENV: cmatools-tests-env # Name is set in the $ENV_FILE
   ENV_FILE: environment_tests.yml
 
 jobs:
@@ -43,7 +43,7 @@ jobs:
       run: |
         source /usr/share/miniconda/etc/profile.d/conda.sh
         conda activate $CONDA_ENV
-        pip  install .
+        pip install .
     - name: Run unit tests
       run: |
         source /usr/share/miniconda/etc/profile.d/conda.sh
@@ -60,8 +60,8 @@ jobs:
         source /usr/share/miniconda/etc/profile.d/conda.sh
         conda activate $CONDA_ENV
         cd scripts/tests
-        chmod +x test-unit-coverage.sh
-        ./test-unit-coverage.sh
+        chmod +x coverage-unit.sh
+        ./coverage-unit.sh
         #echo "$PWD"
         #cd $GITHUB_WORKSPACE
         #cd $GITHUB_WORKSPACE

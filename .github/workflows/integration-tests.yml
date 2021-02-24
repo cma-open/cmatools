@@ -19,7 +19,7 @@ env:
   REPO_NAME: cmatools
   CONDA_ENV: cmatools-tests-env # Name is set in the $ENV_FILE
   ENV_FILE: environment_tests.yml
-
+  PACKAGE: cmatools # Name of package directory within repo
 jobs:
   run-tests:
     timeout-minutes: 5 # Limit total time use of the workflow action, in case of problems
@@ -38,11 +38,11 @@ jobs:
         python --version
         conda info --envs
         conda info
-    - name: Install cmatools
+    - name: Install package
       run: |
         source /usr/share/miniconda/etc/profile.d/conda.sh
         conda activate $CONDA_ENV
-        python setup.py install
+        pip install .
     - name: Run unit tests
       run: |
         source /usr/share/miniconda/etc/profile.d/conda.sh
