@@ -9,6 +9,10 @@ for use by other modules
 
 import os
 
-""" The root directory for CMATOOLS package """
+""" Constants for the package """
 
 ROOT_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+
+# Set the package name
+# TODO check r.e. takename from setup.py
+PACKAGE = "cmatools"
