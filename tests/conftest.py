@@ -2,8 +2,10 @@
 
 import pytest
 
+
 def pytest_report_header(config):
     return "Extra info: example"
+
 
 def pytest_collectreport(report):
 
