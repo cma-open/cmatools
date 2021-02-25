@@ -5,7 +5,8 @@ import subprocess
 
 from cmatools.definitions import ROOT_DIR
 
-PACKAGE="cmatools"
+PACKAGE = "cmatools"
+
 
 def test_package_installed():
 
@@ -15,6 +16,7 @@ def test_package_installed():
     print("Version: ", version)
     subprocess.run(["pip", "show", PACKAGE], check=True)
     print("Source code root: ", ROOT_DIR)
+
 
 def test_installed_version():
     """Test for current package version"""
