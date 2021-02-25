@@ -14,5 +14,5 @@ echo "Code root directory: $CODE_DIR"
 echo "--------------------------------"
 
 # Run black formatter, change files in place
-black $CODE_DIR/cmatools
+black $CODE_DIR/src/cmatools
 black $CODE_DIR/tests
