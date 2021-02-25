@@ -6,7 +6,7 @@ CMATOOLS CLI tool
 *****************
 
 .. argparse::
-   :filename: ../../cmatools/cli_hello_world.py
+   :filename: ../../src/cmatools/cli_hello_world.py
    :func: build_parser
    :prog: CLI-HELLO
 
