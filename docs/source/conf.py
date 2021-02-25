@@ -13,15 +13,14 @@
 import os
 import sys
 import pkg_resources
-sys.path.insert(0, os.path.abspath('../cmatools'))
+sys.path.insert(0, os.path.abspath('../src/cmatools'))   # Note level within src directory
 # sys.path.insert(0, os.path.abspath('../package-name'))
-
 
 # -- Project information -----------------------------------------------------
 
 project = 'cmatools'
-copyright = '2020, jonathan winn'
-author = 'jonathan winn'
+copyright = '2021, Jonathan Winn'
+author = 'Jonathan Winn'
 
 # Take the version nunmber from the package version in setup
 release= pkg_resources.get_distribution("cmatools").version

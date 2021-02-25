@@ -1,7 +1,7 @@
 #!/bin/bash
 
 ######################################################################################################################
-# Script to run the install tests
+# Script to run to aid debugging for any test issues
 ######################################################################################################################
 
 # Source code, variables from common.sh
@@ -9,17 +9,25 @@ source common.sh
 
 echo "Current working directory: ${PWD}"
 
-# Discover and run tests on code path. Options include:
-# -v verbose flag, -r displays “short test summary info” at end of session, -A lists all info
-# --tb traceback print mode (auto/long/short/line/native/no)., e.g. --tb=long
-pytest --tb=long -vrA  "${TESTS_DIR}/install"
+#pytest -h   # prints options _and_ config file settings
+echo
+
+# Confirm current python path, view local, installed paths
+echo
+echo "Python paths:"
+echo
+python -c "import sys; print('\n'.join(x for x in sys.path if x))"
+echo
+
+echo "Package install status"
+pip show "${PACKAGE}"
+
+#cRun quick test - against version, as quick test example
+pytest -rAv  "${TESTS_DIR}"/unit/version
 
 ######################################################################################################################
 # Code review and system context notes
 # ====================================
-# This script is used during manual testing
+# This script is used during development and debugging of package structure setup and choosing testing options
 # Not called by any other scripts, not used as part of the GitHub actions automated tests
-# Config options
-#   - currently the pyproject.toml options take precedence over these script options
-#   - retained here so that later the config in pyproject.toml can be relaxed or removed
 ######################################################################################################################

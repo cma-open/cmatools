@@ -1,10 +1,12 @@
 # Env definition file for creating environment via conda
 
-name: cmadocs-env
+name: cmatools-docs-env
 channels:
  - conda-forge
 dependencies:
- - python=3.7
+ - python=3.9
+ - iris>=3.0
+ - numpy>=1.19
  - black
  - sphinx
  - sphinx_rtd_theme

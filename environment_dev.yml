@@ -1,6 +1,6 @@
 # Env definition file for creating environment via conda
 
-name: cmatools-env
+name: cmatools-dev-env
 channels:
  - conda-forge
 dependencies:
@@ -21,9 +21,11 @@ dependencies:
  - geoviews
  - numpy>=1.19
  - pandas
- - xarray
- - jupyter
  - pip
 
  - pip:
    - sphinxcontrib-mermaid
+
+# Removed from dev environment to speed up builds, installs, uninstalls
+# - xarray
+# - jupyter

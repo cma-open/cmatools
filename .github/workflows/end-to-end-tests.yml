@@ -17,8 +17,9 @@ on:
 # Set environment variables so this workflow action is easy to re-use in other repos
 env:
   REPO_NAME: cmatools
-  CONDA_ENV: cmatools-env # Name is set in the $ENV_FILE
+  CONDA_ENV: cmatools-tests-env # Name is set in the $ENV_FILE
   ENV_FILE: environment_tests.yml
+  PACKAGE: cmatools # Name of package directory within repo
 
 jobs:
   run-tests:
@@ -38,11 +39,11 @@ jobs:
         python --version
         conda info --envs
         conda info
-    - name: Install cmatools
+    - name: Install pckage
       run: |
         source /usr/share/miniconda/etc/profile.d/conda.sh
         conda activate $CONDA_ENV
-        python setup.py install
+        pip install .
     - name: Run unit tests
       run: |
         source /usr/share/miniconda/etc/profile.d/conda.sh

@@ -17,8 +17,13 @@ if [[ ! $REPLY =~ ^[Yy]$ ]]
 then
     exit 1
 else
-  echo "---"
+  echo ":"
 fi
+
+# Report pip show
+echo "Running pip show to check for package installation"
+pip show "${PACKAGE}"
+echo ""
 
 # Check current install status
 #if python -c "import pkgutil; exit(not pkgutil.find_loader(${PACKAGE}))"; then
@@ -34,16 +39,29 @@ if python -c 'import pkgutil; exit(not pkgutil.find_loader("cmatools"))'; then
     pip uninstall -y "${PACKAGE}"
 else
     echo "---"
-    echo "Package: ${PACKAGE} is not installed"
+    echo "Package: ${PACKAGE} is not fully installed"
     echo "---"
     sleep 4
 fi
 
+# Running pip uninstall anyway in case of previous problems with part install or moved packages in dev install
+echo "Running pip uninstall"
+pip uninstall -y "${PACKAGE}"
+
 # Also remove any remaining local files
 echo "Removing local dev install files, if present at: ${CODE_DIR}"
-echo "Removing .egg-info directory, if present"
+echo "    Removing .egg-info directory, if present"
 rm -rf $CODE_DIR/cmatools.egg-info
-echo "Removing build directory, if present"
+echo "    Removing build directory, if present"
 rm -rf $CODE_DIR/build
-echo "Removing dist directory, if present"
+echo "    Removing dist directory, if present"
 rm -rf $CODE_DIR/dist
+
+######################################################################################################################
+# Code review and system context notes
+# ====================================
+# This script is used during development
+# Known Issues / TODO
+# The if statement does not seems ot catch all situations hwere the package, or package remnants, e.g. dist-info files
+# still exist in site-packages. Workaround was to run pip uninstall anyway outside the if statement
+######################################################################################################################

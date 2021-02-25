@@ -17,7 +17,7 @@ on:
 # Set environment variables so this workflow action is easy to re-use in other repos
 env:
   REPO_NAME: cmatools
-  CONDA_ENV: cmadocs-env # Name is set in the $ENV_FILE
+  CONDA_ENV: cmatools-docs-env # Name is set in the $ENV_FILE
   ENV_FILE: environment_docs.yml
   DISPATCH_NAME: docs-build-true # Name to use for dispatch event type
 

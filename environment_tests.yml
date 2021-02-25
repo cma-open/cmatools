@@ -1,11 +1,11 @@
 # Env definition file for creating environment via conda
 
-name: cmatools-env
+name: cmatools-tests-env
 channels:
  - conda-forge
 dependencies:
- - python=3.7
- - iris=2.4
+ - python=3.9
+ - iris>=3.0
  - black
  - nccmp
  - coverage
