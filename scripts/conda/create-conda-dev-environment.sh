@@ -12,6 +12,6 @@ CONA_ENV_FILE='environment_dev.yml'
 
 
 echo "Creating conda environment"
-conda env create -f $CODE_DIR/$CONA_ENV_FILE
+conda env create -f "$CODE_DIR/$CONA_ENV_FILE"
 
 echo " --------------------------------------------------"
