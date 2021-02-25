@@ -3,9 +3,7 @@
 import pkg_resources
 import subprocess
 
-from cmatools.definitions import ROOT_DIR
-
-PACKAGE = "cmatools"
+from cmatools.definitions import ROOT_DIR, PACKAGE
 
 
 def test_package_installed():
