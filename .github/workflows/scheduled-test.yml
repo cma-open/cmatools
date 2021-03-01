@@ -21,7 +21,7 @@ on:
     #- cron: "0 * * * *" # Every hour
     #- cron: '0 0 * * *' # Once a day
     #- cron: '0 0 1 * *' # Once per month
-    - cron: $MINUTE
+    - cron: "${{ env.MINUTE }}"
 
 jobs:
   test-conda:
