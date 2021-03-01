@@ -1,0 +1,36 @@
+# #################################################################################################################
+## GitHub workflow action file
+## Runs on a chosen schedule
+#  Tests that a conda environment can be built from the named dependency packages
+## #################################################################################################################
+name: Scheduled test of conda environment build
+
+# Set environment variables so this workflow action is easy to re-use in other repos
+env:
+  REPO_NAME: cmatools
+  CONDA_ENV: cmatools-env # Name is set in the $ENV_FILE
+  ENV_FILE: environment.yml
+
+on:
+  schedule: # Run the action at the selected schedule frequency
+    - cron: '0 * * * *' # Every hour
+    #- cron: '0 0 * * *' # Once a day
+    #- cron: '0 0 1 * *' # Once per month
+
+jobs:
+  test-conda:
+    timeout-minutes: 10 # Limit total time use of the workflow action, in case of problems
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v2 # checkout code to the runner workspace root
+    - name: Install dependencies
+      run: |
+        conda update conda
+        conda env create -f $ENV_FILE
+    - name: conda check
+      run: |
+        source /usr/share/miniconda/etc/profile.d/conda.sh
+        conda activate $CONDA_ENV
+        python --version
+        conda info --envs
+        conda info
