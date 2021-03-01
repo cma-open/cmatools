@@ -12,7 +12,7 @@ env:
   ENV_FILE: environment_tests.yml
   HOURLY: '0 0 * * *'
   DAILY: '0 * * * *'
-  MINUTE: 'cron: * * * * *'
+  MINUTE: '* * * * *'
   MONTHLY: '0 0 1 * *'
 
 on:
@@ -21,7 +21,7 @@ on:
     #- cron: "0 * * * *" # Every hour
     #- cron: '0 0 * * *' # Once a day
     #- cron: '0 0 1 * *' # Once per month
-    - env.MINUTE
+    - cron: env.MINUTE
 
 jobs:
   test-conda:
