@@ -1,9 +1,4 @@
-"""
-
-a docstring example
-
-
-"""
+"""a docstring example"""
 
 
 def this_one():
