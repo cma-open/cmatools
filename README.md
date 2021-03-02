@@ -39,11 +39,11 @@
 
 
 - Development (unreleased)
-  [![GitHub release (latest SemVer including pre-releases)](https://img.shields.io/github/v/release/cma-open/cmatools?include_prereleases)](https://github.com/cma-open/cmatools/releases)
+  - [![GitHub release (latest SemVer including pre-releases)](https://img.shields.io/github/v/release/cma-open/cmatools?include_prereleases)](https://github.com/cma-open/cmatools/releases)
 
 
 - Latest stable release
-  [![GitHub release (latest by date)](https://img.shields.io/github/v/release/cma-open/cmatools)](https://github.com/cma-open/cmatools/releases/latest)
+  - [![GitHub release (latest by date)](https://img.shields.io/github/v/release/cma-open/cmatools)](https://github.com/cma-open/cmatools/releases/latest)
 
 
 ---
