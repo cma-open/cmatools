@@ -1,8 +1,8 @@
 def hello_world():
-    """hello world."""
+    """Hello world."""
     return "hello cma"
 
 
 def hello_all():
-    """hello world."""
+    """Hello world."""
     return "hello all"

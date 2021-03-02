@@ -1,3 +1,3 @@
 def alt_data():
-    """a docstring."""
+    """A docstring."""
     return "cma data"
