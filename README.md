@@ -11,7 +11,7 @@
  [![](https://github.com/cma-open/cmatools/workflows/user-interface-tests/badge.svg)](https://github.com/cma-open/cmatools/actions)
 
 - Conda environment build 
-   - [![](https://github.com/cma-open/cmatools/workflows/docs-files/badge.svg)](https://github.com/cma-open/cmatools/actions)
+   - [![](https://github.com/cma-open/cmatools/workflows/scheduled-build/badge.svg)](https://github.com/cma-open/cmatools/actions)
 
 - Documentation status:
    - [![](https://github.com/cma-open/cmatools/workflows/docs-files/badge.svg)](https://github.com/cma-open/cmatools/actions)
