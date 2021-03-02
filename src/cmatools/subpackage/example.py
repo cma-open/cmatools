@@ -1,16 +1,16 @@
 """
 
-a docstring test
+a docstring example
 
 
 """
 
 
 def this_one():
-    "a test print function"
+    "A  print function"
     print("this")
 
 
 def another_one():
-    "a test print function"
+    "Another print function"
     print("that")

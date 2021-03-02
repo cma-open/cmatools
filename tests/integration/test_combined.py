@@ -1,5 +1,4 @@
-""" Test python combined
-"""
+"""Test combined function"""
 
 from cmatools.combine.combine import combined
 

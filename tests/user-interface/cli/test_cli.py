@@ -8,11 +8,10 @@ import subprocess
 from pathlib import Path
 
 
-from cmatools.cli_hello_world import cli_entry_point
-from cmatools.definitions import ROOT_DIR
+from cmatools.definitions import ROOT_DIR, PACKAGE
 
 # Define cli filepath
-CLI = Path(ROOT_DIR, "cmatools", "cli_hello_world.py")
+CLI = Path(ROOT_DIR, PACKAGE, "cli_hello_world.py")
 
 
 def test_cli_help_from_path():

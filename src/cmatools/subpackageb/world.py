@@ -3,6 +3,6 @@ def world():
     return "cma data"
 
 
-def all():
-    """ all"""
-    return "all"
+def all_world():
+    """ all world scope"""
+    return "all world coverage"

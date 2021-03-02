@@ -1,8 +1,6 @@
 """ Test python hello world
 """
 
-import pytest
-
 from cmatools.helloworld import hello_world
 
 
