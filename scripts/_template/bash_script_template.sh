@@ -45,6 +45,8 @@ flag="$(some_command and its args "$@" 'quoted separately')"
 echo "${flag}"
 
 # quote examples
+# Disable shellcheck - this is an incorrect example, dont want to flag during testing
+# shellcheck disable=SC2027
 echo "Python package root: "${CODE_DIR}""   # Incorrect
 echo "Python package root: ${CODE_DIR}"     # Correct
 
