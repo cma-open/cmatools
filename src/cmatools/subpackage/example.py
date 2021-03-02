@@ -1,11 +1,11 @@
-"""a docstring example"""
+"""a docstring example."""
 
 
 def this_one():
-    """A  print function"""
+    """A  print function."""
     print("this")
 
 
 def another_one():
-    """Another print function"""
+    """Another print function."""
     print("that")
