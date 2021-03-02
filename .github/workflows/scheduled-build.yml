@@ -4,7 +4,7 @@
 # Tests that a conda environment can be built from the named dependency packages
 ## #################################################################################################################
 
-name: Scheduled test of conda environment build
+name: Scheduled build
 
 # Set environment variables so this workflow action is easy to re-use in other repos
 env:
