@@ -9,10 +9,10 @@ cmatools.subpackage package
 
 
 
-cmatools.subpackage.test
-------------------------
+cmatools.subpackage.example
+---------------------------
 
-.. automodule:: cmatools.subpackage.test
+.. automodule:: cmatools.subpackage.example
    :members:
    :undoc-members:
    :show-inheritance:
