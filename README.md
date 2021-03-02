@@ -3,11 +3,15 @@
  - Development status: 
  - [![Project Status: WIP – Initial development is in progress, but there has not yet been a stable, usable release
  suitable for the public.](https://www.repostatus.org/badges/latest/wip.svg)](https://www.repostatus.org/#wip)
- [![](https://github.com/cma-open/cmatools/workflows/unit-tests/badge.svg)](https://github.com/cma-open/cmatools/actions)
+ 
+ - Test status:
+ - [![](https://github.com/cma-open/cmatools/workflows/unit-tests/badge.svg)](https://github.com/cma-open/cmatools/actions)
  [![](https://github.com/cma-open/cmatools/workflows/integration-tests/badge.svg)](https://github.com/cma-open/cmatools/actions)
  [![](https://github.com/cma-open/cmatools/workflows/end-to-end-tests/badge.svg)](https://github.com/cma-open/cmatools/actions)
  [![](https://github.com/cma-open/cmatools/workflows/user-interface-tests/badge.svg)](https://github.com/cma-open/cmatools/actions)
 
+ - Conda environment build 
+ - [![](https://github.com/cma-open/cmatools/workflows/docs-files/badge.svg)](https://github.com/cma-open/cmatools/actions)
 
  - Documentation status:
  - [![](https://github.com/cma-open/cmatools/workflows/docs-files/badge.svg)](https://github.com/cma-open/cmatools/actions)
@@ -29,8 +33,8 @@
 
 
 - Standards
-- [![SemVer](https://img.shields.io/badge/semver-2.0.0-blue)](https://semver.org)
-[![Code style](https://img.shields.io/badge/code%20style-black-000000.svg)](https://github.com/psf/black)
+- [![Code style](https://img.shields.io/badge/code%20style-black-000000.svg)](https://github.com/psf/black)
+ [![SemVer](https://img.shields.io/badge/semver-2.0.0-blue)](https://semver.org)
 
 - Development (unreleased)
 - [![GitHub release (latest SemVer including pre-releases)](https://img.shields.io/github/v/release/cma-open/cmatools?include_prereleases)](https://github.com/cma-open/cmatools/releases)
