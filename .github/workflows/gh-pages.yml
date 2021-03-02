@@ -101,7 +101,7 @@ jobs:
         git checkout -f origin/master .nojekyll
         git checkout -f origin/master index.html
         git checkout -f origin/master CHANGELOG.rst
-        git checkout -f origin/master cmatools
+        git checkout -f origin/master src/cmatools
         git checkout -f origin/master tests
 
         echo " --- Building documentation --- "
