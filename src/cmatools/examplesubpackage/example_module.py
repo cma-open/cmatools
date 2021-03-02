@@ -60,7 +60,7 @@ class ExampleClass:
     The class constructor should be documented in the docstring for its __init__ method.
     """
 
-    def __init__(self, name, form):
+    def __init__(self, name, form, status):
         """One line summary
         Document the class constructor
 
@@ -68,16 +68,16 @@ class ExampleClass:
 
         self.name = name
         self.form = form
+        self.status = status
 
     def addfunction(self):
         """A simple example function (one line summary)
-        Further details, notes examples and param detail
-        summarize behavior
+        Further details, notes examples and param detail can then summarise behaviour
         document arguments, return value(s), side effects, exceptions raised,
         and restrictions on when it can be called (all if applicable)
         Optional arguments should be indicated.
         Document whether keyword arguments are part of the interface.
         """
 
-        calc = 1 + 1
-        return calc
+        updated_status = self.status + 1
+        return updated_status

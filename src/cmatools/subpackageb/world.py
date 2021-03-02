@@ -1,8 +1,8 @@
 def world():
-    """ world """
+    """World."""
     return "cma data"
 
 
-def all():
-    """ all"""
-    return "all"
+def all_world():
+    """All world scope."""
+    return "all world coverage"

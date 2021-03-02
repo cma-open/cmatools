@@ -28,7 +28,7 @@ def cli_parser() -> argparse.ArgumentParser:
     parser = argparse.ArgumentParser(
         # Adds cli app title, if ommitted the filename is used (e.g. cli-simple.py)
         prog="CLI-HELLO",
-        description=f"A simple hello-world command line app",
+        description="A simple hello-world command line app",
         epilog="  ---  ",
         formatter_class=argparse.ArgumentDefaultsHelpFormatter,
     )
@@ -165,6 +165,6 @@ if __name__ == "__main__":
 
     if DEBUG:
         print("------")
-        print(f"Number of arguments:", len(sys.argv), "arguments.")
-        print(f"Argument List:", str(sys.argv))
+        print(f"Number of arguments: {len(sys.argv)} arguments.")
+        print(f"Argument List: {str(sys.argv)}")
         print("------")

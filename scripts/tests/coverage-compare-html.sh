@@ -14,7 +14,6 @@ readonly REPORT_USER_DIR="${REPORT_DIR}"/user-interface
 readonly REPORT_INTEGRATION_DIR="${REPORT_DIR}"/integration
 readonly REPORT_END_DIR="${REPORT_DIR}"/end-to-end
 
-#cd "${CODE_DIR}"
 echo "Current working directory: ${PWD}"
 
 # Run each type of test

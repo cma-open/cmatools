@@ -4,19 +4,15 @@
 # All combinations to be tested
 #
 
-import pytest
-import io
-import subprocess
 import argparse
 from pathlib import Path
-from contextlib import redirect_stdout
 
 from cmatools.cli_hello_world import cli_parse_args, cli_parser, cli_hello
 
-from cmatools.definitions import ROOT_DIR
+from cmatools.definitions import ROOT_DIR, PACKAGE
 
 # Define cli filepath
-CLI = Path(ROOT_DIR, "cmatools", "cli_hello_world.py")
+CLI = Path(ROOT_DIR, PACKAGE, "cli_hello_world.py")
 
 
 def test_cli_parser():
