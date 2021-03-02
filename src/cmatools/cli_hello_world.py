@@ -165,6 +165,6 @@ if __name__ == "__main__":
 
     if DEBUG:
         print("------")
-        print(f"Number of arguments:", len(sys.argv), "arguments.")
-        print(f"Argument List:", str(sys.argv))
+        print(f"Number of arguments: {len(sys.argv)} arguments.")
+        print(f"Argument List: {str(sys.argv)}")
         print("------")
