@@ -18,8 +18,8 @@ on:
 # Set environment variables so this workflow action is easy to re-use in other repos
 env:
   REPO_NAME: cmatools
-  CONDA_ENV: cmatools-min # Name is set in the $ENV_FILE
-  ENV_FILE: environment_minimum.yml
+  CONDA_ENV: cmatools-tests-env # Name is set in the $ENV_FILE
+  ENV_FILE: environment_tests.yml
   PACKAGE: cmatools # Name of package directory within repo
   TESTS: tests # Name of tests directory within repo
   DISPATCH_NAME: code-style-true # Name to use for dispatch event type
@@ -45,7 +45,9 @@ jobs:
       run: |
         source /usr/share/miniconda/etc/profile.d/conda.sh
         conda activate $CONDA_ENV
-        response_package=$(black --check $PACKAGE)
+        # Test the main package within the src/ dir
+        response_package=$(black --check src/$PACKAGE)
+        # Test the tests dir, at project root
         response_tests=$(black --check $TESTS)
         # Option --check returns the status. Return code 0 means nothing would change.
         # Return code 1 means some files would be reformatted. Return code 123 means internal error.

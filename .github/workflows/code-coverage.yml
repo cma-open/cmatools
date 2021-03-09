@@ -17,7 +17,7 @@ on:
 # Set environment variables so this workflow action is easy to re-use in other repos
 env:
   REPO_NAME: cmatools
-  CONDA_ENV: cmatools-env # Name is set in the $ENV_FILE
+  CONDA_ENV: cmatools-tests-env # Name is set in the $ENV_FILE
   ENV_FILE: environment_tests.yml
   PACKAGE: cmatools # Name of package directory within repo
   TESTS: tests # Name of tests directory within repo
@@ -40,18 +40,19 @@ jobs:
         source /usr/share/miniconda/etc/profile.d/conda.sh
         conda activate $CONDA_ENV
         pip install .
-    - name: TESTING - Run all ocverage script tests (works locally)
+    - name: TESTING - Run all coverage script tests (works locally)
       run: |
         source /usr/share/miniconda/etc/profile.d/conda.sh
         conda activate $CONDA_ENV
         cd scripts/tests
-        chmod +x test-coverage.sh
-        ./test-coverage.sh
+        chmod +x coverage-compare.sh
+        ./coverage-compare.sh
     - name: Test with coverage
       # Run all the unit tests and report test coverage
       run: |
         source /usr/share/miniconda/etc/profile.d/conda.sh
         conda activate $CONDA_ENV
+        echo "Current working directory: $PWD"
         # Run tests and produce output report in xml, with coverage stats
         pytest --cov-report xml:unit-coverage.xml --cov=$PACKAGE tests/unit
         # The xml report will be automatically picked up by the subsequent CodeCov action

@@ -26,7 +26,7 @@ on:
 env:
   DEPLOY_TOKEN: ${{ secrets.DEPLOY_TOKEN }}
   REPO_NAME: cmatools
-  CONDA_ENV: cmadocs-env # Name is set in the $ENV_FILE
+  CONDA_ENV: cmatools-docs-env # Name is set in the $ENV_FILE
   ENV_FILE: environment_docs.yml
 
 
@@ -101,7 +101,7 @@ jobs:
         git checkout -f origin/master .nojekyll
         git checkout -f origin/master index.html
         git checkout -f origin/master CHANGELOG.rst
-        git checkout -f origin/master cmatools
+        git checkout -f origin/master src/cmatools
         git checkout -f origin/master tests
 
         echo " --- Building documentation --- "

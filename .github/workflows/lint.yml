@@ -17,9 +17,9 @@ on:
 # Set environment variables so this workflow action is easy tore-use in other repos
 env:
   REPO_NAME: cmatools
-  CONDA_ENV: cmatools-env # Name is set in the $ENV_FILE
+  CONDA_ENV: cmatools-tests-env # Name is set in the $ENV_FILE
   ENV_FILE: environment_tests.yml
-
+  PACKAGE: cmatools # Name of package directory within repo
 
 jobs:
   code-lint:
