@@ -10,7 +10,6 @@ multi_line_output = 3
 # Config for black
 [tool.black]
 line-length = 88
-target-version = ['py39']
 include = '\.pyi?$'
 exclude = '''
 
