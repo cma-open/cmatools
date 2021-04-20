@@ -9,9 +9,17 @@ for use by other modules
 
 import os
 
-# Set the root dir relative to this file
+# Set the dir relative to this file
+PACKAGE_DIR = os.path.dirname(os.path.abspath(__file__))
 ROOT_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+REPO_DIR = os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 
 # Set the package name
 # TODO check r.e. take name from setup.py to minimise duplication
 PACKAGE = "cmatools"
+
+if __name__ == '__main__':
+
+    print(ROOT_DIR)
+    print(PACKAGE_DIR)
+    print(REPO_DIR)

@@ -1,103 +1,76 @@
 
 """ Example data analysis module - creating output data in netcdf format """
 
-# import stand library imports
-from pathlib import Path
-
-# import third party imports
-import iris
-
-# import local app / lib imports
-from cmatools.definitions import ROOT_DIR
-
-sea_temp = "tos_O1_2001-2002.nc"
-sea_temp_file = Path(ROOT_DIR) / "data" / "inputs" / sea_temp
-output_file = Path(ROOT_DIR) / "data" / "outputs" / "tos_ouput.nc"
-
-print(sea_temp_file.exists())
-#sea_temp_file="/home/h02/jwinn/github-repos/cmatools/cmatools/data/inputs/tos_O1_2001-2002.nc"
-
-print(iris.__version__)
-
-print(sea_temp_file)
-# need to use string as iris cant deal with PosixPath
-cubes = iris.load_cubes(str(sea_temp_file))
-print(cubes)
-
-print(cubes[0])
-
-cube = cubes[0]
-
-#src = cube.attributes.pop('source')
-#all = cube.attributes
-#hist = cube.attributes.pop('history')
-
-#print(src)
-#print(all)
-#print(hist)
-print("vvvvvvvvvvvvvvvvvvv")
-#cube.attributes
-
-metadata = cube.metadata
-print(metadata)
-print("///////////////////////////////")
-print(cube.attributes)
-print(cube.attributes['history'])
-
-for key, value in metadata.attributes.items():
-    print(key, value)
-    #metadata.attributes[key] = value
-
-print("///////////////////////////////")
-
-cube.attributes['history'] = 'updated'
-
-
-for coord in cube.coords():
-    print(coord.name())
-
-print("------------")
-
-# amend the attributes - history
-
-
-#iris.cube.Cube.attributes["history":"changed"]
-
-
-# run the analysis
+# Initially for use so the system tests have some netcdf output data to test
+# Later to expand into sections for data input, processing, outputs for an analysis run
 # 1. initially just set a named CF standards version an ensure that is kept in the output file
 # 2. run analysis that take a user set year date range setting to customise output
 
-iris.config.netcdf.conventions_override = True
+# import standard library imports
+from pathlib import Path
+# import third party imports
+import iris
+# import local app / lib
+from cmatools.definitions import ROOT_DIR, REPO_DIR
 
-# Save just the sea_surface_temperature to a netcdf file
-iris.save(cubes[0], str(output_file))
+sea_temp = "tos_O1_2001-2002.nc"
+sea_temp_file = Path(REPO_DIR) / "data" / "inputs" / sea_temp
+copy_file = Path(REPO_DIR) / "data" / "outputs" / "tos_copy.nc"
+output_file = Path(REPO_DIR) / "data" / "outputs" / "tos_output_cf_original.nc"
+updated_file = Path(REPO_DIR) / "data" / "outputs" / "tos_output_cf_updated.nc"
 
-print("------------------------------------------------------")
 
-# re load and view the output file
-cubes_out = iris.load_cubes(str(output_file))
-print(cubes_out)
+def load_and_save(source_file, output_file, convention=None, override=None):
+    # Use string as iris cant deal with PosixPath
+    cubes = iris.load_cubes(str(source_file))
+    # Extract the first cube from cubelist
+    cube = cubes[0]
+    if override:
+        # Set iris config so that CF conventions metadata are updated in output file, from cube metadata
+        iris.config.netcdf.conventions_override = True
+    if convention:
+        # Update metadata in the loaded cube
+        cube.attributes['Conventions'] = convention
+    # Save to a netcdf file
+    iris.save(cube, str(output_file))
 
-print("")
-print("----------------------- output file -------------------------------")
-print("")
+def verify_cube_metadata(*args):
+    # convert to strings
+    files=[]
+    for arg in args:
+        file = str(arg)
+        files.append(file)
+    # load and view the output files
+    #cubes = iris.load(str(args))
+    cubes = iris.load(files)
+    print(cubes)
 
-print(cubes_out[0])
+    print("----------------------- output files -------------------------------")
+
+    for cube in cubes:
+        print(cube)
+        print("------------------------------------------------------")
+
+def main():
+    # load and save a netcdf with no override or modification of metadata
+    load_and_save(sea_temp_file, copy_file)
+    # load and save a netcdf with  override and with no modification of metadata
+    load_and_save(sea_temp_file, output_file, override=True)
+    # load and save a netcdf with override and with modification of metadata
+    load_and_save(sea_temp_file, updated_file, convention="CF-999", override=True)
+
+    print(copy_file)
+    #
+    verify_cube_metadata(copy_file, output_file, updated_file)
+
+if __name__ == "__main__":
+    # Runs when called as main
+    main()
+
 
 # TODO developer notes
-# initially as a simple script
+# initially a simple script
 # then move to use the config scripts for data dir output
-# then change to use input at a for the analysis
-
-# in the above example, the input data is in CF-1.0,
-# when saved out to a new netcdf and checked, the CF of the file then matches the version used by Iris
-# in order to retain original update, or set the Cf in the current system, need to use iris config setting
-
-# Q
-# why is there so little info in the iris docs on setting and accessing the cube metadata, very difficult to google
-# these sorts of details
-# ideally have a section next to the main metadata reference
-#
-# raise Pr about posixpath use as input to loads?
-
+# then change to use small range of input for the analysis
+# when saved out to a new netcdf and checked, the CF of the file typically matches the version used by Iris
+# in order to retain original update, or set the CF conventions in the output data, need to use iris config

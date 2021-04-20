@@ -40,6 +40,9 @@ setuptools.setup(
             # Name the tool, link to the package function
             'cli-hello='
             'cmatools.cli_hello_world:cli_entry_point',
+            # Name the tool, link to the package function
+            'cli-data='
+            'cmatools.cli_data_creation:cli_entry_point',
                         ]
     }
 )
