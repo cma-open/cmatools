@@ -1,16 +1,16 @@
 <h2 align="center">cmatools</h2>
 
-- Development status: 
+- Development status:
    - [![Project Status: WIP – Initial development is in progress, but there has not yet been a stable, usable release
  suitable for the public.](https://www.repostatus.org/badges/latest/wip.svg)](https://www.repostatus.org/#wip)
- 
+
 - Test status:
    - [![](https://github.com/cma-open/cmatools/workflows/unit-tests/badge.svg)](https://github.com/cma-open/cmatools/actions)
  [![](https://github.com/cma-open/cmatools/workflows/integration-tests/badge.svg)](https://github.com/cma-open/cmatools/actions)
  [![](https://github.com/cma-open/cmatools/workflows/end-to-end-tests/badge.svg)](https://github.com/cma-open/cmatools/actions)
  [![](https://github.com/cma-open/cmatools/workflows/user-interface-tests/badge.svg)](https://github.com/cma-open/cmatools/actions)
 
-- Conda environment build 
+- Conda environment build
    - [![Scheduled build](https://github.com/cma-open/cmatools/actions/workflows/scheduled-build.yml/badge.svg)](https://github.com/cma-open/cmatools/actions/workflows/scheduled-build.yml)
 
 - Documentation status:
@@ -30,9 +30,11 @@
 [![GitHub repo size](https://img.shields.io/github/repo-size/cma-open/cmatools)](https://github.com/repo-size/cma-open/cmatools)
 [![GitHub code size in bytes](https://img.shields.io/github/languages/code-size/cma-open/cmatools)](https://github.com/code-size/cma-open/cmatools)
 
-- Standards
+- Standards and formats
   - [![Code style](https://img.shields.io/badge/code%20style-black-000000.svg)](https://github.com/psf/black)
  [![SemVer](https://img.shields.io/badge/semver-2.0.0-blue)](https://semver.org)
+ [![pre-commit](https://img.shields.io/badge/pre--commit-enabled-brightgreen?logo=pre-commit&logoColor=white)](https://github.com/pre-commit/pre-commit)
+ [![Imports: isort](https://img.shields.io/badge/%20imports-isort-%231674b1?style=flat&labelColor=ef8336)](https://pycqa.github.io/isort/)
 
 - Development (unreleased)
   - [![GitHub release (latest SemVer including pre-releases)](https://img.shields.io/github/v/release/cma-open/cmatools?include_prereleases)](https://github.com/cma-open/cmatools/releases)
@@ -51,7 +53,7 @@ cmatools an example of a shared tools python package - FOR TRAINING USE
 - Includes a simple hello world command line tool
 
 
---- 
+---
 
 
 # Documentation
