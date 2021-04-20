@@ -8,6 +8,9 @@ dependencies:
  - iris>=3.0
  - numpy>=1.19
  - black
+ - pre-commit
+ - isort
+ - flake8
  - sphinx
  - sphinx_rtd_theme
  - sphinx-argparse
