@@ -6,43 +6,41 @@
 CMATOOLS Documentation
 ======================
 
-The CMATOOLS python package was developed for training purposes only.
+The CMATOOLS python package was developed for training use, not for production.
 
-Do not use for production purposes.
+This package, and associated subpackages, provide a range of commonly used functions,for import and use in
+CMA projects. The content and structure is initially sparse and basic and will be extended over time.
 
-This package, and associated subpackages, provide a range of commonly used functions,
-for import and use in CMA projects.
-
-The package and associated GitHub repo also serve for use via training tutorials
-and as a template project.
+The package and the associated GitHub repository can also serve as a template project on which to start and
+reconfigure new projects.
 
 
 .. toctree::
    :maxdepth: 1
 
-   readme
    userguide/gettingstarted
+   userguide/userguide
    userguide/examplecode
    changelog
 
 
-CMATOOLS package API
---------------------
+CMATOOLS package
+----------------
 
-This section lists the content and use of the subpackages and command lines tools
-provided by the CMATOOLS package
+The content of the cmatools package, subpackages and modules.
 
-.. toctree::
-   :maxdepth: 3
+.. autosummary::
+   :toctree: _autosummary
+   :template: custom-module-template.rst
+   :recursive:
 
-   api/modules
+   cmatools
 
 
 CMATOOLS cli
 ------------
 
-This section lists the command line tools and options
-
+The command line tools and options available from cmatools.
 
 .. toctree::
    :maxdepth: 3
@@ -50,8 +48,8 @@ This section lists the command line tools and options
    cmd/cmd
 
 
-
 Indices and tables
 ==================
 
 * :ref:`genindex`
+* :ref:`modindex`
