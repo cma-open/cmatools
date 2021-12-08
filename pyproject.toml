@@ -1,6 +1,6 @@
 # pyproject.toml
-#[tool.pytest.ini_options]
-#addopts = "--tb=long -vrA" # verbose output, displays short test summary info and includes traceback
+# [tool.pytest.ini_options]
+# addopts = "--tb=long -vrA" # verbose output, displays short test summary info and includes traceback
 
 # Set isort config for use by pre-commit so that it is compatible with black
 [tool.isort]
