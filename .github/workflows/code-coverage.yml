@@ -1,0 +1,94 @@
+# #################################################################################################################
+# GitHub workflow action file
+# Checks  test code coverage via the CodeCov App
+# #################################################################################################################
+
+# Name for workflow (also displayed on the associated badges)
+name: code-coverage
+
+# on: controls when the action will run. Triggers the workflow on push or pull request events
+# Limits run only for the master branch
+on:
+  push:
+    branches: [ master ]
+  pull_request:
+    branches: [ master ]
+
+# Set environment variables so this workflow action is easy to re-use in other repos
+env:
+  REPO_NAME: cmatools
+  CONDA_ENV: cmatools-tests-env # Name is set in the $ENV_FILE
+  ENV_FILE: environment_tests.yml
+  PACKAGE: cmatools # Name of package directory within repo
+  TESTS: tests # Name of tests directory within repo
+  DISPATCH_NAME: code-style-true # Name to use for dispatch event type
+
+jobs:
+  check-code-coverage:
+    timeout-minutes: 10 # Limit total time use of the workflow action, in case of problems
+    runs-on: ubuntu-latest
+    #  - uses: actions/checkout@master
+    steps:
+    - uses: actions/checkout@v2 # Checkout code to the runner workspace root
+    - name: Install dependencies
+      # Keep dependency install to minimum - as only checking code style, not running the system
+      run: |
+        conda update conda
+        conda env create -f $ENV_FILE
+    - name: Install package
+      run: |
+        source /usr/share/miniconda/etc/profile.d/conda.sh
+        conda activate $CONDA_ENV
+        pip install .
+    - name: TESTING - Run all coverage script tests (works locally)
+      run: |
+        source /usr/share/miniconda/etc/profile.d/conda.sh
+        conda activate $CONDA_ENV
+        cd scripts/tests
+        chmod +x coverage-compare.sh
+        ./coverage-compare.sh
+    - name: Test with coverage
+      # Run all the unit tests and report test coverage
+      run: |
+        source /usr/share/miniconda/etc/profile.d/conda.sh
+        conda activate $CONDA_ENV
+        echo "Current working directory: $PWD"
+        # Run tests and produce output report in xml, with coverage stats
+        pytest --cov-report xml:unit-coverage.xml --cov=$PACKAGE tests/unit
+        # The xml report will be automatically picked up by the subsequent CodeCov action
+    - name: Upload coverage to CodeCov
+      # This community action uses CodeCov to find localy coverage report files and upload them to CodeCov for use
+      # Also updates and enables the CodCov badge and url on the README page
+      uses: codecov/codecov-action@v1
+      with:
+        #token: ${{ secrets.CODECOV_TOKEN }} # not required for public repos
+        #files: ./coverage1.xml,./coverage2.xml # optional, if custom report files are created by previous steps
+        files: ./unit-coverage.xml # optional, if custom report files are created by previous steps
+        flags: unittests # optional
+        name: codecov # optional
+        fail_ci_if_error: true # optional (default = false)
+        verbose: true # optional (default = false)
+
+# Keeping commented code here as reference for WIP
+# Test potential to show multiple coverage stats, per test category - to view via CodeCov website
+# Tested in Jan 2021, not working. Low priority to fix.
+#    - name: Test with coverage
+#      # Run the unit tests and report test coverage
+#      run: |
+#        source /usr/share/miniconda/etc/profile.d/conda.sh
+#        conda activate $CONDA_ENV
+#        # Run tests and produce output report in xml, with coverage stats
+#        pytest --cov-report xml:user-coverage.xml --cov=cmatools.cli_hello_world tests/user-interface
+#        # THe xml report will be automatically picked up by the subsequent CodeCov action
+#    - name: Upload coverage to CodeCov
+#      # This community action uses CodeCov to find localy coverage report files and upload them to CodeCov for use
+#      # Also updates and enables the CodCov badge and url on the README page
+#      uses: codecov/codecov-action@v1
+#      with:
+#        #token: ${{ secrets.CODECOV_TOKEN }} # not required for public repos
+#        #files: ./coverage1.xml,./coverage2.xml # optional, if custom report files are created by previous steps
+#        files: ./user-coverage.xml # optional, if custom report files are created by previous steps
+#        flags: user-interface-tests # optional
+#        #name: codecov-umbrella # optional
+#        fail_ci_if_error: true # optional (default = false)
+#        verbose: true # optional (default = false)

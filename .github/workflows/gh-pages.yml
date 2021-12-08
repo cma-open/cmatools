@@ -1,102 +1,149 @@
+# #################################################################################################################
+# GitHub workflow action file
+# Build the Sphinx documentation on the GitHub workflow runner
+# Pushes the docs to the gh-pages branch, enabling the website
+# #################################################################################################################
+
 # Content inspired from these sources
 # https://github.com/ammaraskar/sphinx-action-test/blob/master/.github/workflows/default.yml
 # https://www.innoq.com/en/blog/github-actions-automation/
 # https://github.com/marketplace/actions/publish-to-git
 # https://github.com/seanmiddleditch/gha-publish-to-git/blob/master/entrypoint.sh
 # https://github.com/JacksonMaxfield/github-pages-deploy-action-python/blob/master/entrypoint.sh
+# https://stackoverflow.com/questions/58257140/unable-to-commit-and-push-back-changes-made-by-github-action-invalid-user?rq=1
 
 
+# Name for workflow (also displayed on the associated badges)
 name: gh-pages
 
-# Ensure pages only re-built after pushes to master branch not feature branches
+# Controls when the action will run. Triggers the workflow only if docs-files workflow succeeds
 on:
-  push:
-    branches:
-      - master
+  # repo dispatch, not workflow dispatch
+  repository_dispatch:
+      types: [docs-build-true]
+
+# Set environment variables so this workflow action is easy to re-use in other repos
+env:
+  DEPLOY_TOKEN: ${{ secrets.DEPLOY_TOKEN }}
+  REPO_NAME: cmatools
+  CONDA_ENV: cmatools-docs-env # Name is set in the $ENV_FILE
+  ENV_FILE: environment_docs.yml
+
+
 jobs:
-  build:
+  rebuild-pages:
+    timeout-minutes: 10 # Limit total time use of the workflow action, in case of problems
     runs-on: ubuntu-latest
     steps:
-    - uses: actions/checkout@v1
-      #with:
-        #repo-token: ${{ secrets.GITHUB_TOKEN }}
+    - uses: actions/checkout@v2 # Checkout code to the runner workspace root
+      with:
+        fetch-depth: 0 # Ensure all branches are available
     - name: Install dependencies
       run: |
         conda update conda
-        conda env create -f bin/environment.yml
-    - name: Install cmatools
+        conda env create -f $ENV_FILE
+    - name: Install the package
       run: |
         source /usr/share/miniconda/etc/profile.d/conda.sh
-        conda activate cmatools-env
-        python setup.py install
+        conda activate $CONDA_ENV
+        pip install .
     - name: Build and publish Sphinx documentation to gh-pages
       run: |
         source /usr/share/miniconda/etc/profile.d/conda.sh
-        conda activate cmatools-env
+        conda activate $CONDA_ENV
 
-        # Setup the username and email.
+        echo " ------- *** ------"
+        # Confirm repo and conda env
+        echo "${GITHUB_REPOSITORY}"
+        echo "$CONDA_ENV"
+        echo " ------- *** ------"
+
+        # Setup the username and email for git
         git config user.name "$GITHUB_ACTOR"
         git config user.email "${GITHUB_ACTOR}@users.noreply.github.com"
-        git config pull.rebase true   # rebase
 
-        #
-        #repo_uri="https://x-access-token:${GITHUB_TOKEN}@github.com/${GITHUB_REPOSITORY}.git"
-        repo_uri="https://x-access-token:${DEPLOY_TOKEN}@github.com/${GITHUB_REPOSITORY}.git"
+        # Set pull to use rebase
+        # Rebase wil create new commits and apply them to the specified base, to give a linear history
+        git config pull.rebase true
 
-        git branch -a
-        echo "-------------------------------------"
+        # Checkout the gh-pages branch, force checkout to override any recent changes
+        # This brings in the last published version of the documentation in gh-pages
         git checkout -f gh-pages
-        # git rebase origin/master
-        # Clean up the working repo
-        git clean -dfX
 
-        git checkout -f origin/master bin/
+        echo " ----------------------------------------------------------"
+        echo " ----------------------------------------------------------"
+        echo " ***   git config - list origin   ***"
+        git config --list --show-origin
+        echo " ----------------------------------------------------------"
+        echo " ----------------------------------------------------------"
+
+        # Remove all files to ensure a new clean build of the documentation
+        git rm -rf .
+        git clean -dfx
+
+        # Show all current git branches, for debugging
+        echo "--- Git branches ---"
+        git branch -a
+        echo "---              ---"
+        echo " ----------------------------------------------------------"
+        echo " ***   git remote - list   ***"
+        git remote -v
+        echo " ----------------------------------------------------------"
+
+        # Clean up the working repo, deletes any untracked files from the current checkout out repo
+        # (force, includes directories, removes ignored files)
+        git clean -dfx
+
+        # Checkout only the directories needed to build the documentation from master
+        # This brings these files into current workspace, which is gh-pages branch
+        git checkout -f origin/master scripts/docs
         git checkout -f origin/master docs/
+        git checkout -f origin/master .nojekyll
+        git checkout -f origin/master index.html
+        git checkout -f origin/master CHANGELOG.rst
+        git checkout -f origin/master src/cmatools
+        git checkout -f origin/master tests
 
-        cd bin
-        chmod +x build-sphinx-docs.sh
+        echo " --- Building documentation --- "
+        echo $PWD
         # Build the html documentation with sphinx
+        cd scripts/docs
+        chmod +x build-sphinx-docs.sh
         ./build-sphinx-docs.sh
 
-        echo $PWD
-        echo "Documentation built"
-        cd  ..
+        echo " ---------- * ----------"
+        echo " --- Documentation built --- "
+        cd  ../..
         echo $PWD
         cd docs/build
         echo $PWD
+        echo " ---------- * ----------"
+
+        # Confirm git status, for debugging
+        echo "-- git status --"
         git status
-        echo "testing"
+        echo "-- end git status --"
         echo $PWD
+        echo " ---------- * ----------"
 
-        #git checkout --theirs gh-pages
-        #git checkout -f gh-pages
-        #git pull origin gh-docs-pages
-
+        # Add the newly created files and directories to git
         git add -f _static
         git add -f _sources
         git add -f *.html
         git add -f *.inv
         git add -f *.js
-
         cd ../..
-
         git add docs/
-        # git add .
+        git add index.html
 
+        # Confirm git status, for debugging
+        echo "---*  git status *---"
         git status
-        echo "here >>>>"
+        echo "-- end git status --"
 
+        # Commit all the changes, inc message
+        # Always exit with status 0
         git commit -m "Update documentation on gh-pages" -a || true
-        #git commit -m "Update documentation on gh-pages"
-        #if [ $? -ne 0 ]; then
-        #   echo "nothing to commit"
-        #   exit 0
-        #fi
 
-        echo "Push changes to gh-pages branch"
-        git remote set-url origin "$repo_uri" # includes access token
-
+        echo "Push changes to the gh-pages branch"
         git push --force-with-lease origin gh-pages
-      env:
-        #GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        DEPLOY_TOKEN: ${{ secrets.DEPLOY_TOKEN }}
