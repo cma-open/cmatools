@@ -6,7 +6,9 @@ Getting started
 Installing CMATOOLS
 ===================
 
-The CMATOOLS package canbe installed int ways, as a standalone package for use directly, or
+change to user guide ? - chekc other examples .....
+
+The CMATOOLS package canbe installed in two ways, as a standalone package for use directly, or
 as part of the installatino of on eof the main CMA based projects, where CMATOOLS is a dependency
 of those projects.
 
@@ -14,7 +16,7 @@ of those projects.
 TODO - move this
 ================
 
-This sectino shows example sof how pythoncode can be used in examples, taken from source
+This section shows examples of how pythoncode can be used in examples, taken from source
 rather needing to be re tryped
 
  .. todo::
