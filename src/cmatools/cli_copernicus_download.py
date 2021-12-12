@@ -21,6 +21,7 @@ datadir_inputs = config.get('DATADIR', 'INPUTS')
 datadir_archives = config.get('DATADIR', 'ARCHIVES')
 
 DEBUG = True
+"""int: Module level constant documented inline (Default: True)."""
 
 
 def cli_parser() -> argparse.ArgumentParser:
