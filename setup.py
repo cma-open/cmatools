@@ -66,6 +66,9 @@ setuptools.setup(
             # Set the copernicus data download command
             'cli-copernicus-download='
             'cmatools.cli_copernicus_download:cli_copernicus_download_entry_point',
+            # Set function to write out current config to file
+            'write-config='
+            'cmatools.common.write_config:write_config',
         ]
     },
 )
