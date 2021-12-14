@@ -1,9 +1,9 @@
 #!/bin/bash
 
-######################################################################################################################
+#######################################################################################
 # Script to build system documentation
 # Outputs files to /docs/build
-######################################################################################################################
+#######################################################################################
 
 # Set python package root dir as script constant
 readonly CODE_DIR="$(dirname "$(dirname "${PWD}")")"
@@ -27,13 +27,14 @@ echo "Sphinx API dir: ${API_DIR}"
 echo "Sphinx template dir: ${TEMPLATE_DIR}"
 echo " ---- * ----"
 
-# Generate source files from current installed package / subpackages, sphinx-apidoc is a tool for automatic
-# Generation of Sphinx sources using the autodoc extension documents a whole package
+# Generate source files from current installed package / subpackages,
+# sphinx-apidoc is a tool for automatic generation of Sphinx sources using the
+# autodoc extension documents a whole package
 # Templates and options allow customisation of output doc pages
-
-# sphinx-apidoc -f  --module-first --no-headings --templatedir=$TEMPLATE_DIR -o $API_DIR $CODE_DIR/cmatools
-#sphinx-apidoc -f  --module-first --templatedir="${TEMPLATE_DIR}" -o "${API_DIR}" "${CODE_DIR}/src/${PACKAGE}"
-# this writes new source rst files to the dir set by -o
+# sphinx-apidoc -f  --module-first --no-headings --templatedir=$TEMPLATE_DIR /
+# -o $API_DIR $CODE_DIR/cmatools
+#sphinx-apidoc -f  --module-first --templatedir="${TEMPLATE_DIR}" /
+# -o "${API_DIR}" "${CODE_DIR}/src/${PACKAGE}"
 
 # Build sphinx docs and make html files
 sphinx-build -v -b html "${INPUT_DIR}" "${OUTPUT_DIR}"
