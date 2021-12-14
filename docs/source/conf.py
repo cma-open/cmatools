@@ -26,11 +26,10 @@ print('System path:')
 print(*sys.path, sep='\n')
 print('------------------')
 
-import cmatools  # noqa: F401, E402 # isort:skip
-
 # tests is not installed by setup, therefore import here to ensure available
 # by relative import path
-import tests  # noqa: F401, E402 # isort:skip
+import tests  # noqa: F401, E402 isort:skip
+import cmatools  # noqa: F401, E402 isort:skip
 
 # -- Project information -----------------------------------------------------
 
