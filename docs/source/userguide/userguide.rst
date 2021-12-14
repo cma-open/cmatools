@@ -1,6 +1,6 @@
-*****
-title
-*****
+**********
+User Guide
+**********
 
 .. _userguide_label:
 
