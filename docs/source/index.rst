@@ -21,6 +21,7 @@ reconfigure new projects.
    userguide/gettingstarted
    userguide/userguide
    userguide/examplecode
+   developersguide/developersguide
    changelog
 
 
@@ -35,6 +36,7 @@ The content of the cmatools package, subpackages and modules.
    :recursive:
 
    cmatools
+   tests
 
 
 CMATOOLS cli
@@ -46,6 +48,17 @@ The command line tools and options available from cmatools.
    :maxdepth: 3
 
    cmd/cmd
+
+
+Tests2
+------
+
+The command lin
+
+.. toctree::
+   :maxdepth: 3
+
+   tests/examplecode
 
 
 Indices and tables
