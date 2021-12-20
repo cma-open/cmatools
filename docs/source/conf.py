@@ -1,9 +1,8 @@
 """Sphinx config settings."""
 
 # Configuration file for the Sphinx documentation builder.
-#
-# This file only contains a selection of the most common options. For a full
-# list see the documentation:
+# This file only contains a selection of the most common options.
+# For a full list see the documentation:
 # https://www.sphinx-doc.org/en/master/usage/configuration.html
 
 import os
@@ -19,7 +18,7 @@ import pkg_resources
 
 sys.path.insert(0, os.path.abspath('../../src'))
 sys.path.insert(0, os.path.abspath('../..'))
-# sys.path.insert(0, os.path.abspath('../package-name'))
+
 
 print('------------------')
 print('System path:')
@@ -36,15 +35,10 @@ import cmatools  # noqa: F401, E402 isort:skip
 project = 'cmatools'
 copyright = '2021, Jonathan Winn'
 author = 'Jonathan Winn'
-
 # Take the version nunmber from the package version in setup
 release = pkg_resources.get_distribution('cmatools').version
 
-# The full version, including alpha/beta/rc tags
-# release = '0.0.1'
-
 # -- General configuration ---------------------------------------------------
-
 # Add any Sphinx extension module names here, as strings. They can be
 # extensions coming with Sphinx (named 'sphinx.ext.*') or your custom
 # ones.
@@ -63,11 +57,7 @@ extensions = [
     'sphinxarg.ext',
     'sphinxcontrib.mermaid',
     'numpydoc'
-    # 'alabaster'
 ]
-# Set docstring style options
-# napoleon_google_docstring = False
-# napoleon_numpy_docstring = True
 
 # Allow todo panels to be highlighted in outputs docs
 # Relates to the sphinx.ext.todo extension
@@ -83,20 +73,14 @@ exclude_patterns = []
 
 # -- Options for HTML output -------------------------------------------------
 
-# The theme to use for HTML and HTML Help pages.  See the documentation for
-# a list of builtin themes.
-
-#
-# html_theme = 'alabaster' # tested but decided againt
+# The theme to use for HTML and HTML Help pages.
+# See documentation for a list of builtin themes.
 # A commonly used theme rtd (read the docs)
 html_theme = 'sphinx_rtd_theme'
-# html_theme = "pydata_sphinx_theme"
-# html_theme="sphinxdoc"
-# html_theme="sphinx13"
+# html_theme = 'alabaster' # tested but decided against
 
 numpydoc_attributes_as_param_list = False  # include attributes in a table
 numpydoc_xref_param_type = True
-
 numpydoc_xref_aliases = {
     'LeaveOneOut': 'sklearn.model_selection.LeaveOneOut',
 }
@@ -112,7 +96,7 @@ autodoc_default_flags = ['show-inheritance']
 # autodoc_docstring_signature = True
 autoclass_content = 'both'  # Add __init__ doc (ie. params) to class summaries
 
-# test later # TODo
+# TODO test later
 add_module_names = False  # Remove namespaces from class/method signatures
 
 # Add any paths that contain custom static files (such as style sheets) here,
@@ -120,7 +104,7 @@ add_module_names = False  # Remove namespaces from class/method signatures
 # so a file named "default.css" will overwrite the builtin "default.css".
 html_static_path = ['_static']
 
-# copy to decisioon log
+# copy to decision log
 # decided numpydoc over napoloeon
 # https://numpydoc.readthedocs.io/en/latest/install.html
 # TODO check order of class methods and attributes, seem smixed up
