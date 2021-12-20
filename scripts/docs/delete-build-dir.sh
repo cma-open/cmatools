@@ -10,7 +10,6 @@ readonly CODE_DIR="$(dirname "$(dirname "${PWD}")")"
 source "${CODE_DIR}/scripts/common/common.sh"
 
 # Set documentation directories
-readonly DOCS_DIR="${CODE_DIR}/docs"
 readonly OUTPUT_DIR="${CODE_DIR}/docs/build"
 
 echo " ---- * ----"
