@@ -462,7 +462,7 @@ class ExampleClass(object):
 
     @property
     def readonly_property(self):
-        """str: Get readonly property.
+        """str: Get readonly_property.
 
         Properties should be documented in their getter method.
         """
@@ -541,96 +541,6 @@ class ExampleClass(object):
 
     def _private_without_docstring(self):
         pass
-
-
-class ExampleClassAnother(object):
-    """Create another example class.
-
-    The summary line for a class docstring should fit on one line.
-
-    If the class has public attributes, they may be documented here
-    in an ``Attributes`` section and follow the same formatting as a
-    function's ``Args`` section. Alternatively, attributes may be documented
-    inline with the attribute's declaration (see __init__ method below).
-
-    Properties created with the ``@property`` decorator should be documented
-    in the property's getter method.
-
-    Attributes
-    ----------
-    reference_period : str
-        Description of `reference_period`. (class attribute)
-    QC_LEVEL : str
-        Description of `QC_LEVEL`.  (class attribute: CONSTANT)
-    attr1 : str
-        Description of `reference_period`. (class attribute)
-    """
-
-    # Class attribute
-    reference_period = (
-        '1990-2020'  # Accessed e.g. by ExampleClassAnother.reference_period
-    )
-    # Class attribute (convention indicates constant)
-    QC_LEVEL = 'High'
-
-    def __init__(self, param1, param2, param3):
-        """Docstring on the __init__ method.
-
-        The __init__ method may be documented in either the class level
-        docstring, or as a docstring on the __init__ method itself.
-
-        Either form is acceptable, but the two should not be mixed. Choose one
-        convention to document the __init__ method and be consistent with it.
-
-        Note
-        ----
-        Do not include the `self` parameter in the ``Parameters`` section.
-
-        Parameters
-        ----------
-        param1 : str
-            Description of `param1`.
-        param2 : :obj:`list` of :obj:`str`
-            Description of `param2`. Multiple
-            lines are supported.
-        param3 : :obj:`int`, optional
-            Description of `param3`.
-
-        """
-        self.attr1 = param1
-        self.attr2 = param2
-        self.attr3 = param3
-
-        #: Doc comment *inline* with attribute (TODO check sphinx output here)
-
-        # Alternative ways to document attributes
-        # (this example file will use the class docstring)
-        #: list of str: Doc comment *before* attribute, with type specified
-        # self.attr4 = ["attr4"]
-        # self.attr5 = None
-        # """str: Docstring *after* attribute, with type specified."""
-
-    def example_method(self, param1, param2):
-        """Class methods are similar to regular functions.
-
-        Note
-        ----
-        Do not include the `self` parameter in the ``Parameters`` section.
-
-        Parameters
-        ----------
-        param1
-            The first parameter.
-        param2
-            The second parameter.
-
-        Returns
-        -------
-        bool
-            True if successful, False otherwise.
-
-        """
-        return True
 
 
 if __name__ == '__main__':
