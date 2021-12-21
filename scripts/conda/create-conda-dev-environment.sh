@@ -6,7 +6,7 @@
 #######################################################################################
 
 # Set code root directory as script constant
-CODE_DIR="$(dirname $(dirname "${PWD}"))"
+readonly CODE_DIR="$(dirname $(dirname "${PWD}"))"
 # Set name of environment file holding dependencies list
 CONA_ENV_FILE='environment_dev.yml'
 
