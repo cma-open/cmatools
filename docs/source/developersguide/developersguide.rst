@@ -4,7 +4,7 @@ Developers Guide
 
 .. _devguide_label:
 
-Developers Guide
-===============
+Sub title
+=========
 
 Add examples .....
