@@ -7,20 +7,21 @@ for use by other modules
 import os
 
 # TODO convert to use pathlib
+
+# Docstring not added here to avoid display of filepaths in documentation
+
 # Set constants for CMATOOLS package
-
 SRC_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
-"""str: Package src directory."""
-
 ROOT_DIR = os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
-"""str: Package root directory."""
-
 CONFIGFILE = f'{SRC_DIR}/cmatools/config.ini'
-"""str: Config file location."""
-
 CONFIGLOGS = f'{SRC_DIR}/cmatools/config-logs.ini'
-"""str: Config logs ini file location."""
 
-# TODO check r.e. take name from setup.py to minimise duplication
+# TODO check take name from setup.py or VERSION to avoid duplication
 PACKAGE = 'cmatools'  # Set the package name
 """str: Package name."""
+
+if __name__ == '__main__':
+    # Print and confirms current constants
+    print(f'Source dir: {SRC_DIR}')
+    print(f'Root dir: {ROOT_DIR}')
+    print(f'Config file: {CONFIGFILE}')
