@@ -16,7 +16,7 @@ import pkg_resources
 # add these directories to sys.path here. If the directory is relative to the
 # documentation root, use os.path.abspath to make it absolute, like shown here.
 
-sys.path.insert(0, os.path.abspath('../../src'))
+# sys.path.insert(0, os.path.abspath('../../src'))
 sys.path.insert(0, os.path.abspath('../..'))
 
 
@@ -28,7 +28,7 @@ print('------------------')
 # tests is not installed by setup, therefore import here to ensure available
 # by relative import path
 import tests  # noqa: F401, E402 isort:skip
-import cmatools  # noqa: F401, E402 isort:skip
+# import cmatools  # noqa: F401, E402 isort:skip
 
 # -- Project information -----------------------------------------------------
 
@@ -43,7 +43,9 @@ release = pkg_resources.get_distribution('cmatools').version
 # extensions coming with Sphinx (named 'sphinx.ext.*') or your custom
 # ones.
 extensions = [
+    'myst_parser',
     'sphinx.ext.autodoc',
+    'sphinx.ext.intersphinx',
     # 'sphinx_autodoc_typehints',  test this later # TODO
     'sphinx.ext.githubpages',
     # 'sphinx.ext.napoleon',
@@ -96,6 +98,9 @@ autodoc_default_flags = ['show-inheritance']
 # autodoc_docstring_signature = True
 autoclass_content = 'both'  # Add __init__ doc (ie. params) to class summaries
 
+# Allow ref links to section titles by page/section ref
+autosectionlabel_prefix_document = True
+
 # TODO test later
 add_module_names = False  # Remove namespaces from class/method signatures
 
@@ -113,9 +118,11 @@ html_static_path = ['_static']
 # Configuration for intersphinx
 intersphinx_mapping = {
     'python': ('https://docs.python.org/3/', None),
-    'numpy': ('https://numpy.org/devdocs/', None),
+    'numpy': ('https://numpy.org/doc/stable/', None),
+    'numpydoc': ('https://numpydoc.readthedocs.io/en/latest/', None),
     'sklearn': ('https://scikit-learn.org/stable/', None),
     'matplotlib': ('https://matplotlib.org/stable/', None),
+    'sphinx': ('https://www.sphinx-doc.org/en/master/', None),
 }
 
 # Refs
