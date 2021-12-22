@@ -195,10 +195,6 @@ def module_level_function(param1, param2=None, *args, **kwargs):
     **kwargs
         Arbitrary keyword arguments.
 
-    Note
-    ----
-    No distinction between positional and named params, but can be noted as optional
-
     Returns
     -------
     bool
@@ -320,10 +316,6 @@ class ExampleError(Exception):
     Either form is acceptable, but the two should not be mixed. Choose one
     convention to document the __init__ method and be consistent with it.
 
-    Note
-    ----
-    Do not include the `self` parameter in the ``Parameters`` section.
-
     Parameters
     ----------
     msg : str
@@ -361,16 +353,10 @@ class ExampleClass(object):
 
     Attributes
     ----------
-    attribute_string : str
+    attribute_string : :obj:`str`
         Description of `attribute_string`.
     attribute_list : :obj:`int`, optional
         Description of `attr2`.
-    attribute_integer : str
-        Description of `attr1`.
-    attr4 : :obj:`int`
-        Description of `attr4`.
-    attr5 : :obj:`int`, optional
-        Description of `attr5`.
 
     """
 
@@ -385,10 +371,6 @@ class ExampleClass(object):
 
         Either form is acceptable, but the two should not be mixed. Choose one
         convention to document the __init__ method and be consistent with it.
-
-        Note
-        ----
-        Do not include the `self` parameter in the ``Parameters`` section.
 
         Parameters
         ----------
@@ -486,10 +468,6 @@ class ExampleClass(object):
 
     def example_method(self, param1, param2):
         """Class methods are similar to regular functions.
-
-        Note
-        ----
-        Do not include the `self` parameter in the ``Parameters`` section.
 
         Parameters
         ----------
