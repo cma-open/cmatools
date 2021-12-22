@@ -23,16 +23,19 @@ Notes
     This is an example of an indented section. It's like any other section,
     but the body is indented to help it stand out from surrounding text.
 
-If a section is indented, then a section break is created by
-resuming unindented text.
-
-This file source:
- https://sphinxcontrib-napoleon.readthedocs.io/en/latest/example_numpy.html#example-numpy
-See also notes in the wiki
+If a section is indented, then a section break is created by resuming
+unindented text. See also notes in the wiki:
 https://github.com/cma-open/cmatools/wiki/Naming-conventions
 
-    This file has been amended to include code style examples and
-    further functional code, so the module is well covered by tests.
+This file has been amended to include code style examples and further functional
+code, so the module is well covered by tests.
+
+See:
+- :ref:`sphinx:ref-role`
+- :ref:`numpydoc:example`
+- :ref:`numpydoc:format`
+- :ref:`numpy:howto_document`
+
 
 .. _NumPy Documentation HOWTO:
    https://github.com/numpy/numpy/blob/master/doc/HOWTO_DOCUMENT.rst.txt
@@ -63,7 +66,7 @@ The docstring may span multiple lines. The type may optionally be specified
 on the first line, separated by a colon.
 """
 
-# NOTE cmatools code style will use main module level docstring (after attribute)
+# cmatools code style will use main module level docstring (after attribute)
 
 
 def confirm_version() -> None:
@@ -121,7 +124,7 @@ def function_with_pep484_type_annotations(param1: int, param2: str) -> bool:
     return result
 
 
-def module_level_function(param1, param2=None, *args, **kwargs):
+def module_level_function(param1, param2=None, *args, **kwargs) -> bool:
     """Verify is any parameter is greater than 100.
 
     This is an example of a module level function.
@@ -159,11 +162,6 @@ def module_level_function(param1, param2=None, *args, **kwargs):
     **kwargs
         Arbitrary keyword arguments.
 
-    Note
-    ----
-    There is no distinction between positional and named params,
-    but parameters can be noted within the docstring as optional.
-
     Returns
     -------
     bool
@@ -190,6 +188,12 @@ def module_level_function(param1, param2=None, *args, **kwargs):
         If `param2` is equal to `param1`.
     ValueError
         If `param2` is not a string
+
+    Notes
+    -----
+    There is no distinction between positional and named params,
+    but parameters can be noted within the docstring as optional.
+
     """
     if param1 == param2:
         print(f'param1: {param1}, param2: {param2}')
@@ -276,17 +280,13 @@ def example_generator(n):
         raise err
 
 
-class ExampleError(Exception):
+class ExampleCMAError(Exception):
     """Example error class.
 
     Exceptions are documented in the same way as classes.
 
     The __init__ method should be documented in the class level
     docstring.
-
-    Note
-    ----
-    Do not include the `self` parameter in the ``Parameters`` section.
 
     Parameters
     ----------
@@ -304,6 +304,10 @@ class ExampleError(Exception):
     coded_message : str
         The human readable string describing the exception, prefixed by the
         error code, as a string.
+
+    Notes
+    -----
+    Do not include the `self` parameter in the ``Parameters`` section.
     """
 
     def __init__(self, msg, code=None):
@@ -326,10 +330,6 @@ class SimpleClass(object):
     Either form is acceptable, but the two should not be mixed. Choose one
     convention to document the __init__ method and be consistent with it.
 
-    Note
-    ----
-    Do not include the `self` parameter in the ``Parameters`` section.
-
     Parameters
     ----------
     param1 : str
@@ -346,13 +346,17 @@ class SimpleClass(object):
     Properties created with the ``@property`` decorator should be documented
     in the property's getter method.
 
-
     Attributes
     ----------
     attribute_string : str
         Description of `attribute_string`.
     attribute_list : :obj:`int`, optional
         Description of `attrribute_list.
+
+    Notes
+    -----
+    Do not include the `self` parameter in the ``Parameters`` section.
+
     """
 
     def __init__(self, param1, param2):
@@ -394,17 +398,13 @@ class SimpleClass(object):
         self._attribute_list = value
 
 
-class ExampleClass(object):
+class ExampleCMAClass(object):
     """Example class.
 
     The summary line for a class docstring should fit on one line.
 
     The __init__ method should be documented in the class level
     docstring
-
-    Note
-    ----
-    Do not include the `self` parameter in the ``Parameters`` section.
 
     Parameters
     ----------
@@ -416,13 +416,6 @@ class ExampleClass(object):
     param3 : :obj:`int`, optional
         Description of `param3`.
 
-    If the class has public attributes, they should be documented here
-    in an ``Attributes`` section and follow the same formatting as a
-    function's ``Args`` section. Alternatively, attributes may be documented
-    inline with the attribute's declaration (see __init__ method below).
-
-    Properties created with the ``@property`` decorator should be documented
-    in the property's getter method.
 
     Attributes
     ----------
@@ -436,6 +429,18 @@ class ExampleClass(object):
         Description of `attr4`.
     attr5 : :obj:`int`, optional
         Description of `attr5`.
+
+    Notes
+    -----
+    Do not include the `self` parameter in the ``Parameters`` section.
+
+    If the class has public attributes, they should be documented here
+    in an ``Attributes`` section and follow the same formatting as a
+    function's ``Args`` section. Alternatively, attributes may be documented
+    inline with the attribute's declaration (see __init__ method below).
+
+    Properties created with the ``@property`` decorator should be documented
+    in the property's getter method.
 
     """
 
@@ -519,12 +524,8 @@ class ExampleClass(object):
     def readwrite_property(self, value):
         value
 
-    def example_method(self, param1, param2):
+    def example_method(self, param1: int, param2: int) -> bool:
         """Class methods are similar to regular functions.
-
-        Note
-        ----
-        Do not include the `self` parameter in the ``Parameters`` section.
 
         Parameters
         ----------
@@ -535,8 +536,12 @@ class ExampleClass(object):
 
         Returns
         -------
-        bool
+        bool :bool
             True if successful, False otherwise.
+
+        Notes
+        -----
+        Do not include the `self` parameter in the ``Parameters`` section.
 
         """
         return True
@@ -587,10 +592,6 @@ class ExampleClassAnother(object):
     The __init__ method should be documented in the class level
     docstring.
 
-    Note
-    ----
-    Do not include the `self` parameter in the ``Parameters`` section.
-
     Parameters
     ----------
     param1 : str
@@ -625,23 +626,19 @@ class ExampleClassAnother(object):
 
     # Accessed e.g. by ExampleClassAnother.reference_period
     reference_period = '1990-2020'
-    """str: Description of `reference_period` (class attribute)"""
+    """str: Description of `reference_period` (class attribute)."""
 
     # Class attribute (convention indicates constant)
     QC_LEVEL = 'High'
-    """str: Description of `QC_LEVEL`(class attribute: CONSTANT)"""
+    """str: Description of `QC_LEVEL`(class attribute: CONSTANT)."""
 
     def __init__(self, param1, param2, param3):
         self.attribute_string = param1
         self.attribute_list = param2
         self.attribute_integer = param3
 
-    def example_method(self, param1, param2):
+    def example_method(self, param1: int, param2: int) -> bool:
         """Class methods are similar to regular functions.
-
-        Note
-        ----
-        Do not include the `self` parameter in the ``Parameters`` section.
 
         Parameters
         ----------
@@ -652,8 +649,12 @@ class ExampleClassAnother(object):
 
         Returns
         -------
-        bool
+        bool :bool
             True if successful, False otherwise.
+
+        Notes
+        -----
+        Do not include the `self` parameter in the ``Parameters`` section.
 
         """
         return True
