@@ -23,7 +23,7 @@ reconfigure new projects.
    userguide/examplecode
    developersguide/developersguide
    changelog
-
+   readme
 
 CMATOOLS package
 ----------------
@@ -32,7 +32,6 @@ The content of the cmatools package, subpackages and modules.
 
 .. autosummary::
    :toctree: _autosummary
-   :template: custom-module-template.rst
    :recursive:
 
    cmatools
@@ -49,16 +48,6 @@ The command line tools and options available from cmatools.
 
    cmd/cmd
 
-
-Tests2
-------
-
-The command lin
-
-.. toctree::
-   :maxdepth: 3
-
-   tests/examplecode
 
 
 Indices and tables
