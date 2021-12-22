@@ -31,14 +31,14 @@ This file has been amended to include code style examples and further functional
 code, so the module is well covered by tests.
 
 See:
-- :ref:`sphinx:ref-role`
+
 - :ref:`numpydoc:example`
+
 - :ref:`numpydoc:format`
-- :ref:`numpy:howto_document`
+
+- :doc:`numpy:docs/howto_document`
 
 
-.. _NumPy Documentation HOWTO:
-   https://github.com/numpy/numpy/blob/master/doc/HOWTO_DOCUMENT.rst.txt
 """
 
 # standard library imports
