@@ -25,8 +25,9 @@ rather needing to be re tryped
     then remove
 
 
-Other sections can easily be referenced e.g.
+Other sections fro other pages can easily be referenced
+e.g. target name = {path/to/page}:{title-of-section}.
 
-see examples at :ref:`Main-example`.
+see examples at :ref:`userguide/examplecode:Main-example`.
 
-see examples at :ref:`Sub-example`.
+see examples at :ref:`userguide/examplecode:Sub-example`.
