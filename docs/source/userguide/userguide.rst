@@ -4,7 +4,7 @@ User Guide
 
 .. _userguide_label:
 
-User Guide
-==========
+Sub title UG
+============
 
 change to user guide ? - chekc other examples .....
