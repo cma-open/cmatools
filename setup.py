@@ -52,7 +52,9 @@ setuptools.setup(
         'scitools-iris>=3.0',  # Note alt name for iris via pip, c.f. conda-forge
         'numpy>=1.19',
     ],
-    # include_package_data = True,
+    # Include data files, as listed in MANIFEST.in (e.g. config.ini)
+    include_package_data=True,
+
     # Register command line scripts from the relevant package module
     # These are added as command line options once the system is installed
     entry_points={
