@@ -11,7 +11,6 @@ import pytest
 
 from cmatools.examplesubpackage.example_numpy import (
     ExampleClass,
-    ExampleClassAnother,
     ExampleError,
     example_generator,
     function_with_pep484_type_annotations,
@@ -191,18 +190,5 @@ def test_example_class_example_method():
     """Test example_class.example_method."""
     # Create a valid ExampleClass object
     example = ExampleClass('1', ['10', '29'], 3)
-    # Test class method, expect return True
-    assert example.example_method('param1', 'param2') is True
-
-
-def test_example_class_another():
-    """Test example_class_another."""
-    # Instantiate class instance object and check class attributes
-    example = ExampleClassAnother('param1', 'param2', 'param3')
-    assert example.reference_period == '1990-2020'
-    assert example.QC_LEVEL == 'High'
-    # Access and check class attributes directly from the class
-    assert ExampleClassAnother.reference_period == '1990-2020'
-    assert ExampleClassAnother.QC_LEVEL == 'High'
     # Test class method, expect return True
     assert example.example_method('param1', 'param2') is True
