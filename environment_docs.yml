@@ -11,11 +11,12 @@ dependencies:
  - pre-commit
  - isort
  - flake8
+ - myst-parser
  - sphinx
  - sphinx_rtd_theme
  - sphinx-argparse
  - sphinx-gallery
+ - sphinxcontrib-mermaid
+ - numpydoc
+ - pipreqs
  - pip
-
- - pip:
-   - sphinxcontrib-mermaid

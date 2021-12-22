@@ -14,14 +14,18 @@ dependencies:
  - humanize
  - nccmp
  - libnetcdf
+ - humanize
  - coverage
- - mock
  - pytest
  - pytest-cov
+ - myst-parser
  - sphinx
  - sphinx_rtd_theme
  - sphinx-argparse
  - sphinx-gallery
+ - sphinxcontrib-mermaid
+ - numpydoc
+ - pipreqs
  - cdsapi
  - holoviews
  - geoviews
@@ -30,6 +34,3 @@ dependencies:
  - xarray
  - jupyter
  - pip
-
- - pip:
-   - sphinxcontrib-mermaid
