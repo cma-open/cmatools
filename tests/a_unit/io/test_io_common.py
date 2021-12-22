@@ -1,9 +1,9 @@
 """Tests for io_common module."""
 
 import os
+from unittest.mock import patch
 
 import pytest
-from mock import patch
 
 from cmatools.definitions import ROOT_DIR
 from cmatools.io.io_common import check_access, return_datadir_root_dir
