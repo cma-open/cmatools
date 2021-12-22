@@ -1,0 +1,4 @@
+include README.rst
+include src/cmatools/config.ini
+include src/cmatools/config-logs.ini
+#include docs/*.txt
