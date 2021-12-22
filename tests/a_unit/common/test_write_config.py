@@ -2,7 +2,7 @@
 
 # TODO add module ref to link in docs
 
-from mock import patch
+from unittest.mock import patch
 
 from cmatools.common import write_config
 

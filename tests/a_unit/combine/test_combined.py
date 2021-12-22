@@ -1,6 +1,6 @@
 """Test combined function."""
 
-from mock import patch
+from unittest.mock import patch
 
 from cmatools.combine.combine import combined
 
