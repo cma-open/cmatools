@@ -1,17 +1,19 @@
 #!/bin/bash
 
-######################################################################################################################
+#######################################################################################
 # Script to remove the named conda env
 # For use with testing
 # This script does NOT delete miniconda, just deletes the named conda environment
-######################################################################################################################
+#######################################################################################
 
 # Set the name of the conda environment to be removed as a script constant
 readonly ENV_NAME="cmatools-env"
+readonly DEV_NAME="cmatools-dev-env"
 # Set the miniconda version directory, within $HOME, as a script constant
 readonly MINICONDA="miniconda3"
 
-# Source commands from conda profile script, so that the deactivate command can be called
+# Source commands from conda profile script, so that the deactivate
+# command can be called
 source "~/${MINICONDA}/etc/profile.d/conda.sh"
 
 # Script can't run from within an active conda env, so first deactivate
@@ -24,7 +26,7 @@ while true; do
     case $yn in
         [Yy]* )
           echo "---"
-          echo "Removing the conda environment";
+          echo "Removing the conda environment: ${ENV_NAME}";
           echo "This is a slow process, please be patient";
           conda remove --name "${ENV_NAME}" --all;
           break;;
@@ -38,5 +40,29 @@ done
 echo ""
 echo "--------------------------------"
 echo "Conda environment: ${ENV_NAME} has been removed"
+echo "--------------------------------"
+echo ""
+
+# Interactive prompt
+# Require the user to confirm environment removal
+while true; do
+    read -p "Do you want to delete the dev conda environment: ${DEV_NAME}?" yn
+    case $yn in
+        [Yy]* )
+          echo "---"
+          echo "Removing the dev conda environment: ${DEV_NAME}";
+          echo "This is a slow process, please be patient";
+          conda remove --name "${DEV_NAME}" --all;
+          break;;
+        [Nn]* )
+          exit;;
+        * )
+          echo "Please answer yes or no.";;
+    esac
+done
+
+echo ""
+echo "--------------------------------"
+echo "Conda environment: ${DEV_NAME} has been removed"
 echo "--------------------------------"
 echo ""

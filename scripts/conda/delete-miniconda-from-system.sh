@@ -1,12 +1,12 @@
 #!/bin/bash
 
-######################################################################################################################
+#######################################################################################
 # Script to delete miniconda from $HOME
 # Completely removes conda from the system
 # For use with testing and re-installs
 # Deletes ~/$MINICONDA
 # Deletes ~/$CONDA_TEMP
-######################################################################################################################
+#######################################################################################
 
 # Set the miniconda version directory, within $HOME, as a script constant
 readonly MINICONDA="miniconda3"

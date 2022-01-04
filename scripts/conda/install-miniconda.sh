@@ -1,6 +1,6 @@
 #!/bin/bash
 
-######################################################################################################################
+#######################################################################################
 # Script to install miniconda to $HOME
 # required at initial system setup
 # required for testing (after uninstall)
@@ -9,7 +9,7 @@
 # This creates directories within $HOME
 # Requires regular review and updating of the SHA_NO
 # Last updated: Dec 2020
-######################################################################################################################
+#######################################################################################
 
 # Set Conda base as script constant
 export CONDA_BASE=https://repo.anaconda.com/miniconda/
@@ -60,7 +60,8 @@ echo "Installing Miniconda"
 echo ""
 echo "This is a slow process, please be patient"
 echo " --------------------------------------------------"
-# -b Batch mode with no PATH modifications to ~/.bashrc. Assumes that you agree to the license agreement.
+# -b Batch mode with no PATH modifications to ~/.bashrc.
+# Assumes that you agree to the license agreement.
 # Does not edit the .bashrc or .bash_profile files.
 chmod +x "${CONDA_VERS}"
 bash "${CONDA_VERS}" -b -p "~/${MINICONDA}"
