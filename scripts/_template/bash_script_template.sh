@@ -83,6 +83,5 @@ readonly PATH_TO_FILES='/some/path'
 readonly VERBOSE = 'true'
 readonly DEBUG = 'false'
 
-# Using variable via echo, to avoid erors in Codacy code quality tests
+# Using variable via echo, to avoid errors in Codacy code quality tests
 echo "${PATH_TO_FILES}, ${VERBOSE}, ${DEBUG}"
-
