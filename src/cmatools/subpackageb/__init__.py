@@ -1,1 +1,1 @@
-""" docstring for subpackage b"""
+"""subpackageb example."""

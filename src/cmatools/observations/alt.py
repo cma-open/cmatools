@@ -1,3 +1,6 @@
+"""Alt module."""
+
+
 def alt_data():
-    """A docstring."""
-    return "cma data"
+    """Return cma data string."""
+    return 'cma data'
