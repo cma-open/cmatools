@@ -1,24 +1,37 @@
-# #################################################################################################################
+# #####################################################################################
 # GitHub workflow action file
-# Run to check package structure and test files under pip install . vs  pip install -e .
-# Usage
-# Python packages can use different structures to hold the package, subpackages and associated tests
-# These can impact the behaviour of tests under a development based installation vs a full user installation
-# This workflow outputs useful information for debugging any such problems by installing the system twice and
-# reporting the source location and the results of running a simple test script against each installation
-# Various testing frameworks and packages could be used. Pytest, coverage and pytest-cov were selected here.
-# This workflow will fail if the package test structure does not allow coverage to run against a full user install
-# Expected behaviour = test always passes for dev build, but may fails on a full install build if there are
-# problems with the package structure or the location or packaging of the tests directory
-# #################################################################################################################
+# Run to check package structure
+# Tests pip install . vs  pip install -e .
+
+# Usage / Context
+# Packages can use different structures to hold the package, subpackages and tests
+# These impact the behaviour of tests under development installation
+# vs a full user installation
+
+# This workflow outputs useful information for debugging any problems
+# by installing the system twice and reporting the source location and the results
+# of running a test script against each installation
+
+# Various testing frameworks and packages could be used.
+# Pytest, coverage and pytest-cov were selected here.
+
+# This workflow will fail if the package test structure does not allow coverage to
+# run against a full user install
+
+# Expected behaviour = test always passes for dev build, but may fail on a full
+# install build if there are problems with the package structure or with the location
+# or packaging of the tests directory
+# #####################################################################################
 
 # Solution if this workflow fails:
-#   - Check if tests are subpackage to the main package, if placed at root does tests have init?
+# Check if tests are subpackage to the main package,
+# If placed at root does tests have an init?
 
 # Name for workflow (also displayed on the associated badges)
 name: test-structure
 
-# on: controls when the action will run. Triggers the workflow on push or pull request events
+# on: controls when the action will run.
+# Triggers the workflow on push or pull request events
 # Limits run only for the master branch
 on:
   push:
@@ -35,7 +48,7 @@ env:
 
 jobs:
   test-structure:
-    timeout-minutes: 10 # Limit total time use of the workflow action, in case of problems
+    timeout-minutes: 10 # Limit time use of the workflow action, in case of problems
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@v2 # checkout code to the runner workspace root
@@ -49,7 +62,7 @@ jobs:
         source /usr/share/miniconda/etc/profile.d/conda.sh
         conda activate "${CONDA_ENV}"
         pip  install -e .
-    - name: Run unit tests for version to check package test structure is working (development install)
+    - name: Run unit test for version to check test structure is working (dev install)
       id: dev
       run: |
         source /usr/share/miniconda/etc/profile.d/conda.sh
@@ -75,7 +88,7 @@ jobs:
         # not allow the coverage test to complete
         echo "::set-output name=message::warning: No data was collected"
     - name: Check for error, exit if found (dev)
-      # Fail the job and exit if code style still needs formatting
+      # Fail the job and exit
       if: contains(steps.dev.outputs.error , steps.dev.outputs.message)
       run: |
         echo steps.dev.outputs.error
