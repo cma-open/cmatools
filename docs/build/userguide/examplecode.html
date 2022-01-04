@@ -96,10 +96,17 @@
 </pre></div>
 </div>
 <p>e.g.</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">this_one</span><span class="p">():</span>
-    <span class="sd">&quot;&quot;&quot;A test print function.&quot;&quot;&quot;</span>
-    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;this&quot;</span><span class="p">)</span>
-    <span class="k">return</span> <span class="s2">&quot;this&quot;</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">this_one</span><span class="p">()</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
+    <span class="sd">&quot;&quot;&quot;Print this.</span>
+
+<span class="sd">    Returns</span>
+<span class="sd">    -------</span>
+<span class="sd">    str</span>
+<span class="sd">        String &#39;this&#39;</span>
+
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;this&#39;</span><span class="p">)</span>
+    <span class="k">return</span> <span class="s1">&#39;this&#39;</span>
 </pre></div>
 </div>
 </section>
@@ -107,8 +114,8 @@
 <h2>Sub-example<a class="headerlink" href="#sub-example" title="Permalink to this headline"></a></h2>
 <p>e.g.</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">another_one</span><span class="p">():</span>
-    <span class="sd">&quot;&quot;&quot;A test print function.&quot;&quot;&quot;</span>
-    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;that&quot;</span><span class="p">)</span>
+    <span class="sd">&quot;&quot;&quot;Print that.&quot;&quot;&quot;</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;that&#39;</span><span class="p">)</span>
 </pre></div>
 </div>
 </section>

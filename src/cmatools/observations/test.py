@@ -1,12 +1,19 @@
-"""A docstring test."""
+"""Test module."""
 
 
-def this_one():
-    """A test print function."""
-    print("this")
-    return "this"
+def this_one() -> str:
+    """Print this.
+
+    Returns
+    -------
+    str
+        String 'this'
+
+    """
+    print('this')
+    return 'this'
 
 
 def another_one():
-    """A test print function."""
-    print("that")
+    """Print that."""
+    print('that')
