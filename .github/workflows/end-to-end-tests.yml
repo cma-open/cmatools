@@ -1,12 +1,13 @@
-# #################################################################################################################
+# #####################################################################################
 # GitHub workflow action file
 # Runs the end to end tests against the installed system on the runner
-# #################################################################################################################
+# #####################################################################################
 
 # Name for workflow (also displayed on the associated badges)
 name: end-to-end-tests
 
-# on: controls when the action will run. Triggers the workflow on push or pull request events
+# on: controls when the action will run.
+# Triggers the workflow on push or pull request events
 # Limits run only for the master branch
 on:
   push:
@@ -23,7 +24,7 @@ env:
 
 jobs:
   run-tests:
-    timeout-minutes: 5 # Limit total time use of the workflow action, in case of problems
+    timeout-minutes: 5 # Limit time use of the workflow action, in case of problems
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@v2 # checkout code to the runner workspace root
@@ -44,7 +45,7 @@ jobs:
         source /usr/share/miniconda/etc/profile.d/conda.sh
         conda activate $CONDA_ENV
         pip install .
-    - name: Run unit tests
+    - name: Run end-to-end tests
       run: |
         source /usr/share/miniconda/etc/profile.d/conda.sh
         conda activate $CONDA_ENV

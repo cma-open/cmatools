@@ -1,13 +1,14 @@
-# #################################################################################################################
+# #####################################################################################
 # GitHub workflow action file
 # Checks the Sphinx documentation site is built and active
-# #################################################################################################################
+# #####################################################################################
 
 
 # Name for workflow (also displayed on the associated badges)
 name: docs-site
 
-# on: controls when the action will run. Triggers the workflow on push or pull request events
+# on: controls when the action will run.
+# Triggers the workflow on push or pull request events
 # Limits run only for the master branch
 on:
   push:
@@ -18,11 +19,11 @@ on:
 jobs:
   site-check:
     # Max timeout for action, before termination
-    timeout-minutes: 2 # Limit total time use of the workflow action, in case of problems
+    timeout-minutes: 2 # Limit time use of the workflow action, in case of problems
     runs-on: ubuntu-latest
     steps:
     - name: Confirm documentation gh-pages has built
-      # This step (built) creates an output with response code from curl to GitHub pages api
+      # (built) creates an output with response code from curl to GitHub pages api
       # Code accessible via steps.built.outputs.body
       id: built
       run: |
@@ -35,7 +36,8 @@ jobs:
         # Create a step output
         echo "::set-output name=body::"${response}""
     - name: Test the job steps outputs
-      # Create new step outputs with just the extracted json status and url values from previous step output
+      # Create new step outputs
+      # with extracted json status and url values from previous step output
       id: check
       run: |
         # Print step outcome and content for debugging

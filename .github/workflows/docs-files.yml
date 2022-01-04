@@ -1,12 +1,13 @@
-# #################################################################################################################
+# #####################################################################################
 # GitHub workflow action file
 # Tests that the Sphinx documentation files build successfully
-# #################################################################################################################
+# #####################################################################################
 
 # Name for workflow (also displayed on the associated badges)
 name: docs-files
 
-# on: controls when the action will run. Triggers the workflow on push or pull request events
+# on: controls when the action will run.
+# Triggers the workflow on push or pull request events
 # Limits run only for the master branch
 on:
   push:
@@ -23,7 +24,7 @@ env:
 
 jobs:
   docs-build:
-    timeout-minutes: 5 # Limit total time use of the workflow action, in case of problems
+    timeout-minutes: 5 # Limit time use of the workflow action, in case of problems
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@v2 # checkout code to the runner workspace root
@@ -59,7 +60,7 @@ jobs:
       env:
         EVENT_NAME: '"event_type":"${{ env. DISPATCH_NAME }}"'
     - name: Create a repo level dispatches event
-      # Dispatch event will only be created if the rest of the steps have completed first
+      # Dispatch event will only be created if the other steps have completed first
       run: |
         curl -X POST \
         -H "Accept: application/vnd.github.v3+json" \

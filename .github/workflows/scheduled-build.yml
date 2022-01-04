@@ -1,8 +1,8 @@
-# #################################################################################################################
+# #####################################################################################
 # GitHub workflow action file
 # Runs a rebuild of the conda environment on a defined schedule
 # Tests that a conda environment can be built from the named dependency packages
-## #################################################################################################################
+## ####################################################################################
 
 name: Scheduled build
 
@@ -15,13 +15,13 @@ env:
 on:
   schedule: # Run the action at the selected schedule frequency
     #- cron: '0 * * * *' # Every hour
-    - cron: '0 0 * * *' # Once a day, at midnight
+    # - cron: '0 0 * * *' # Once a day, at midnight
     #- cron: '0 0 * * 0' # Once a week, on Sunday at midnight
-    #- cron: '0 0 1 * *' # Once per month. 1st day at midnight
+    - cron: '0 0 1 * *' # Once per month. 1st day at midnight
 
 jobs:
   test-conda:
-    timeout-minutes: 10 # Limit total time use of the workflow action, in case of problems
+    timeout-minutes: 10 # Limit time use of the workflow action, in case of problems
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@v2 # checkout code to the runner workspace root
