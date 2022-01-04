@@ -6,11 +6,11 @@ cmatools.subpackageb package
    :undoc-members:
    :show-inheritance:
 
+Submodules
+----------
 
-
-
-cmatools.subpackageb.world
---------------------------
+cmatools.subpackageb.world module
+---------------------------------
 
 .. automodule:: cmatools.subpackageb.world
    :members:

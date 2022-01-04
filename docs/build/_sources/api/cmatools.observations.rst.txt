@@ -6,19 +6,19 @@ cmatools.observations package
    :undoc-members:
    :show-inheritance:
 
+Submodules
+----------
 
-
-
-cmatools.observations.alt
--------------------------
+cmatools.observations.alt module
+--------------------------------
 
 .. automodule:: cmatools.observations.alt
    :members:
    :undoc-members:
    :show-inheritance:
 
-cmatools.observations.test
---------------------------
+cmatools.observations.test module
+---------------------------------
 
 .. automodule:: cmatools.observations.test
    :members:

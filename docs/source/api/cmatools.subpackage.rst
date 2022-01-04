@@ -6,11 +6,11 @@ cmatools.subpackage package
    :undoc-members:
    :show-inheritance:
 
+Submodules
+----------
 
-
-
-cmatools.subpackage.example
----------------------------
+cmatools.subpackage.example module
+----------------------------------
 
 .. automodule:: cmatools.subpackage.example
    :members:

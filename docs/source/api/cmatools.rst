@@ -19,19 +19,19 @@ Subpackages
    cmatools.subpackage
    cmatools.subpackageb
 
+Submodules
+----------
 
-
-
-cmatools.cli\_hello\_world
---------------------------
+cmatools.cli\_hello\_world module
+---------------------------------
 
 .. automodule:: cmatools.cli_hello_world
    :members:
    :undoc-members:
    :show-inheritance:
 
-cmatools.definitions
---------------------
+cmatools.definitions module
+---------------------------
 
 .. automodule:: cmatools.definitions
    :members:

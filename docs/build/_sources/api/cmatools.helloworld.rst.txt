@@ -6,11 +6,11 @@ cmatools.helloworld package
    :undoc-members:
    :show-inheritance:
 
+Submodules
+----------
 
-
-
-cmatools.helloworld.hello\_world
---------------------------------
+cmatools.helloworld.hello\_world module
+---------------------------------------
 
 .. automodule:: cmatools.helloworld.hello_world
    :members:

@@ -6,11 +6,11 @@ cmatools.combine package
    :undoc-members:
    :show-inheritance:
 
+Submodules
+----------
 
-
-
-cmatools.combine.combine
-------------------------
+cmatools.combine.combine module
+-------------------------------
 
 .. automodule:: cmatools.combine.combine
    :members:

@@ -7,9 +7,9 @@ Main-example
 
 Sphinx allow easy reference to illustrate code in the documentation
 
-e.g. the hellow_world module can be reproduced
+e.g. a module can be reproduced
 
-.. literalinclude:: ../../../src/cmatools/helloworld/hello_world.py
+.. literalinclude:: ../../../src/cmatools/combine/combine.py
 
 e.g.
 
@@ -22,4 +22,4 @@ Sub-example
 e.g.
 
 .. literalinclude:: ../../../src/cmatools/observations/test.py
-   :pyobject: this_one
+   :pyobject: another_one
