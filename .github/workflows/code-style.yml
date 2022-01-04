@@ -1,13 +1,14 @@
-# #################################################################################################################
+# #####################################################################################
 # GitHub workflow action file
 # Tests that the code has already been formatted with correct code style
 # Selected code style = black
-# #################################################################################################################
+# #####################################################################################
 
 # Name for workflow (also displayed on the associated badges)
 name: code-style
 
-# on: controls when the action will run. Triggers the workflow on push or pull request events
+# on: controls when the action will run.
+# Triggers the workflow on push or pull request events
 # Limits run only for the master branch
 on:
   push:
@@ -26,12 +27,12 @@ env:
 
 jobs:
   check-code-style:
-    timeout-minutes: 5 # Limit total time use of the workflow action, in case of problems
+    timeout-minutes: 5 # Limit  time use of the workflow action, in case of problems
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@v2 # Checkout code to the runner workspace root
     - name: Install dependencies
-      # Keep dependency install to minimum - as only checking code style, not running the system
+      # Keep dependencies to minimum: only checking code style, not running the system
       run: |
         conda update conda
         conda env create -f $ENV_FILE
@@ -50,7 +51,8 @@ jobs:
         # Test the tests dir, at project root
         response_tests=$(black --check $TESTS)
         # Option --check returns the status. Return code 0 means nothing would change.
-        # Return code 1 means some files would be reformatted. Return code 123 means internal error.
+        # Return code 1 means some files would be reformatted.
+        # Return code 123 means internal error.
         echo " --***-- "
         echo "Response codes: ${response_package}, ${response_tests}"
         echo " --***-- "
@@ -58,7 +60,7 @@ jobs:
         echo "::set-output name=tests::"${response_tests}""
     - name: Check if code has been formatted correctly
       # Fail the job and exit if code style still needs formatting
-      # Code below runs if either the main package OR the tests package have error codes
+      # Code below runs if the main package OR the tests package have error codes
       if: steps.black.outputs.packages != 0 || steps.black.outputs.tests != 0
       run: |
         echo "Code fails style format tests"
@@ -71,7 +73,7 @@ jobs:
       env:
         EVENT_NAME: '"event_type":"${{ env. DISPATCH_NAME }}"'
     - name: Create a repo level dispatches event
-      # Dispatch event will only be created if the rest of the steps have completed first
+      # Dispatch event will only be created if other steps have completed first
       run: |
         echo "---"
         echo "${{ env.DISPATCH_NAME }}"
