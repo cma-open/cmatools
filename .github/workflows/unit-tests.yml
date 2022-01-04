@@ -1,13 +1,14 @@
-# #################################################################################################################
+# #####################################################################################
 # GitHub workflow action file
 # Runs the unit tests against the installed system on the runner
-# #################################################################################################################
+# #####################################################################################
 
 
 # Name for workflow (also displayed on the associated badges)
 name: unit-tests
 
-# on: controls when the action will run. Triggers the workflow on push or pull request events
+# on: controls when the action will run.
+# Triggers the workflow on push or pull request events
 # Limits run only for the master branch
 on:
   push:
@@ -23,7 +24,7 @@ env:
 
 jobs:
   run-tests:
-    timeout-minutes: 10 # Limit total time use of the workflow action, in case of problems
+    timeout-minutes: 10 # Limit time use of the workflow action, in case of problems
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@v2 # checkout code to the runner workspace root
@@ -54,8 +55,8 @@ jobs:
     - name: Test with coverage
       # Re-run the tests and report test coverage
       # Does not fail with error code if any tests fail, output is for info only
-      # The separate step is also needed to ensure the job fails if there are failing tests
-      # This enables the code coverage stats to be visible via the actions workflow page on GitHub
+      # The separate step is needed to ensure the job fails if there are failing tests
+      # Enables code coverage stats to be visible via actions workflow page on GitHub
       run: |
         source /usr/share/miniconda/etc/profile.d/conda.sh
         conda activate $CONDA_ENV
