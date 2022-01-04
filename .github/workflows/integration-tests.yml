@@ -44,7 +44,7 @@ jobs:
         source /usr/share/miniconda/etc/profile.d/conda.sh
         conda activate $CONDA_ENV
         pip install .
-    - name: Run unit tests
+    - name: Run integration tests
       run: |
         source /usr/share/miniconda/etc/profile.d/conda.sh
         conda activate $CONDA_ENV
