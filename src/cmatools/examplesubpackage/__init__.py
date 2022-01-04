@@ -1,2 +1,4 @@
-"""The example subpackage contains an example module with
-docstrings and extensive comments on code style"""
+"""Example subpackage illustrates codestyle and format.
+
+Contains example modules with docstrings and extensive comments on code style.
+"""

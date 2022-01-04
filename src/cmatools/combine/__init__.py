@@ -1,4 +1,1 @@
-"""
-docstring for combine subpackage
-
-"""
+"""An example subpackage used to illustrate integration testing."""
