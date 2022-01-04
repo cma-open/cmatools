@@ -1,12 +1,13 @@
-# #################################################################################################################
+# #####################################################################################
 # GitHub workflow action file
 # Runs the integration tests against the installed system on the runner
-# #################################################################################################################
+# #####################################################################################
 
 # Name for workflow (also displayed on the associated badges)
 name: integration-tests
 
-# on: controls when the action will run. Triggers the workflow on push or pull request events
+# on: controls when the action will run.
+# Triggers the workflow on push or pull request events
 # Limits run only for the master branch
 on:
   push:
@@ -22,7 +23,7 @@ env:
   PACKAGE: cmatools # Name of package directory within repo
 jobs:
   run-tests:
-    timeout-minutes: 5 # Limit total time use of the workflow action, in case of problems
+    timeout-minutes: 5 # Limit time use of the workflow action, in case of problems
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@v2 # checkout code to the runner workspace root
