@@ -1,8 +1,8 @@
-# #################################################################################################################
+# #####################################################################################
 # GitHub workflow action file
 # Build the Sphinx documentation on the GitHub workflow runner
 # Pushes the docs to the gh-pages branch, enabling the website
-# #################################################################################################################
+# #####################################################################################
 
 # Content inspired from these sources
 # https://github.com/ammaraskar/sphinx-action-test/blob/master/.github/workflows/default.yml
@@ -16,7 +16,8 @@
 # Name for workflow (also displayed on the associated badges)
 name: gh-pages
 
-# Controls when the action will run. Triggers the workflow only if docs-files workflow succeeds
+# Controls when the action will run.
+# Triggers the workflow only if docs-files workflow succeeds
 on:
   # repo dispatch, not workflow dispatch
   repository_dispatch:
@@ -32,7 +33,7 @@ env:
 
 jobs:
   rebuild-pages:
-    timeout-minutes: 10 # Limit total time use of the workflow action, in case of problems
+    timeout-minutes: 10 # Limit time use of the workflow action, in case of problems
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@v2 # Checkout code to the runner workspace root
@@ -63,7 +64,8 @@ jobs:
         git config user.email "${GITHUB_ACTOR}@users.noreply.github.com"
 
         # Set pull to use rebase
-        # Rebase wil create new commits and apply them to the specified base, to give a linear history
+        # Rebase wil create new commits and apply them to the specified base,
+        # to give a linear history
         git config pull.rebase true
 
         # Checkout the gh-pages branch, force checkout to override any recent changes
@@ -90,7 +92,8 @@ jobs:
         git remote -v
         echo " ----------------------------------------------------------"
 
-        # Clean up the working repo, deletes any untracked files from the current checkout out repo
+        # Clean up the working repo,
+        # deletes any untracked files from the current checkout out repo
         # (force, includes directories, removes ignored files)
         git clean -dfx
 
