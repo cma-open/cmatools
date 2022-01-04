@@ -28,7 +28,6 @@ print('------------------')
 # tests is not installed by setup, therefore import here to ensure available
 # by relative import path
 import tests  # noqa: F401, E402 isort:skip
-
 # import cmatools  # noqa: F401, E402 isort:skip
 
 # -- Project information -----------------------------------------------------
@@ -59,7 +58,7 @@ extensions = [
     'sphinx.ext.viewcode',
     'sphinxarg.ext',
     'sphinxcontrib.mermaid',
-    'numpydoc',
+    'numpydoc'
 ]
 
 # Allow todo panels to be highlighted in outputs docs
