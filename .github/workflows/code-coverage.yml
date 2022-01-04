@@ -58,8 +58,8 @@ jobs:
         pytest --cov-report xml:unit-coverage.xml --cov=$PACKAGE tests/unit
         # xml report will be automatically picked up by the subsequent CodeCov action
     - name: Upload coverage to CodeCov
-      # This community action uses CodeCov to find local coverage report files and
-      # upload them to CodeCov
+      # This community action uses CodeCov to find local coverage reports
+      # and upload them to CodeCov for use
       # Also updates and enables the CodCov badge and url on the README page
       uses: codecov/codecov-action@v1
       with:
@@ -71,7 +71,7 @@ jobs:
         verbose: true # optional (default = false)
 
 # Keeping commented code here as reference for WIP
-# otential to show multiple coverage stats, per category:  view via CodeCov website
+# potential to show multiple coverage stats, per category - to view via CodeCov website
 # Tested in Jan 2021, not working. Low priority to fix.
 #    - name: Test with coverage
 #      # Run the unit tests and report test coverage
@@ -83,13 +83,13 @@ jobs:
 #        --cov=cmatools.cli_hello_world tests/user-interface
 #        # xml report will be automatically picked up by the subsequent CodeCov action
 #    - name: Upload coverage to CodeCov
-#      # This community action uses CodeCov to find local coverage report files and
-#      upload them to CodeCov for use
+#      # This community action uses CodeCov to find local report files and
+#      # upload them to CodeCov for use
 #      # Also updates and enables the CodCov badge and url on the README page
 #      uses: codecov/codecov-action@v1
 #      with:
 #        #token: ${{ secrets.CODECOV_TOKEN }} # not required for public repos
-#        files: ./user-coverage.xml # optional, custom report created by previous steps
+#        files: ./user-coverage.xml # custom report files created by previous steps
 #        flags: user-interface-tests # optional
 #        #name: codecov-umbrella # optional
 #        fail_ci_if_error: true # optional (default = false)
