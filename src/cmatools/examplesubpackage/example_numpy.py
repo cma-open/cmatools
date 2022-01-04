@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-# source: https://sphinxcontrib-napoleon.readthedocs.io/en/latest/example_numpy.html#example-numpy
+
 """Example NumPy style docstrings.
 
 This module demonstrates documentation as specified by the `NumPy
@@ -27,6 +27,13 @@ Notes
 If a section is indented, then a section break is created by
 resuming unindented text.
 
+This file source:
+https://sphinxcontrib-napoleon.readthedocs.io/en/latest/example_numpy.html#example-numpy
+See also notes in the wiki  https://github.com/cma-open/cmatools/wiki/Naming-conventions
+
+    This file has been added to and amended to include code style examples and
+    further functional code, so the module can be well covered by tests
+
 Attributes
 ----------
 module_level_variable1 : int
@@ -38,11 +45,22 @@ module_level_variable1 : int
     one convention to document module level variables and be consistent
     with it.
 
+CONSTANT : int
+    Module constants are capitalised by convention and may be useful to distinguish
+    from module level variables
+
+DEBUG : bool
+    The debug print status set for the module
+
 
 .. _NumPy Documentation HOWTO:
    https://github.com/numpy/numpy/blob/master/doc/HOWTO_DOCUMENT.rst.txt
 
 """
+
+DEBUG = True
+
+CONSTANT = 21
 
 module_level_variable1 = 12345
 
@@ -55,7 +73,12 @@ on the first line, separated by a colon.
 
 
 def function_with_types_in_docstring(param1, param2):
-    """Example function with types documented in the docstring.
+    """Compare if param1 is greater than param2.
+
+    Example function with types documented in the docstring.
+
+    Function tests if param1 is greater than param2 (True) otherwise
+    returns False.
 
     `PEP 484`_ type annotations are supported. If attribute, parameter, and
     return types are annotated according to `PEP 484`_, they do not need to be
@@ -77,10 +100,28 @@ def function_with_types_in_docstring(param1, param2):
         https://www.python.org/dev/peps/pep-0484/
 
     """
+    result = None
+    try:
+        converted_param2 = int(param2)
+        if param1 > converted_param2:
+            result = True
+        else:
+            result = False
+    except ValueError:
+        print('Parameter 2 must be a string representing a number using digits [0-10]')
+        raise ValueError
+    except TypeError:
+        print('Parameter 1 must be an integer')
+        raise TypeError
+    print(f'Function called with: {param1} and {param2}')
+    print(f'Function returns: {result}')
+    return result
 
 
 def function_with_pep484_type_annotations(param1: int, param2: str) -> bool:
-    """Example function with PEP 484 type annotations.
+    """Compare if param1 is greater than param2.
+
+    Example function with PEP 484 type annotations.
 
     The return type must be duplicated in the docstring to comply
     with the NumPy docstring style.
@@ -98,16 +139,37 @@ def function_with_pep484_type_annotations(param1: int, param2: str) -> bool:
         True if successful, False otherwise.
 
     """
+    result = None
+    try:
+        converted_param2 = int(param2)
+        if param1 > converted_param2:
+            result = True
+        else:
+            result = False
+    except ValueError:
+        print('Parameter 2 must be a string representing a number using digits [0-10]')
+        raise ValueError
+    except TypeError:
+        print('Parameter 1 must be an integer')
+        raise TypeError
+    print(f'Function called with: {param1} and {param2}')
+    print(f'Function returns: {result}')
+    return result
 
 
 def module_level_function(param1, param2=None, *args, **kwargs):
-    """This is an example of a module level function.
+    """Evaluate to true if any paramaters are greater than 100.
+
+    This is an example of a module level function.
 
     Function parameters should be documented in the ``Parameters`` section.
     The name of each parameter is required. The type and description of each
     parameter is optional, but should be included if not obvious.
 
-    If \*args or \*\*kwargs are accepted,
+    This example function calculates if any of the params are greater than
+    a target value of 100, and if so returns True
+
+    If *args or **kwargs are accepted,
     they should be listed as ``*args`` and ``**kwargs``.
 
     The format for a parameter is::
@@ -157,15 +219,59 @@ def module_level_function(param1, param2=None, *args, **kwargs):
         that are relevant to the interface.
     ValueError
         If `param2` is equal to `param1`.
-
+    ValueError
+        If `param2` is not a string
     """
     if param1 == param2:
-        raise ValueError("param1 may not be equal to param2")
-    return True
+        print(f'param1: {param1}, param2: {param2}')
+        error_message = 'param1 may not be equal to param2'
+        print(error_message)
+        raise ValueError(error_message)
+    # Collect the params and find the max value
+    value_list = []
+    value_list.append(param1)
+    if param2:
+        if type(param2) != str:
+            error_message = 'param2 must be a string'
+            print(error_message)
+            raise ValueError(error_message)
+        else:
+            converted_param2 = int(param2)
+            value_list.append(converted_param2)
+
+    if args:
+        for x in args:
+            if type(x) != int:
+                error_message = 'args values must be integers'
+                print(error_message)
+                raise ValueError(error_message)
+            value_list.append(x)
+    if kwargs:
+        print('Metadata content')
+        for key, value in kwargs.items():
+            print(f'{key}: {value}')
+            if key == 'verbose' and value is True:
+                print('Additional verbose output: ......................')
+
+    # Find max value from the compiled list
+    max_value = max(value_list)
+    print(
+        f'param1: {param1}, param2: {param2}, args: {args}, '
+        f'kwargs: {kwargs}. Max value: {max_value}'
+    )
+
+    # Function returns True if any of the params are greater than 100
+    target_value = 100
+    if max_value > target_value:
+        return True
+    else:
+        return False
 
 
 def example_generator(n):
-    """Generators have a ``Yields`` section instead of a ``Returns`` section.
+    """Yield next number.
+
+    Generators have a ``Yields`` section instead of a ``Returns`` section.
 
     Parameters
     ----------
@@ -177,6 +283,13 @@ def example_generator(n):
     int
         The next number in the range of 0 to `n` - 1.
 
+    Raises
+    ------
+        The ``Raises`` section is a list of all exceptions
+        that are relevant to the interface.
+    TypeError
+        If `n` is not an integer
+
     Examples
     --------
     Examples should be written in doctest format, and should illustrate how
@@ -186,8 +299,12 @@ def example_generator(n):
     [0, 1, 2, 3]
 
     """
-    for i in range(n):
-        yield i
+    try:
+        for i in range(n):
+            yield i
+    except TypeError as err:
+        print('n must be an integer')
+        raise err
 
 
 class ExampleError(Exception):
@@ -198,10 +315,6 @@ class ExampleError(Exception):
 
     Either form is acceptable, but the two should not be mixed. Choose one
     convention to document the __init__ method and be consistent with it.
-
-    Note
-    ----
-    Do not include the `self` parameter in the ``Parameters`` section.
 
     Parameters
     ----------
@@ -219,9 +332,12 @@ class ExampleError(Exception):
 
     """
 
-    def __init__(self, msg, code):
+    def __init__(self, msg, code=None):
         self.msg = msg
         self.code = code
+
+    # def __str__(self):
+    #   return f'{self.msg}, {self.code}'
 
 
 class ExampleClass(object):
@@ -237,25 +353,24 @@ class ExampleClass(object):
 
     Attributes
     ----------
-    attr1 : str
-        Description of `attr1`.
-    attr2 : :obj:`int`, optional
+    attribute_string : :obj:`str`
+        Description of `attribute_string`.
+    attribute_list : :obj:`int`, optional
         Description of `attr2`.
 
     """
 
+    # TODO - decide which init documentation method to follow
+    # params in class docstring, or under init?
+
     def __init__(self, param1, param2, param3):
-        """Example of docstring on the __init__ method.
+        """Docstring on the __init__ method.
 
         The __init__ method may be documented in either the class level
         docstring, or as a docstring on the __init__ method itself.
 
         Either form is acceptable, but the two should not be mixed. Choose one
         convention to document the __init__ method and be consistent with it.
-
-        Note
-        ----
-        Do not include the `self` parameter in the ``Parameters`` section.
 
         Parameters
         ----------
@@ -268,30 +383,84 @@ class ExampleClass(object):
             Description of `param3`.
 
         """
-        self.attr1 = param1
-        self.attr2 = param2
-        self.attr3 = param3  #: Doc comment *inline* with attribute
+        self.attribute_string = param1
+        self.attribute_list = param2
+        self.attribute_integer = param3  #: Doc comment *inline* with attribute
 
         #: list of str: Doc comment *before* attribute, with type specified
-        self.attr4 = ["attr4"]
+        self.attr4 = ['attr4']
 
         self.attr5 = None
         """str: Docstring *after* attribute, with type specified."""
 
     @property
+    def attribute_string(self):
+        """Get the attribute string.
+
+        Getting or setting the attribute string value will verify the value
+        is a string.
+        """
+        return self._attribute_string
+
+    @attribute_string.setter
+    def attribute_string(self, value):
+        if type(value) != str:
+            raise TypeError('param1 must be a string')
+        self._attribute_string = value
+
+    @property
+    def attribute_list(self):
+        """Get the attribute list.
+
+        Getting or setting the attribute list value will verify the value
+        is a list of strings.
+        """
+        return self._attribute_list
+
+    @attribute_list.setter
+    def attribute_list(self, value):
+        if type(value) != list:
+            raise TypeError('param2 must be a list of strings')
+        else:
+            for element in value:
+                if type(element) != str:
+                    raise TypeError('param2 must be a list of strings')
+        self._attribute_list = value
+
+    @property
+    def attribute_integer(self):
+        """Get the attribute integer.
+
+        Getting or setting the attribute integer value will verify the value
+        is an integer.
+        """
+        return self._attribute_integer
+
+    @attribute_integer.setter
+    def attribute_integer(self, value):
+        if type(value) != int:
+            raise TypeError('param3 must be an integer')
+        self._attribute_integer = value
+
+    @property
     def readonly_property(self):
-        """str: Properties should be documented in their getter method."""
-        return "readonly_property"
+        """str: Get readonly_property.
+
+        Properties should be documented in their getter method.
+        """
+        return 'readonly_property'
 
     @property
     def readwrite_property(self):
-        """:obj:`list` of :obj:`str`: Properties with both a getter and setter
+        """:obj:`list` of :obj:`str`: Get readwrite_property.
+
+        Properties with both a getter and setter
         should only be documented in their getter method.
 
         If the setter method contains notable behavior, it should be
         mentioned here.
         """
-        return ["readwrite_property"]
+        return ['readwrite_property']
 
     @readwrite_property.setter
     def readwrite_property(self, value):
@@ -299,10 +468,6 @@ class ExampleClass(object):
 
     def example_method(self, param1, param2):
         """Class methods are similar to regular functions.
-
-        Note
-        ----
-        Do not include the `self` parameter in the ``Parameters`` section.
 
         Parameters
         ----------
@@ -315,7 +480,6 @@ class ExampleClass(object):
         -------
         bool
             True if successful, False otherwise.
-
         """
         return True
 
@@ -335,7 +499,7 @@ class ExampleClass(object):
         """
         pass
 
-    def __special_without_docstring__(self):
+    def __special_without_docstring__(self):  # noqa: D105
         pass
 
     def _private(self):
@@ -355,3 +519,12 @@ class ExampleClass(object):
 
     def _private_without_docstring(self):
         pass
+
+
+if __name__ == '__main__':
+
+    print('Running example numpy module')
+    print(f'DEBUG constant set to: {DEBUG}')
+
+    function_with_types_in_docstring(1, 2)
+    function_with_types_in_docstring(1, 'test')
