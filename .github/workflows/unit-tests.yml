@@ -56,7 +56,7 @@ jobs:
       # Re-run the tests and report test coverage
       # Does not fail with error code if any tests fail, output is for info only
       # The separate step is needed to ensure the job fails if there are failing tests
-      # Enables code coverage stats to be visible via actions workflow page on GitHub
+      # Enables code coverage stats via actions workflow page on GitHub
       run: |
         source /usr/share/miniconda/etc/profile.d/conda.sh
         conda activate $CONDA_ENV
