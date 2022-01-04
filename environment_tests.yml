@@ -8,17 +8,11 @@ dependencies:
  - iris>=3.0
  - black
  - pre-commit
+ - pydap
  - isort
  - flake8
  - nccmp
  - coverage
  - pytest
  - pytest-cov
- - sphinx
- - sphinx_rtd_theme
- - sphinx-argparse
- - sphinx-gallery
  - pip
-
- - pip:
-   - sphinxcontrib-mermaid

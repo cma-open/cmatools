@@ -8,27 +8,30 @@ dependencies:
  - iris>=3.0
  - black
  - pre-commit
+ - pydap
  - isort
  - flake8
  - nccmp
  - libnetcdf
+ - humanize
  - coverage
  - pytest
  - pytest-cov
+ - myst-parser
  - sphinx
  - sphinx_rtd_theme
  - sphinx-argparse
  - sphinx-gallery
+ - sphinxcontrib-mermaid
+ - numpydoc
+ - pipreqs
  - cdsapi
- - holoviews
- - geoviews
  - numpy>=1.19
  - pandas
  - pip
 
- - pip:
-   - sphinxcontrib-mermaid
-
 # Removed from dev environment to speed up builds, installs, uninstalls
 # - xarray
 # - jupyter
+# - holoviews
+# - geoviews
