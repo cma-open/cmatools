@@ -90,4 +90,4 @@ class SourceData:
     def validate(self):
         """Validate the ini config file values."""
         # Not used
-        pass
+        return False
