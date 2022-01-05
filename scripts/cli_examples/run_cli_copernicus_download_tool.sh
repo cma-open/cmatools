@@ -1,3 +1,5 @@
+#!/bin/bash
+
 #  Example use of the cli-copernicus-downlaod command line tool - with user arguments
 
 # Usage

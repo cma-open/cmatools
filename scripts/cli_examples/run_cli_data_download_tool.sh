@@ -1,3 +1,5 @@
+#!/bin/bash
+
 #  Example use of the cli-data-downlaod command line tool - with user arguments
 
 # Usage

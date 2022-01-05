@@ -1,3 +1,5 @@
+#!/bin/bash
+
 #  Example use of the cli-simple-analysis command line tool - with user arguments
 
 # Usage
