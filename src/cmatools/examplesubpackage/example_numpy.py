@@ -231,7 +231,7 @@ def module_level_function(param1, param2=None, *args, **kwargs):
     value_list = []
     value_list.append(param1)
     if param2:
-        if type(param2) != str:
+        if not isinstance(param2, str):
             error_message = 'param2 must be a string'
             print(error_message)
             raise ValueError(error_message)
@@ -241,7 +241,7 @@ def module_level_function(param1, param2=None, *args, **kwargs):
 
     if args:
         for x in args:
-            if type(x) != int:
+            if not isinstance(x, int):
                 error_message = 'args values must be integers'
                 print(error_message)
                 raise ValueError(error_message)

@@ -395,7 +395,7 @@ class SimpleClass(object):
             raise TypeError('param2 must be a list of strings')
         else:
             for element in value:
-                if type(element) != str:
+                if not isinstance(element, str):
                     raise TypeError('param2 must be a list of strings')
         self._attribute_list = value
 
