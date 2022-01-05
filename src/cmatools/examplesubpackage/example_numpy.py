@@ -450,22 +450,6 @@ class ExampleClass(object):
         """
         return 'readonly_property'
 
-    @property
-    def readwrite_property(self):
-        """:obj:`list` of :obj:`str`: Get readwrite_property.
-
-        Properties with both a getter and setter
-        should only be documented in their getter method.
-
-        If the setter method contains notable behavior, it should be
-        mentioned here.
-        """
-        return ['readwrite_property']
-
-    @readwrite_property.setter
-    def readwrite_property(self, value):
-        value
-
     def example_method(self, param1, param2):
         """Class methods are similar to regular functions.
 
