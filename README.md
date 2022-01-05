@@ -1,11 +1,11 @@
 <h2 align="center">cmatools</h2>
 
-- Development status:
-   - [![Project Status: WIP – Initial development is in progress, but there has not yet been a stable, usable release
+-   Development status:
+    -   [![Project Status: WIP – Initial development is in progress, but there has not yet been a stable, usable release
  suitable for the public.](https://www.repostatus.org/badges/latest/wip.svg)](https://www.repostatus.org/#wip)
 
-- Test status:
-   - [![](https://github.com/cma-open/cmatools/workflows/unit-tests/badge.svg)](https://github.com/cma-open/cmatools/actions)
+-   Test status:
+    -   [![](https://github.com/cma-open/cmatools/workflows/unit-tests/badge.svg)](https://github.com/cma-open/cmatools/actions)
  [![](https://github.com/cma-open/cmatools/workflows/integration-tests/badge.svg)](https://github.com/cma-open/cmatools/actions)
  [![](https://github.com/cma-open/cmatools/workflows/end-to-end-tests/badge.svg)](https://github.com/cma-open/cmatools/actions)
  [![](https://github.com/cma-open/cmatools/workflows/user-interface-tests/badge.svg)](https://github.com/cma-open/cmatools/actions)
