@@ -131,13 +131,16 @@ def test_example_error():
         raise ExampleCMAError('value must be 0 or None', 24)
 
 
+# pylint: disable=no-value-for-parameter
 def test_example_class():
     """Test for example_class."""
     # Instantiate class instance object
     example = ExampleCMAClass('12', ['10', '20', '30'], 8888)
     assert isinstance(example, ExampleCMAClass)
+# pylint: enable=no-value-for-parameter
 
 
+# pylint: disable=no-value-for-parameter
 def test_example_class_properties():
     """Test example_class properties."""
     # ExampleClass('1', ['10', '29'], 3).attribute_string.func(11)
@@ -149,6 +152,7 @@ def test_example_class_properties():
     assert example.readwrite_property == ['readwrite_property']
 
 
+# pylint: disable=no-value-for-parameter
 # TODO - check here - integration vs unit test?
 def test_example_class_raises_error():
     """Test example_class errors."""
@@ -169,6 +173,7 @@ def test_example_class_raises_error():
     example.attribute_integer = 9999  # Valid re-assignment
     with pytest.raises(TypeError, match='must be an integer'):
         example.attribute_integer = '8888'  # Invalid, as is string, not integer
+# pylint: enable=no-value-for-parameter
 
 
 def test_example_class_example_method():
