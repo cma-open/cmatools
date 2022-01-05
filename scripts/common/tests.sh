@@ -4,6 +4,8 @@
 # Script to hold common code used by the test scripts
 #######################################################################################
 
+VERBOSE="false"
+
 # Assume CODE_DIR is always set by the calling script
 
 # Set coverage config file as script constant
@@ -22,8 +24,17 @@ readonly INTEGRATION="${TESTS_DIR}/b_integration"
 readonly END2END="${TESTS_DIR}/c_end-to-end"
 readonly INTERFACE="${TESTS_DIR}/d_user-interface"
 
+if [ "${VERBOSE}" == "true" ]; then
+    echo "---"
+    echo "Unit tests: ${UNIT}"
+    echo "Integration tests: ${INTEGRATION}"
+    echo "End to end tests: ${END2END}"
+    echo "User interface tests: ${INTERFACE}"
+    echo "---"
+fi
+
 #######################################################################################
 # Code review and system context notes
 # ====================================
-# Further refactor could extract code into functions
+# None
 #######################################################################################
