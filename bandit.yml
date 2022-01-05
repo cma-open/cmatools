@@ -1,3 +1,7 @@
 # bandit config file, also used by Codacy
+
+# exclude assert checks within tests
 assert_used:
-  skips: ['*_test.py', 'test_*.py']
+  skips: ['*_test.py', 'test_*.py', '**/*_test.py', '**/test_*.py']
+exclude_dirs:
+    - './tests'
