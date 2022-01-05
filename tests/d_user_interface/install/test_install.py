@@ -1,6 +1,6 @@
 """Test and confirm how the package is installed."""
 
-import subprocess
+import subprocess  # nosec  # bandit ignore
 from importlib import metadata
 
 import pkg_resources
