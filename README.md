@@ -42,19 +42,16 @@
 -   Latest stable release
     -   [![GitHub release (latest by date)](https://img.shields.io/github/v/release/cma-open/cmatools)](https://github.com/cma-open/cmatools/releases/latest)
 
-
 ---
 
 ## Quickstart
 
 cmatools an example of a shared tools python package - FOR TRAINING USE
 
-- Provides a range of functions and tools for use by linked science repository projects
-- Includes a simple hello world command line tool
-
+-   Provides a range of functions and tools for use by linked science repository projects
+-   Includes a simple hello world command line tool
 
 ---
-
 
 ## Documentation
 
