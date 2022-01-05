@@ -1,9 +1,9 @@
 #!/bin/bash
 
-######################################################################################################################
-# Script for development use - uninstalls the package and deletes local files
+#######################################################################################
+# Script for development use - uninstall the package and delete local files
 # Ensures clean installs for testing
-######################################################################################################################
+#######################################################################################
 
 # Set python package root dir as script constant
 readonly CODE_DIR="$(dirname "$(dirname "${PWD}")")"
@@ -51,11 +51,11 @@ pip uninstall -y "${PACKAGE}"
 # Also remove any remaining local files
 echo "Removing local dev install files, if present at: ${CODE_DIR}"
 echo "    Removing .egg-info directory, if present"
-rm -rf $CODE_DIR/cmatools.egg-info
+rm -rf "${CODE_DIR}/cmatools.egg-info"
 echo "    Removing build directory, if present"
-rm -rf $CODE_DIR/build
+rm -rf "${CODE_DIR}/build"
 echo "    Removing dist directory, if present"
-rm -rf $CODE_DIR/dist
+rm -rf "${CODE_DIR}/dist"
 
 ######################################################################################################################
 # Code review and system context notes
