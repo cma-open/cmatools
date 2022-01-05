@@ -204,7 +204,8 @@ def module_level_function(param1, param2=None, *args, **kwargs) -> bool:
     value_list = []
     value_list.append(param1)
     if param2:
-        if type(param2) != str:
+        # check type
+        if not isinstance(param2, str):
             error_message = 'param2 must be a string'
             print(error_message)
             raise ValueError(error_message)
@@ -214,7 +215,8 @@ def module_level_function(param1, param2=None, *args, **kwargs) -> bool:
 
     if args:
         for x in args:
-            if type(x) != int:
+            # check type
+            if not isinstance(x, int):
                 error_message = 'args values must be integers'
                 print(error_message)
                 raise ValueError(error_message)
@@ -374,7 +376,7 @@ class SimpleClass(object):
 
     @attribute_string.setter
     def attribute_string(self, value):
-        if type(value) != str:
+        if not isinstance(value, str):
             raise TypeError('param1 must be a string')
         self._attribute_string = value
 
@@ -389,7 +391,7 @@ class SimpleClass(object):
 
     @attribute_list.setter
     def attribute_list(self, value):
-        if type(value) != list:
+        if not isinstance(value, list):
             raise TypeError('param2 must be a list of strings')
         else:
             for element in value:
@@ -429,6 +431,14 @@ class ExampleCMAClass(object):
         Description of `attr4`.
     attr5 : :obj:`int`, optional
         Description of `attr5`.
+    quality :  str, optional
+        Description of `quality`.
+    metadata :  bool, optional
+        Description of `metadata`.
+    archive :  bool, optional
+        Description of `archive`.
+    uniqueid :  int
+        Description of `uniqueid`.
 
     Notes
     -----
@@ -444,12 +454,16 @@ class ExampleCMAClass(object):
 
     """
 
-    def __init__(self, param1, param2, param3):
+    def __init__(self, param1, param2, param3, quality, metadata, archive, uniqueid):
         self.attribute_string = param1
         self.attribute_list = param2
         self.attribute_integer = param3
         self.attr4 = ['attr4']
         self.attr5 = None
+        self._quality = quality  # non-public attribute
+        self._metadata = metadata  # non-public attribute
+        self.archive = archive
+        self.uniqueid = uniqueid
 
     @property
     def attribute_string(self):
@@ -462,7 +476,7 @@ class ExampleCMAClass(object):
 
     @attribute_string.setter
     def attribute_string(self, value):
-        if type(value) != str:
+        if not isinstance(value, str):
             raise TypeError('param1 must be a string')
         self._attribute_string = value
 
@@ -477,11 +491,11 @@ class ExampleCMAClass(object):
 
     @attribute_list.setter
     def attribute_list(self, value):
-        if type(value) != list:
+        if not isinstance(value, list):
             raise TypeError('param2 must be a list of strings')
         else:
             for element in value:
-                if type(element) != str:
+                if not isinstance(element, str):
                     raise TypeError('param2 must be a list of strings')
         self._attribute_list = value
 
@@ -496,7 +510,7 @@ class ExampleCMAClass(object):
 
     @attribute_integer.setter
     def attribute_integer(self, value):
-        if type(value) != int:
+        if not isinstance(value, int):
             raise TypeError('param3 must be an integer')
         self._attribute_integer = value
 
@@ -509,8 +523,44 @@ class ExampleCMAClass(object):
         return 'readonly_property'
 
     @property
-    def readwrite_property(self):
-        """:obj:`list` of :obj:`str`: Get readwrite_property.
+    def quality(self):
+        """str: Get quality.
+
+        Properties should be documented in their getter method.
+        """
+        # provide read-only attribute, immutable once object created
+        return self._quality
+
+    @property
+    def metadata(self):
+        """str: Get metadata.
+
+        Properties should be documented in their getter method.
+        The setter raises an exception if modification is attempted.
+        """
+        # provide read-only attribute, immutable once object created
+        return self._metadata
+
+    # setter used to raise custom exceptions if user attempts modification
+    @metadata.setter
+    def metadata(self, value):
+        raise Exception('Metadata is read-only and cannot be modified')
+
+    # set data as valid if object has metadata and quality is High
+    @property
+    def valid(self):
+        """str: Get valid.
+
+        Properties should be documented in their getter method.
+        """
+        if self.quality == 'High' and self.metadata is True:
+            return 'valid'
+        else:
+            return 'invalid'
+
+    @property
+    def archive(self):
+        """Get archive.
 
         Properties with both a getter and setter
         should only be documented in their getter method.
@@ -518,11 +568,68 @@ class ExampleCMAClass(object):
         If the setter method contains notable behavior, it should be
         mentioned here.
         """
-        return ['readwrite_property']
+        return self._archive
 
-    @readwrite_property.setter
-    def readwrite_property(self, value):
-        value
+    @archive.setter
+    def archive(self, value):
+        if not isinstance(value, bool):
+            raise TypeError('archive must be True or False')
+        self._archive = value
+
+    # read-write property
+    # status is a useful attribute, does not need to be set during initialisation
+    # system code may set dev status on the class
+    # if status is set to certain values, the archive attribute is updated
+    @property
+    def status(self):
+        """Get status.
+
+        Properties with both a getter and setter
+        should only be documented in their getter method.
+
+        If the setter method contains notable behavior, it should be
+        mentioned here.
+        """
+        if self.archive is True:
+            return 'Production'
+        else:
+            return 'development'
+
+    # if status is reset to development, then archive is modified
+    @status.setter
+    def status(self, value):
+        if value not in ['development', 'Production']:
+            raise ValueError('Status must be Production or development')
+        if value == 'development':
+            self.archive = False
+        else:
+            pass
+
+    # write-only example (cant read or access, once created)
+    @property
+    def uniqueid(self):
+        """Get unique ID.
+
+        Properties with both a getter and setter
+        should only be documented in their getter method.
+
+        If the setter method contains notable behavior, it should be
+        mentioned here.
+
+        The setter method validates the value is an integer.
+        The getter method raises an error. This attribute is write-only.
+        """
+        raise AttributeError('Unique ID is write-only')
+
+    @uniqueid.setter
+    def uniqueid(self, value):
+        # check the value is an integer
+        try:
+            isinstance(value, int) is True
+        except TypeError:
+            raise TypeError('Unique Id must be an integer')
+        # check the value is unique
+        # TODO
 
     def example_method(self, param1: int, param2: int) -> bool:
         """Class methods are similar to regular functions.
