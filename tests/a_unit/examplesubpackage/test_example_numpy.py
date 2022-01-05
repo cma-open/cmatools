@@ -160,8 +160,6 @@ def test_example_class_properties():
     example = ExampleClass('1', ['10', '29'], 3)
     # test readonly attribute
     assert example.readonly_property == 'readonly_property'
-    # test property with getter and setter
-    assert example.readwrite_property == ['readwrite_property']
 
 
 # TODO - check here - integration vs unit test?
