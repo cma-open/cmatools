@@ -1,5 +1,4 @@
-"""
-Selected functions, methods and command line tools for use by CMA projects.
+"""Selected functions, methods and command line tools for use by CMA projects.
 
 The package should be imported directly, e.g.::
 
