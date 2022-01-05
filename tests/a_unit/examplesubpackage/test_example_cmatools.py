@@ -117,7 +117,8 @@ def test_example_generator_raises_error():
     """Test example_generator function raises error."""
     # Confirm raises error if n is a string
     with pytest.raises(TypeError):
-        [i for i in example_generator('12')]
+        result = [i for i in example_generator('12')]
+        print(result)
 
 
 def test_example_error():
