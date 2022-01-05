@@ -404,7 +404,7 @@ class ExampleClass(object):
 
     @attribute_string.setter
     def attribute_string(self, value):
-        if type(value) != str:
+        if not isinstance(value, str):
             raise TypeError('param1 must be a string')
         self._attribute_string = value
 
@@ -419,11 +419,11 @@ class ExampleClass(object):
 
     @attribute_list.setter
     def attribute_list(self, value):
-        if type(value) != list:
+        if not isinstance(value, list):
             raise TypeError('param2 must be a list of strings')
         else:
             for element in value:
-                if type(element) != str:
+                if not isinstance(element, str):
                     raise TypeError('param2 must be a list of strings')
         self._attribute_list = value
 
@@ -438,7 +438,7 @@ class ExampleClass(object):
 
     @attribute_integer.setter
     def attribute_integer(self, value):
-        if type(value) != int:
+        if not isinstance(value, int):
             raise TypeError('param3 must be an integer')
         self._attribute_integer = value
 
