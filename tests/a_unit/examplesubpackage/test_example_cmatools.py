@@ -176,12 +176,14 @@ def test_example_class_raises_error():
 # pylint: enable=no-value-for-parameter
 
 
+# pylint: disable=no-value-for-parameter
 def test_example_class_example_method():
     """Test example_class.example_method."""
     # Create a valid ExampleClass object
     example = ExampleCMAClass('1', ['10', '29'], 3)
     # Test class method, expect return True
     assert example.example_method('param1', 'param2') is True
+# pylint: enable=no-value-for-parameter
 
 
 def test_example_class_another():
