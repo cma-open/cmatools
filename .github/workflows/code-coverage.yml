@@ -45,9 +45,9 @@ jobs:
       run: |
         source /usr/share/miniconda/etc/profile.d/conda.sh
         conda activate $CONDA_ENV
-        cd scripts/tests
-        chmod +x coverage-compare.sh
-        ./coverage-compare.sh
+        cd scripts/tests/run-coverage
+        chmod +x coveragez--compare.sh
+        ./coverage-z-compare.sh
     - name: Test with coverage
       # Run all the unit tests and report test coverage
       run: |
@@ -55,7 +55,7 @@ jobs:
         conda activate $CONDA_ENV
         echo "Current working directory: $PWD"
         # Run tests and produce output report in xml, with coverage stats
-        pytest --cov-report xml:unit-coverage.xml --cov=$PACKAGE tests/unit
+        pytest --cov-report xml:unit-coverage.xml --cov=$PACKAGE tests/a_unit
         # xml report will be automatically picked up by the subsequent CodeCov action
     - name: Upload coverage to CodeCov
       # This community action uses CodeCov to find local coverage reports

@@ -50,8 +50,8 @@ jobs:
         source /usr/share/miniconda/etc/profile.d/conda.sh
         conda activate $CONDA_ENV
         cd scripts/tests
-        chmod +x test-unit.sh
-        ./test-unit.sh
+        chmod +x a-unit.sh
+        ./a-unit.sh
     - name: Test with coverage
       # Re-run the tests and report test coverage
       # Does not fail with error code if any tests fail, output is for info only
@@ -60,9 +60,11 @@ jobs:
       run: |
         source /usr/share/miniconda/etc/profile.d/conda.sh
         conda activate $CONDA_ENV
-        cd scripts/tests
-        chmod +x coverage-unit.sh
-        ./coverage-unit.sh
+        cd scripts/tests/run-coverage
+        chmod +x coverage-a_unit.sh
+        ./coverage-a_unit.sh
+
+        # TODO remove?
         #echo "$PWD"
         #cd $GITHUB_WORKSPACE
         #cd $GITHUB_WORKSPACE

@@ -49,8 +49,8 @@ jobs:
         source /usr/share/miniconda/etc/profile.d/conda.sh
         conda activate $CONDA_ENV
         cd scripts/tests
-        chmod +x test-user-interface.sh
-        ./test-user-interface.sh
+        chmod +x d-user-interface.sh
+        ./d-user-interface.sh
     - name: Test with coverage
       # Re-run the tests and report test coverage
       # Does not fail with error code if any tests fail, output is for info only

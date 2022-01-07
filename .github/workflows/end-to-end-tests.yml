@@ -50,5 +50,5 @@ jobs:
         source /usr/share/miniconda/etc/profile.d/conda.sh
         conda activate $CONDA_ENV
         cd scripts/tests
-        chmod +x test-end-to-end.sh
-        ./test-end-to-end.sh
+        chmod +x c-end-to-end.sh
+        ./c-end-to-end.sh

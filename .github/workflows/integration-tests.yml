@@ -49,5 +49,5 @@ jobs:
         source /usr/share/miniconda/etc/profile.d/conda.sh
         conda activate $CONDA_ENV
         cd scripts/tests
-        chmod +x test-integration.sh
-        ./test-integration.sh
+        chmod +x b-integration.sh
+        ./b-integration.sh

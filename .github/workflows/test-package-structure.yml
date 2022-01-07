@@ -67,16 +67,11 @@ jobs:
       run: |
         source /usr/share/miniconda/etc/profile.d/conda.sh
         conda activate "$CONDA_ENV"
-        cd scripts/tests
-        #chmod +x test-unit-version.sh
-        #./test-unit-version.sh
-        #echo "Simple test: version has run"
         echo "Summary of package installation (pip show)"
         pip show "$PACKAGE"
         echo " --- "
-        # Run pytest with pytest-cov to exaime the code coverage from one simple unit test (version)
+        # Run pytest with pytest-cov to exaime the code coverage from unit test
         # Capture standard error to shell script variable, discard standard out to dev null
-        #error=$(pytest --cov-report= --cov="${GITHUB_WORKSPACE}"/cmatools "${GITHUB_WORKSPACE}"/tests/unit/version  2>&1 > /dev/null)
         error=$(pytest --cov-report= --cov="${PACKAGE}" "${GITHUB_WORKSPACE}"/tests/unit  2>&1 > /dev/null)
         echo " --- "
         echo "${error}"
@@ -112,16 +107,11 @@ jobs:
       run: |
         source /usr/share/miniconda/etc/profile.d/conda.sh
         conda activate "$CONDA_ENV"
-        #cd scripts/tests
-        #chmod +x test-unit-version.sh
-        #./test-unit-version.sh
-        #echo "Simple test: version has run"
         echo "Summary of package installation (pip show)"
         pip show "$PACKAGE"
         echo " --- "
-        # Run pytest with pytest-cov to exaime the code coverage from one simple unit test (version)
+        # Run pytest with pytest-cov to exaime the code coverage from unit test
         # Capture standard error to shell script variable, discard standard out to dev null
-        #error=$(pytest --cov-report= --cov=$GITHUB_WORKSPACE/cmatools $GITHUB_WORKSPACE/tests/unit/version  2>&1 > /dev/null)
         error=$(pytest --cov-report= --cov=$PACKAGE $GITHUB_WORKSPACE/tests/unit 2>&1 > /dev/null)
         echo " --- "
         echo "${error}"
