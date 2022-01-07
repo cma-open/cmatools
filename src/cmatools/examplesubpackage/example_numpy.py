@@ -486,7 +486,7 @@ class ExampleClass(object):
             napoleon_include_special_with_doc = True
 
         """
-        pass
+        return True
 
     def __special_without_docstring__(self):  # noqa: D105
         pass
