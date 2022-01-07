@@ -28,6 +28,5 @@ cmatools.examplesubpackage
    :recursive:
 
    cmatools.examplesubpackage.example_cmatools
-   cmatools.examplesubpackage.example_module
    cmatools.examplesubpackage.example_numpy
 
