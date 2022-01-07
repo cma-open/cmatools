@@ -32,6 +32,7 @@ The content of the cmatools package, subpackages and modules.
 
 .. autosummary::
    :toctree: _autosummary
+   :template: custom-module-template.rst
    :recursive:
 
    cmatools

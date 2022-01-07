@@ -1,3 +1,9 @@
+# Ignore local data directory (may be used for development use)
+data/
+
+# Auto-generated files
+branch_env.yaml
+
 # Byte-compiled / optimized / DLL files
 __pycache__/
 *.py[cod]
@@ -65,6 +71,7 @@ instance/
 # Sphinx documentation
 docs/_build/
 docs/build
+_autosummary
 
 # PyBuilder
 target/
@@ -103,6 +110,3 @@ logs/*
 
 # emacs backup files
 *~
-
-# Auto-generated files
-branch_env.yaml
