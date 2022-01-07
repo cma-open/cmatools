@@ -37,7 +37,7 @@ def test_cli_args_from_path():
     """
     user_arg_x = '2'
     user_arg_y = '4'
-    out = subprocess.run(
+    out = subprocess.run(  # nosec
         ['python3', str(CLI), user_arg_x, user_arg_y], check=True)  # nosec
     assert out.returncode == 0
 
