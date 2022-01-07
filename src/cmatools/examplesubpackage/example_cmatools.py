@@ -541,6 +541,7 @@ class ExampleCMAClass(object):
         # provide read-only attribute, immutable once object created
         return self._metadata
 
+    # pylint: disable=R0201
     # setter used to raise custom exceptions if user attempts modification
     @metadata.setter
     def metadata(self, value):
@@ -621,6 +622,7 @@ class ExampleCMAClass(object):
         """
         raise AttributeError('Unique ID is write-only')
 
+    # pylint: disable=R0201
     @uniqueid.setter
     def uniqueid(self, value):
         # check the value is an integer
@@ -651,8 +653,13 @@ class ExampleCMAClass(object):
         Do not include the `self` parameter in the ``Parameters`` section.
 
         """
-        return True
+        result = self.attribute_integer + param1 + param2
+        if result > CONSTANT:
+            return True
+        else:
+            return False
 
+    # pylint: disable=W0107
     def __special__(self):
         """By default special members with docstrings are not included.
 
@@ -764,4 +771,8 @@ class ExampleClassAnother(object):
         Do not include the `self` parameter in the ``Parameters`` section.
 
         """
-        return True
+        result = self.attribute_integer + param1 + param2
+        if result > CONSTANT:
+            return True
+        else:
+            return False
