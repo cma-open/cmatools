@@ -32,7 +32,11 @@ https://sphinxcontrib-napoleon.readthedocs.io/en/latest/example_numpy.html#examp
 See also notes in the wiki  https://github.com/cma-open/cmatools/wiki/Naming-conventions
 
     This file has been added to and amended to include code style examples and
-    further functional code, so the module can be well covered by tests
+    further functional code, so the module can be well covered by tests.
+
+    Some codestyle ignore commands have been added, where the code examples are not
+    fully functional. More detailed example code has been included in the associated
+    :mod: `example_cmatools.py`
 
 Attributes
 ----------
@@ -450,6 +454,7 @@ class ExampleClass(object):
         """
         return 'readonly_property'
 
+    # pylint: disable=R0201
     def example_method(self, param1, param2):
         """Class methods are similar to regular functions.
 
