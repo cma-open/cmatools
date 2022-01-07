@@ -87,7 +87,9 @@ class SourceData:
         # Set full download path to file
         self.download = f'{self.server}{self.path}{self.filename}'
 
+    # pylint: disable=R0201
     def validate(self):
         """Validate the ini config file values."""
         # Not used
+        # TODO - add example code, remove pylist disable when done
         return False
