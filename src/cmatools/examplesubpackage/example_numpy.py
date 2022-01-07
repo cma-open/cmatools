@@ -32,7 +32,11 @@ https://sphinxcontrib-napoleon.readthedocs.io/en/latest/example_numpy.html#examp
 See also notes in the wiki  https://github.com/cma-open/cmatools/wiki/Naming-conventions
 
     This file has been added to and amended to include code style examples and
-    further functional code, so the module can be well covered by tests
+    further functional code, so the module can be well covered by tests.
+
+    Some codestyle ignore commands have been added, where the code examples are not
+    fully functional. More detailed example code has been included in the associated
+    :mod: `example_cmatools.py`
 
 Attributes
 ----------
@@ -231,7 +235,7 @@ def module_level_function(param1, param2=None, *args, **kwargs):
     value_list = []
     value_list.append(param1)
     if param2:
-        if type(param2) != str:
+        if not isinstance(param2, str):
             error_message = 'param2 must be a string'
             print(error_message)
             raise ValueError(error_message)
@@ -241,7 +245,7 @@ def module_level_function(param1, param2=None, *args, **kwargs):
 
     if args:
         for x in args:
-            if type(x) != int:
+            if not isinstance(x, int):
                 error_message = 'args values must be integers'
                 print(error_message)
                 raise ValueError(error_message)
@@ -404,7 +408,7 @@ class ExampleClass(object):
 
     @attribute_string.setter
     def attribute_string(self, value):
-        if type(value) != str:
+        if not isinstance(value, str):
             raise TypeError('param1 must be a string')
         self._attribute_string = value
 
@@ -419,11 +423,11 @@ class ExampleClass(object):
 
     @attribute_list.setter
     def attribute_list(self, value):
-        if type(value) != list:
+        if not isinstance(value, list):
             raise TypeError('param2 must be a list of strings')
         else:
             for element in value:
-                if type(element) != str:
+                if not isinstance(element, str):
                     raise TypeError('param2 must be a list of strings')
         self._attribute_list = value
 
@@ -438,7 +442,7 @@ class ExampleClass(object):
 
     @attribute_integer.setter
     def attribute_integer(self, value):
-        if type(value) != int:
+        if not isinstance(value, int):
             raise TypeError('param3 must be an integer')
         self._attribute_integer = value
 
@@ -450,22 +454,7 @@ class ExampleClass(object):
         """
         return 'readonly_property'
 
-    @property
-    def readwrite_property(self):
-        """:obj:`list` of :obj:`str`: Get readwrite_property.
-
-        Properties with both a getter and setter
-        should only be documented in their getter method.
-
-        If the setter method contains notable behavior, it should be
-        mentioned here.
-        """
-        return ['readwrite_property']
-
-    @readwrite_property.setter
-    def readwrite_property(self, value):
-        value
-
+    # pylint: disable=R0201
     def example_method(self, param1, param2):
         """Class methods are similar to regular functions.
 
@@ -497,7 +486,7 @@ class ExampleClass(object):
             napoleon_include_special_with_doc = True
 
         """
-        pass
+        return True
 
     def __special_without_docstring__(self):  # noqa: D105
         pass

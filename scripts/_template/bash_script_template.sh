@@ -1,12 +1,12 @@
 #!/bin/bash
 
-#####################################################################################################################
+#######################################################################################
 # Template shell script file
 # Act as reminder for code style and format
 # Follow Google shell script code style
 # Text examples taken from:
 # https://google.github.io/styleguide/shellguide.html#s7-naming-conventions
-#####################################################################################################################
+#######################################################################################
 
 # Reminders:
 
@@ -27,11 +27,15 @@
 # Variable expansion
 # quote your variables; prefer "${var}" over "$var".
 var=0
+CODE_DIR='/some/path/to/dir'
 "${var}"
 echo "Value is ${var}"
+echo "Value is ${CODE_DIR}"
+
 # Quoting
 
-# Normally Always quote strings containing variables, command substitutions, spaces or shell meta characters
+# Normally Always quote strings containing variables, command substitutions, spaces
+# or shell meta characters
 # Use arrays for safe quoting of lists of elements, especially command-line flags.
 
 # 'Single' quotes indicate that no substitution is desired.
@@ -46,14 +50,15 @@ echo "${flag}"
 
 # quote examples
 # Disable shellcheck - this is an incorrect example, dont want to flag during testing
-# shellcheck disable=SC2027
+# shellcheck disable=SC2027, SC2086
 echo "Python package root: "${CODE_DIR}""   # Incorrect
 echo "Python package root: ${CODE_DIR}"     # Correct
-
+# Note $( ) starts new context, and vars within have to be quoted independently:
+echo "This ${var} is quoted $(and now this "${var}" is too)"
 
 # Command substitution
-# Use $(command) instead of backticks.
 
+# Use $(command) instead of backticks.
 # This is preferred:
 var="$(command "$(command1)")"
 
@@ -65,7 +70,7 @@ var="$(command "$(command1)")"
 
 # Lower-case, with underscores to separate words.
 function get_dir() {
-  echo "${SOMEDIR}"
+  echo "${CODE_DIR}"
 }
 
 # Variable names
@@ -80,8 +85,8 @@ done
 
 # Constant
 readonly PATH_TO_FILES='/some/path'
-readonly VERBOSE = 'true'
-readonly DEBUG = 'false'
+readonly VERBOSE ='true'
+readonly DEBUG ='false'
 
 # Using variable via echo, to avoid errors in Codacy code quality tests
 echo "${PATH_TO_FILES}, ${VERBOSE}, ${DEBUG}"
