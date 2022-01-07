@@ -454,16 +454,12 @@ class ExampleCMAClass(object):
 
     """
 
-    def __init__(self, param1, param2, param3, quality, metadata, archive, uniqueid):
+    def __init__(self, param1, param2, param3):
         self.attribute_string = param1
         self.attribute_list = param2
         self.attribute_integer = param3
         self.attr4 = ['attr4']
         self.attr5 = None
-        self._quality = quality  # non-public attribute
-        self._metadata = metadata  # non-public attribute
-        self.archive = archive
-        self.uniqueid = uniqueid
 
     @property
     def attribute_string(self):
@@ -521,6 +517,142 @@ class ExampleCMAClass(object):
         Properties should be documented in their getter method.
         """
         return 'readonly_property'
+
+    def example_method(self, param1: int, param2: int) -> bool:
+        """Class methods are similar to regular functions.
+
+        Parameters
+        ----------
+        param1
+            The first parameter.
+        param2
+            The second parameter.
+
+        Returns
+        -------
+        bool :bool
+            True if successful, False otherwise.
+
+        Notes
+        -----
+        Do not include the `self` parameter in the ``Parameters`` section.
+
+        """
+        result = self.attribute_integer + param1 + param2
+        if result > CONSTANT:
+            return True
+        else:
+            return False
+
+    # pylint: disable=W0107
+    def __special__(self):
+        """By default special members with docstrings are not included.
+
+        Special members are any methods or attributes that start with and
+        end with a double underscore. Any special member with a docstring
+        will be included in the output, if
+        ``napoleon_include_special_with_doc`` is set to True.
+
+        This behavior can be enabled by changing the following setting in
+        Sphinx's conf.py::
+
+            napoleon_include_special_with_doc = True
+
+        """
+        pass
+
+    def __special_without_docstring__(self):  # noqa: D105
+        pass
+
+    def _private(self):
+        """By default private members are not included.
+
+        Private members are any methods or attributes that start with an
+        underscore and are *not* special. By default they are not included
+        in the output.
+
+        This behavior can be changed such that private members *are* included
+        by changing the following setting in Sphinx's conf.py::
+
+            napoleon_include_private_with_doc = True
+
+        """
+        pass
+
+    def _private_without_docstring(self):
+        pass
+
+
+class ExampleOtherClass(object):
+    """Example class.
+
+    The summary line for a class docstring should fit on one line.
+
+    The __init__ method should be documented in the class level
+    docstring
+
+    Parameters
+    ----------
+    integer : int
+        Description of `integer`.
+    quality : int
+        Description of ``.
+    metadata : int
+        Description of ``.
+    archive : int
+        Description of ``.
+    uniqueid : int
+        Description of ``.
+
+
+    Attributes
+    ----------
+    attribute_integer : str
+        Description of `attr1`.
+    quality :  str, optional
+        Description of `quality`.
+    metadata :  bool, optional
+        Description of `metadata`.
+    archive :  bool, optional
+        Description of `archive`.
+    uniqueid :  int
+        Description of `uniqueid`.
+
+    Notes
+    -----
+    Do not include the `self` parameter in the ``Parameters`` section.
+
+    If the class has public attributes, they should be documented here
+    in an ``Attributes`` section and follow the same formatting as a
+    function's ``Args`` section. Alternatively, attributes may be documented
+    inline with the attribute's declaration (see __init__ method below).
+
+    Properties created with the ``@property`` decorator should be documented
+    in the property's getter method.
+
+    """
+
+    def __init__(self, integer, quality, metadata, archive, uniqueid):
+        self.attribute_integer = integer
+        self._quality = quality  # non-public attribute
+        self._metadata = metadata  # non-public attribute
+        self.archive = archive
+        self.uniqueid = uniqueid
+
+    @property
+    def attribute_integer(self):
+        """Get the attribute integer.
+
+        Getting or setting the attribute integer value will verify the value
+        is an integer.
+        """
+        return self._attribute_integer
+
+    @attribute_integer.setter
+    def attribute_integer(self, value):
+        if not isinstance(value, int):
+            raise TypeError('integer param must be an integer')
+        self._attribute_integer = value
 
     @property
     def quality(self):
@@ -606,7 +738,7 @@ class ExampleCMAClass(object):
         else:
             pass
 
-    # write-only example (cant read or access, once created)
+    # write-only example (can't read or access, once created)
     @property
     def uniqueid(self):
         """Get unique ID.
@@ -632,70 +764,6 @@ class ExampleCMAClass(object):
             raise TypeError('Unique Id must be an integer')
         # check the value is unique
         # TODO
-
-    def example_method(self, param1: int, param2: int) -> bool:
-        """Class methods are similar to regular functions.
-
-        Parameters
-        ----------
-        param1
-            The first parameter.
-        param2
-            The second parameter.
-
-        Returns
-        -------
-        bool :bool
-            True if successful, False otherwise.
-
-        Notes
-        -----
-        Do not include the `self` parameter in the ``Parameters`` section.
-
-        """
-        result = self.attribute_integer + param1 + param2
-        if result > CONSTANT:
-            return True
-        else:
-            return False
-
-    # pylint: disable=W0107
-    def __special__(self):
-        """By default special members with docstrings are not included.
-
-        Special members are any methods or attributes that start with and
-        end with a double underscore. Any special member with a docstring
-        will be included in the output, if
-        ``napoleon_include_special_with_doc`` is set to True.
-
-        This behavior can be enabled by changing the following setting in
-        Sphinx's conf.py::
-
-            napoleon_include_special_with_doc = True
-
-        """
-        pass
-
-    def __special_without_docstring__(self):  # noqa: D105
-        pass
-
-    def _private(self):
-        """By default private members are not included.
-
-        Private members are any methods or attributes that start with an
-        underscore and are *not* special. By default they are not included
-        in the output.
-
-        This behavior can be changed such that private members *are* included
-        by changing the following setting in Sphinx's conf.py::
-
-            napoleon_include_private_with_doc = True
-
-        """
-        pass
-
-    def _private_without_docstring(self):
-        pass
 
 
 class ExampleClassAnother(object):

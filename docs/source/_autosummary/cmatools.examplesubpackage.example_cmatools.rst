@@ -37,6 +37,7 @@ cmatools.examplesubpackage.example\_cmatools
    
       ExampleCMAClass
       ExampleClassAnother
+      ExampleOtherClass
       SimpleClass
    
    
