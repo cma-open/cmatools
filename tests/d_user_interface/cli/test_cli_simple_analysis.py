@@ -1,5 +1,11 @@
 """Test the simple analysis cli tool."""
 
+# This module uses subprocess, which can raise security threats.
+# The risk have been reviewed via Codacy, Bandit.
+# The generic warning on import has been left active, in case of future edits here.
+# Each specific use warning has been checked and then ignored, where safe to do so.
+# bandit ignore command is # nosec, per line
+
 import subprocess
 from pathlib import Path
 
@@ -20,7 +26,7 @@ def test_cli_help_from_path():
     Uses a call to --help option to test the cli tool is working
     """
     user_args = '--help'
-    out = subprocess.run(['python3', str(CLI), user_args], check=True)
+    out = subprocess.run(['python3', str(CLI), user_args], check=True)  # nosec
     assert out.returncode == 0
 
 
@@ -31,7 +37,8 @@ def test_cli_args_from_path():
     """
     user_arg_x = '2'
     user_arg_y = '4'
-    out = subprocess.run(['python3', str(CLI), user_arg_x, user_arg_y], check=True)
+    out = subprocess.run(
+        ['python3', str(CLI), user_arg_x, user_arg_y], check=True)  # nosec
     assert out.returncode == 0
 
 
@@ -40,7 +47,7 @@ def test_cli_run_as_module():
 
     Uses a call to the module directly, with the --help option to test cli tool
     """
-    out = subprocess.run(['python3', '-m', MODULE, '--help'], check=True)
+    out = subprocess.run(['python3', '-m', MODULE, '--help'], check=True)  # nosec
     assert out.returncode == 0
 
 
@@ -51,5 +58,5 @@ def test_cli_run_as_entrypoint():
     """
     # Note - the script tool name is set in the entry_points section of setup.py
     # TODO add a documentation cross ref here
-    out = subprocess.run([TOOL, '--help'], check=True)
+    out = subprocess.run([TOOL, '--help'], check=True)  # nosec
     assert out.returncode == 0
