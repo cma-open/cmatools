@@ -6,7 +6,7 @@
 # Each specific use warning has been checked and then ignored, where safe to do so.
 # bandit ignore command is # nosec, per line
 
-import subprocess
+import subprocess  # nosec  # bandit ignore
 from pathlib import Path
 
 from cmatools.definitions import PACKAGE, SRC_DIR
