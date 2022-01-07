@@ -1,0 +1,26 @@
+Source: https://developer.lsst.io/v/DM-15183/python/numpydoc.html#py-docstring-sections
+
+Copied here as useful to compare the list and order of sections
+
+cmatools package currently uses napolean (numpy) for sphinx docstrings, not numpydoc
+
+
+Numpydoc Sections in Docstrings
+
+We organize Python docstrings into sections that appear in a common order.
+This format follows the Numpydoc standard (used by NumPy, SciPy, and Astropy, among
+other scientific Python packages) rather than the format described in PEP 287.
+
+These are the sections and their relative order:
+
+    Short Summary
+    Deprecation Warning (if applicable)
+    Extended Summary (optional)
+    Parameters (if applicable; for classes, methods, and functions)
+    Returns or Yields (if applicable; for functions, methods, and generators)
+    Other Parameters (if applicable; for classes, methods, and functions)
+    Raises (if applicable)
+    See Also (optional)
+    Notes (optional)
+    References (optional)
+    Examples (optional)

@@ -21,7 +21,7 @@
     <script src="_static/js/theme.js"></script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
-    <link rel="next" title="Readme" href="readme.html" /> 
+    <link rel="next" title="Getting started" href="userguide/gettingstarted.html" /> 
 </head>
 
 <body class="wy-body-for-nav"> 
@@ -40,10 +40,16 @@
 </div>
         </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
               <ul>
-<li class="toctree-l1"><a class="reference internal" href="readme.html">Readme</a></li>
 <li class="toctree-l1"><a class="reference internal" href="userguide/gettingstarted.html">Getting started</a></li>
+<li class="toctree-l1"><a class="reference internal" href="userguide/userguide.html">User Guide</a></li>
 <li class="toctree-l1"><a class="reference internal" href="userguide/examplecode.html">Example code</a></li>
+<li class="toctree-l1"><a class="reference internal" href="developersguide/developersguide.html">Developers Guide</a></li>
 <li class="toctree-l1"><a class="reference internal" href="changelog.html">Changelog</a></li>
+<li class="toctree-l1"><a class="reference internal" href="readme.html">Readme</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="_autosummary/cmatools.html">cmatools</a></li>
+<li class="toctree-l1"><a class="reference internal" href="_autosummary/tests.html">tests</a></li>
 </ul>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="cmd/cmd.html">Command line utilities</a></li>
@@ -75,33 +81,54 @@
              
   <section id="cmatools-documentation">
 <h1>CMATOOLS Documentation<a class="headerlink" href="#cmatools-documentation" title="Permalink to this headline"></a></h1>
-<p>The CMATOOLS python package was developed for training purposes only.</p>
-<p>Do not use for production purposes.</p>
-<p>This package, and associated subpackages, provide a range of commonly used functions,
-for import and use in CMA projects.</p>
-<p>The package and associated GitHub repo also serve for use via training tutorials
-and as a template project.</p>
+<p>The CMATOOLS python package was developed for training use, not for production.</p>
+<p>This package, and associated subpackages, provide a range of commonly used functions,for import and use in
+CMA projects. The content and structure is initially sparse and basic and will be extended over time.</p>
+<p>The package and the associated GitHub repository can also serve as a template project on which to start and
+reconfigure new projects.</p>
 <div class="toctree-wrapper compound">
 <ul>
-<li class="toctree-l1"><a class="reference internal" href="readme.html">Readme</a></li>
 <li class="toctree-l1"><a class="reference internal" href="userguide/gettingstarted.html">Getting started</a></li>
+<li class="toctree-l1"><a class="reference internal" href="userguide/userguide.html">User Guide</a></li>
 <li class="toctree-l1"><a class="reference internal" href="userguide/examplecode.html">Example code</a></li>
+<li class="toctree-l1"><a class="reference internal" href="developersguide/developersguide.html">Developers Guide</a></li>
 <li class="toctree-l1"><a class="reference internal" href="changelog.html">Changelog</a></li>
+<li class="toctree-l1"><a class="reference internal" href="readme.html">Readme</a></li>
 </ul>
 </div>
-<section id="cmatools-package-api">
-<h2>CMATOOLS package API<a class="headerlink" href="#cmatools-package-api" title="Permalink to this headline"></a></h2>
-<p>This section lists the content and use of the subpackages and command lines tools
-provided by the CMATOOLS package</p>
-<div class="toctree-wrapper compound">
-</div>
+<section id="cmatools-package">
+<h2>CMATOOLS package<a class="headerlink" href="#cmatools-package" title="Permalink to this headline"></a></h2>
+<p>The content of the cmatools package, subpackages and modules.</p>
+<table class="longtable docutils align-default">
+<colgroup>
+<col style="width: 10%" />
+<col style="width: 90%" />
+</colgroup>
+<tbody>
+<tr class="row-odd"><td><p><a class="reference internal" href="_autosummary/cmatools.html#module-cmatools" title="cmatools"><code class="xref py py-obj docutils literal notranslate"><span class="pre">cmatools</span></code></a></p></td>
+<td><p>Selected functions, methods and command line tools for use by CMA projects.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="_autosummary/tests.html#module-tests" title="tests"><code class="xref py py-obj docutils literal notranslate"><span class="pre">tests</span></code></a></p></td>
+<td><p>Tests for cmatools package.</p></td>
+</tr>
+</tbody>
+</table>
 </section>
 <section id="cmatools-cli">
 <h2>CMATOOLS cli<a class="headerlink" href="#cmatools-cli" title="Permalink to this headline"></a></h2>
-<p>This section lists the command line tools and options</p>
+<p>The command line tools and options available from cmatools.</p>
 <div class="toctree-wrapper compound">
 <ul>
-<li class="toctree-l1"><a class="reference internal" href="cmd/cmd.html">Command line utilities</a><ul class="simple">
+<li class="toctree-l1"><a class="reference internal" href="cmd/cmd.html">Command line utilities</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="cmd/cmd_analysis.html">CLI simple analysis</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="cmd/cmd_analysis.html#Positional Arguments">Positional Arguments</a></li>
+<li class="toctree-l3"><a class="reference internal" href="cmd/cmd_analysis.html#Named Arguments">Named Arguments</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="cmd/cmd_download.html">CLI data download</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="cmd/cmd_download.html#Named Arguments">Named Arguments</a></li>
+</ul>
+</li>
 </ul>
 </li>
 </ul>
@@ -112,6 +139,7 @@ provided by the CMATOOLS package</p>
 <h1>Indices and tables<a class="headerlink" href="#indices-and-tables" title="Permalink to this headline"></a></h1>
 <ul class="simple">
 <li><p><a class="reference internal" href="genindex.html"><span class="std std-ref">Index</span></a></p></li>
+<li><p><a class="reference internal" href="py-modindex.html"><span class="std std-ref">Module Index</span></a></p></li>
 </ul>
 </section>
 
@@ -119,7 +147,7 @@ provided by the CMATOOLS package</p>
            </div>
           </div>
           <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
-        <a href="readme.html" class="btn btn-neutral float-right" title="Readme" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+        <a href="userguide/gettingstarted.html" class="btn btn-neutral float-right" title="Getting started" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
     </div>
 
   <hr/>

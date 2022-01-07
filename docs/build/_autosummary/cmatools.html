@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>cmatools &mdash; cmatools 0.0.1 documentation</title>
+      <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/graphviz.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+        <script src="../_static/jquery.js"></script>
+        <script src="../_static/underscore.js"></script>
+        <script src="../_static/doctools.js"></script>
+        <script src="https://unpkg.com/mermaid/dist/mermaid.min.js"></script>
+        <script>mermaid.initialize({startOnLoad:true});</script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="cmatools.analysis" href="cmatools.analysis.html" />
+    <link rel="prev" title="Readme" href="../readme.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+            <a href="../index.html" class="icon icon-home"> cmatools
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul>
+<li class="toctree-l1"><a class="reference internal" href="../userguide/gettingstarted.html">Getting started</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../userguide/userguide.html">User Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../userguide/examplecode.html">Example code</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../developersguide/developersguide.html">Developers Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../changelog.html">Changelog</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../readme.html">Readme</a></li>
+</ul>
+<ul class="current">
+<li class="toctree-l1 current"><a class="current reference internal" href="#">cmatools</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="cmatools.analysis.html">cmatools.analysis</a></li>
+<li class="toctree-l2"><a class="reference internal" href="cmatools.cli_data_download.html">cmatools.cli_data_download</a></li>
+<li class="toctree-l2"><a class="reference internal" href="cmatools.cli_hello_world.html">cmatools.cli_hello_world</a></li>
+<li class="toctree-l2"><a class="reference internal" href="cmatools.cli_simple_analysis.html">cmatools.cli_simple_analysis</a></li>
+<li class="toctree-l2"><a class="reference internal" href="cmatools.combine.html">cmatools.combine</a></li>
+<li class="toctree-l2"><a class="reference internal" href="cmatools.common.html">cmatools.common</a></li>
+<li class="toctree-l2"><a class="reference internal" href="cmatools.definitions.html">cmatools.definitions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="cmatools.examplesubpackage.html">cmatools.examplesubpackage</a></li>
+<li class="toctree-l2"><a class="reference internal" href="cmatools.helloworld.html">cmatools.helloworld</a></li>
+<li class="toctree-l2"><a class="reference internal" href="cmatools.io.html">cmatools.io</a></li>
+<li class="toctree-l2"><a class="reference internal" href="cmatools.observations.html">cmatools.observations</a></li>
+<li class="toctree-l2"><a class="reference internal" href="cmatools.subpackage.html">cmatools.subpackage</a></li>
+<li class="toctree-l2"><a class="reference internal" href="cmatools.subpackageb.html">cmatools.subpackageb</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="tests.html">tests</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../cmd/cmd.html">Command line utilities</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">cmatools</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home"></a> &raquo;</li>
+      <li>cmatools</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../_sources/_autosummary/cmatools.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="module-cmatools">
+<span id="cmatools"></span><h1>cmatools<a class="headerlink" href="#module-cmatools" title="Permalink to this headline"></a></h1>
+<p>Selected functions, methods and command line tools for use by CMA projects.</p>
+<p>The package should be imported directly, e.g.:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">cmatools</span> <span class="k">as</span> <span class="nn">cma</span>
+</pre></div>
+</div>
+<p>Modules include:</p>
+<blockquote>
+<div><dl class="simple">
+<dt><a class="reference internal" href="cmatools.analysis.simple_analysis.html#module-cmatools.analysis.simple_analysis" title="cmatools.analysis.simple_analysis"><code class="xref py py-mod docutils literal notranslate"><span class="pre">cmatools.analysis.simple_analysis</span></code></a></dt><dd><p>Holds several functions to assist with integer calculation
+<code class="xref py py-func docutils literal notranslate"><span class="pre">analysis_max()</span></code> , <code class="xref py py-func docutils literal notranslate"><span class="pre">analysis_sum()</span></code>  and <code class="xref py py-func docutils literal notranslate"><span class="pre">analysis_product()</span></code></p>
+</dd>
+<dt><a class="reference internal" href="cmatools.examplesubpackage.example_cmatools.html#module-cmatools.examplesubpackage.example_cmatools" title="cmatools.examplesubpackage.example_cmatools"><code class="xref py py-mod docutils literal notranslate"><span class="pre">cmatools.examplesubpackage.example_cmatools</span></code></a></dt><dd><p>The <code class="xref py py-class docutils literal notranslate"><span class="pre">ExampleClass</span></code> class contains default cma style docstrings as
+an example of the layout.
+The <code class="xref py py-meth docutils literal notranslate"><span class="pre">example_method()</span></code> holds an example class method.</p>
+</dd>
+<dt><a class="reference internal" href="cmatools.io.html#module-cmatools.io" title="cmatools.io"><code class="xref py py-mod docutils literal notranslate"><span class="pre">cmatools.io</span></code></a></dt><dd><p>Functions to assist with data input/ouput.</p>
+</dd>
+</dl>
+</div></blockquote>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>This is not a full list of the cmatools package content. It is used to show
+active examples of the docstring and cross-reference links within the documentation.</p>
+</div>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>The documentation has further usage information, including
+a <a class="reference internal" href="../userguide/userguide.html#userguide-label"><span class="std std-ref">Sub title UG</span></a></p>
+</div>
+<p class="rubric">Modules</p>
+<table class="longtable docutils align-default">
+<colgroup>
+<col style="width: 10%" />
+<col style="width: 90%" />
+</colgroup>
+<tbody>
+<tr class="row-odd"><td><p><a class="reference internal" href="cmatools.analysis.html#module-cmatools.analysis" title="cmatools.analysis"><code class="xref py py-obj docutils literal notranslate"><span class="pre">cmatools.analysis</span></code></a></p></td>
+<td><p>General integer analysis.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="cmatools.cli_data_download.html#module-cmatools.cli_data_download" title="cmatools.cli_data_download"><code class="xref py py-obj docutils literal notranslate"><span class="pre">cmatools.cli_data_download</span></code></a></p></td>
+<td><p>Command line application tool for data download of CRUTEM or HadCRUT data.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="cmatools.cli_hello_world.html#module-cmatools.cli_hello_world" title="cmatools.cli_hello_world"><code class="xref py py-obj docutils literal notranslate"><span class="pre">cmatools.cli_hello_world</span></code></a></p></td>
+<td><p>A &quot;hello-world&quot; Command line application tool</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="cmatools.cli_simple_analysis.html#module-cmatools.cli_simple_analysis" title="cmatools.cli_simple_analysis"><code class="xref py py-obj docutils literal notranslate"><span class="pre">cmatools.cli_simple_analysis</span></code></a></p></td>
+<td><p>Command line application - a simple analysis tool example.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="cmatools.combine.html#module-cmatools.combine" title="cmatools.combine"><code class="xref py py-obj docutils literal notranslate"><span class="pre">cmatools.combine</span></code></a></p></td>
+<td><p>An example subpackage used to illustrate integration testing.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="cmatools.common.html#module-cmatools.common" title="cmatools.common"><code class="xref py py-obj docutils literal notranslate"><span class="pre">cmatools.common</span></code></a></p></td>
+<td><p>Common modules and functions.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="cmatools.definitions.html#module-cmatools.definitions" title="cmatools.definitions"><code class="xref py py-obj docutils literal notranslate"><span class="pre">cmatools.definitions</span></code></a></p></td>
+<td><p>Source definitions file to generate constants.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="cmatools.examplesubpackage.html#module-cmatools.examplesubpackage" title="cmatools.examplesubpackage"><code class="xref py py-obj docutils literal notranslate"><span class="pre">cmatools.examplesubpackage</span></code></a></p></td>
+<td><p>Example subpackage illustrates codestyle and format.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="cmatools.helloworld.html#module-cmatools.helloworld" title="cmatools.helloworld"><code class="xref py py-obj docutils literal notranslate"><span class="pre">cmatools.helloworld</span></code></a></p></td>
+<td><p>docstring for helloworld subpackage</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="cmatools.io.html#module-cmatools.io" title="cmatools.io"><code class="xref py py-obj docutils literal notranslate"><span class="pre">cmatools.io</span></code></a></p></td>
+<td><p>IO subpackage.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="cmatools.observations.html#module-cmatools.observations" title="cmatools.observations"><code class="xref py py-obj docutils literal notranslate"><span class="pre">cmatools.observations</span></code></a></p></td>
+<td><p>Observations subpackage.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="cmatools.subpackage.html#module-cmatools.subpackage" title="cmatools.subpackage"><code class="xref py py-obj docutils literal notranslate"><span class="pre">cmatools.subpackage</span></code></a></p></td>
+<td><p>Example subpackage.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="cmatools.subpackageb.html#module-cmatools.subpackageb" title="cmatools.subpackageb"><code class="xref py py-obj docutils literal notranslate"><span class="pre">cmatools.subpackageb</span></code></a></p></td>
+<td><p>subpackageb example.</p></td>
+</tr>
+</tbody>
+</table>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="../readme.html" class="btn btn-neutral float-left" title="Readme" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="cmatools.analysis.html" class="btn btn-neutral float-right" title="cmatools.analysis" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2021, Jonathan Winn.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>
