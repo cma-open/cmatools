@@ -10,11 +10,11 @@ DEBUG = True
 
 def test_definitions():
     """Test definitions module."""
-    assert PACKAGE == 'cmatools'
+    assert PACKAGE == "cmatools"
     assert isinstance(SRC_DIR, str)
     assert isinstance(ROOT_DIR, str)
     assert Path(CONFIGFILE).is_file()
     assert Path(CONFIGLOGS).is_file()
     if DEBUG:
-        print(f'Source dir: {SRC_DIR}')
-        print(f'Root dir: {ROOT_DIR}')
+        print(f"Source dir: {SRC_DIR}")
+        print(f"Root dir: {ROOT_DIR}")

@@ -12,5 +12,5 @@ import pkg_resources
 
 def test_package_version():
     """Test current package version."""
-    version = pkg_resources.get_distribution('cmatools').version
-    assert version == '0.0.1'
+    version = pkg_resources.get_distribution("cmatools").version
+    assert version == "0.0.1"
