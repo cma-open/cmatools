@@ -13,15 +13,15 @@ import os
 # Set constants for CMATOOLS package
 SRC_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 ROOT_DIR = os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
-CONFIGFILE = f'{SRC_DIR}/cmatools/config.ini'
-CONFIGLOGS = f'{SRC_DIR}/cmatools/config-logs.ini'
+CONFIGFILE = f"{SRC_DIR}/cmatools/config.ini"
+CONFIGLOGS = f"{SRC_DIR}/cmatools/config-logs.ini"
 
 # TODO check take name from setup.py or VERSION to avoid duplication
-PACKAGE = 'cmatools'  # Set the package name
+PACKAGE = "cmatools"  # Set the package name
 """str: Package name."""
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     # Print and confirms current constants
-    print(f'Source dir: {SRC_DIR}')
-    print(f'Root dir: {ROOT_DIR}')
-    print(f'Config file: {CONFIGFILE}')
+    print(f"Source dir: {SRC_DIR}")
+    print(f"Root dir: {ROOT_DIR}")
+    print(f"Config file: {CONFIGFILE}")
