@@ -25,7 +25,7 @@
 [![](https://github.com/cma-open/cmatools/workflows/code-style/badge.svg)](https://github.com/cma-open/cmatools/actions)
 
 -   Repo metadata:
-    -   [![Python 3.7](https://img.shields.io/badge/python-3.7-blue.svg)](https://www.python.org/downloads/release/python-370/)
+    -   [![Python 3.9](https://img.shields.io/badge/python-3.9-blue.svg)](https://www.python.org/downloads/release/python-390/)
 [![License](https://img.shields.io/badge/License-BSD%203--Clause-blue.svg)](https://opensource.org/licenses/BSD-3-Clause)
 [![GitHub repo size](https://img.shields.io/github/repo-size/cma-open/cmatools)](https://github.com/repo-size/cma-open/cmatools)
 [![GitHub code size in bytes](https://img.shields.io/github/languages/code-size/cma-open/cmatools)](https://github.com/code-size/cma-open/cmatools)
