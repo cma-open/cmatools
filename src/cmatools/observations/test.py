@@ -10,10 +10,10 @@ def this_one() -> str:
         String 'this'
 
     """
-    print('this')
-    return 'this'
+    print("this")
+    return "this"
 
 
 def another_one():
     """Print that."""
-    print('that')
+    print("that")
