@@ -519,7 +519,7 @@ class ExampleCMAClass(object):
         return 'readonly_property'
 
     def example_method(self, param1: int, param2: int) -> bool:
-        """Class methods are similar to regular functions.
+        """Methods are similar to regular functions.
 
         Parameters
         ----------
@@ -607,7 +607,7 @@ class ExampleOtherClass(object):
 
     Attributes
     ----------
-    attribute_integer : str
+    attribute_integer : int
         Description of `attr1`.
     quality :  str, optional
         Description of `quality`.
@@ -781,7 +781,7 @@ class ExampleClassAnother(object):
     param2 : :obj:`list` of :obj:`str`
         Description of `param2`. Multiple
         lines are supported.
-    param3 : :obj:`int`, optional
+    param3 : int
         Description of `param3`.
 
 
@@ -800,7 +800,7 @@ class ExampleClassAnother(object):
         Description of `attribute_string`.
     attribute_list : :obj:`int`, optional
         Description of `attribute_list.
-    attribute_integer : str
+    attribute_integer : int
         Description of `attribute_integer`.
     """
 
@@ -819,14 +819,29 @@ class ExampleClassAnother(object):
         self.attribute_list = param2
         self.attribute_integer = param3
 
-    def example_method(self, param1: int, param2: int) -> bool:
+    @property
+    def attribute_integer(self):
+        """Get the attribute integer.
+
+        Getting or setting the attribute integer value will verify the value
+        is an integer.
+        """
+        return self._attribute_integer
+
+    @attribute_integer.setter
+    def attribute_integer(self, value):
+        if not isinstance(value, int):
+            raise TypeError('integer param must be an integer')
+        self._attribute_integer = value
+
+    def example_method(self) -> bool:
         """Class methods are similar to regular functions.
 
         Parameters
         ----------
-        param1
+        score
             The first parameter.
-        param2
+        rating
             The second parameter.
 
         Returns
@@ -839,7 +854,39 @@ class ExampleClassAnother(object):
         Do not include the `self` parameter in the ``Parameters`` section.
 
         """
-        result = self.attribute_integer + param1 + param2
+        result = self.attribute_integer
+        if DEBUG:
+            print(f'Result: {result}, type - {type(result)}')
+            print(f'CONSTANT: {CONSTANT}, type - {type(CONSTANT)}')
+        if result > CONSTANT:
+            return True
+        else:
+            return False
+
+    def another_example_method(self, score: int, rating: int) -> bool:
+        """Class methods are similar to regular functions.
+
+        Parameters
+        ----------
+        score
+            The first parameter.
+        rating
+            The second parameter.
+
+        Returns
+        -------
+        bool :bool
+            True if successful, False otherwise.
+
+        Notes
+        -----
+        Do not include the `self` parameter in the ``Parameters`` section.
+
+        """
+        result = self.attribute_integer + score + rating
+        if DEBUG:
+            print(f'Result: {result}, type - {type(result)}')
+            print(f'CONSTANT: {CONSTANT}, type - {type(CONSTANT)}')
         if result > CONSTANT:
             return True
         else:

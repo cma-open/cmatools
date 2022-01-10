@@ -148,8 +148,6 @@ def test_example_class_properties():
     example = ExampleCMAClass('1', ['10', '29'], 3)
     # test readonly attribute
     assert example.readonly_property == 'readonly_property'
-    # test property with getter and setter
-    assert example.readwrite_property == ['readwrite_property']
 
 
 # pylint: disable=no-value-for-parameter
@@ -182,18 +180,23 @@ def test_example_class_example_method():
     # Create a valid ExampleClass object
     example = ExampleCMAClass('1', ['10', '29'], 3)
     # Test class method, expect return True
-    assert example.example_method('param1', 'param2') is True
+    # 3 + 50 + 40 = 92, 92 > 21 , therefore True
+    assert example.example_method(50, 40) is True
 # pylint: enable=no-value-for-parameter
 
 
 def test_example_class_another():
     """Test example_class_another."""
     # Instantiate class instance object and check class attributes
-    example = ExampleClassAnother('param1', 'param2', 'param3')
+    example = ExampleClassAnother('param1value', 'param2value', 3)
     assert example.reference_period == '1990-2020'
     assert example.QC_LEVEL == 'High'
     # Access and check class attributes directly from the class
     assert ExampleClassAnother.reference_period == '1990-2020'
     assert ExampleClassAnother.QC_LEVEL == 'High'
+    # Test class method, expect return False
+    # 3 !> 21
+    assert example.example_method() is False
     # Test class method, expect return True
-    assert example.example_method('param1', 'param2') is True
+    # (3 + 30 + 2) > 21
+    assert example.another_example_method(30, 2) is True
