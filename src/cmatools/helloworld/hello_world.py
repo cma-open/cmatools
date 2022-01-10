@@ -1,3 +1,6 @@
+"""simple print helloworld."""
+
+
 def hello_world():
     """Hello world."""
     return "hello cma"
