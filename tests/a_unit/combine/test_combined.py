@@ -5,8 +5,8 @@ from unittest.mock import patch
 from cmatools.combine.combine import combined
 
 
-@patch('cmatools.combine.combine.analysis_product')
-@patch('cmatools.combine.combine.analysis_sum')
+@patch("cmatools.combine.combine.analysis_product")
+@patch("cmatools.combine.combine.analysis_sum")
 def test_combined(mock_sum, mock_product):
     """Test of combined function."""
     mock_sum.return_value = 4

@@ -3,9 +3,9 @@
 
 def this_one():
     """Print this."""
-    print('this')
+    print("this")
 
 
 def another_one():
     """Print that."""
-    print('that')
+    print("that")

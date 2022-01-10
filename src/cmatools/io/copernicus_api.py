@@ -46,14 +46,14 @@ def copernicus_check_downloads(dataset: str, content: str) -> None:
         The second parameter.
     """
     c = cdsapi.Client()
-    print(f'Request headers: {c.session.headers}')
+    print(f"Request headers: {c.session.headers}")
     result = c.retrieve(dataset, content, target=None)
-    print(f'Result content type: {result.content_type}')
-    print(f'Result file size: {humanize.naturalsize(result.content_length)}')
+    print(f"Result content type: {result.content_type}")
+    print(f"Result file size: {humanize.naturalsize(result.content_length)}")
     if DEBUG:
         print(result)
     c.session.close()
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     pass

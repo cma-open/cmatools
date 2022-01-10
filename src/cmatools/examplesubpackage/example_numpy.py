@@ -112,13 +112,13 @@ def function_with_types_in_docstring(param1, param2):
         else:
             result = False
     except ValueError:
-        print('Parameter 2 must be a string representing a number using digits [0-10]')
+        print("Parameter 2 must be a string representing a number using digits [0-10]")
         raise ValueError
     except TypeError:
-        print('Parameter 1 must be an integer')
+        print("Parameter 1 must be an integer")
         raise TypeError
-    print(f'Function called with: {param1} and {param2}')
-    print(f'Function returns: {result}')
+    print(f"Function called with: {param1} and {param2}")
+    print(f"Function returns: {result}")
     return result
 
 
@@ -151,13 +151,13 @@ def function_with_pep484_type_annotations(param1: int, param2: str) -> bool:
         else:
             result = False
     except ValueError:
-        print('Parameter 2 must be a string representing a number using digits [0-10]')
+        print("Parameter 2 must be a string representing a number using digits [0-10]")
         raise ValueError
     except TypeError:
-        print('Parameter 1 must be an integer')
+        print("Parameter 1 must be an integer")
         raise TypeError
-    print(f'Function called with: {param1} and {param2}')
-    print(f'Function returns: {result}')
+    print(f"Function called with: {param1} and {param2}")
+    print(f"Function returns: {result}")
     return result
 
 
@@ -227,8 +227,8 @@ def module_level_function(param1, param2=None, *args, **kwargs):
         If `param2` is not a string
     """
     if param1 == param2:
-        print(f'param1: {param1}, param2: {param2}')
-        error_message = 'param1 may not be equal to param2'
+        print(f"param1: {param1}, param2: {param2}")
+        error_message = "param1 may not be equal to param2"
         print(error_message)
         raise ValueError(error_message)
     # Collect the params and find the max value
@@ -236,7 +236,7 @@ def module_level_function(param1, param2=None, *args, **kwargs):
     value_list.append(param1)
     if param2:
         if not isinstance(param2, str):
-            error_message = 'param2 must be a string'
+            error_message = "param2 must be a string"
             print(error_message)
             raise ValueError(error_message)
         else:
@@ -246,22 +246,22 @@ def module_level_function(param1, param2=None, *args, **kwargs):
     if args:
         for x in args:
             if not isinstance(x, int):
-                error_message = 'args values must be integers'
+                error_message = "args values must be integers"
                 print(error_message)
                 raise ValueError(error_message)
             value_list.append(x)
     if kwargs:
-        print('Metadata content')
+        print("Metadata content")
         for key, value in kwargs.items():
-            print(f'{key}: {value}')
-            if key == 'verbose' and value is True:
-                print('Additional verbose output: ......................')
+            print(f"{key}: {value}")
+            if key == "verbose" and value is True:
+                print("Additional verbose output: ......................")
 
     # Find max value from the compiled list
     max_value = max(value_list)
     print(
-        f'param1: {param1}, param2: {param2}, args: {args}, '
-        f'kwargs: {kwargs}. Max value: {max_value}'
+        f"param1: {param1}, param2: {param2}, args: {args}, "
+        f"kwargs: {kwargs}. Max value: {max_value}"
     )
 
     # Function returns True if any of the params are greater than 100
@@ -307,7 +307,7 @@ def example_generator(n):
         for i in range(n):
             yield i
     except TypeError as err:
-        print('n must be an integer')
+        print("n must be an integer")
         raise err
 
 
@@ -392,7 +392,7 @@ class ExampleClass(object):
         self.attribute_integer = param3  #: Doc comment *inline* with attribute
 
         #: list of str: Doc comment *before* attribute, with type specified
-        self.attr4 = ['attr4']
+        self.attr4 = ["attr4"]
 
         self.attr5 = None
         """str: Docstring *after* attribute, with type specified."""
@@ -409,7 +409,7 @@ class ExampleClass(object):
     @attribute_string.setter
     def attribute_string(self, value):
         if not isinstance(value, str):
-            raise TypeError('param1 must be a string')
+            raise TypeError("param1 must be a string")
         self._attribute_string = value
 
     @property
@@ -424,11 +424,11 @@ class ExampleClass(object):
     @attribute_list.setter
     def attribute_list(self, value):
         if not isinstance(value, list):
-            raise TypeError('param2 must be a list of strings')
+            raise TypeError("param2 must be a list of strings")
         else:
             for element in value:
                 if not isinstance(element, str):
-                    raise TypeError('param2 must be a list of strings')
+                    raise TypeError("param2 must be a list of strings")
         self._attribute_list = value
 
     @property
@@ -443,7 +443,7 @@ class ExampleClass(object):
     @attribute_integer.setter
     def attribute_integer(self, value):
         if not isinstance(value, int):
-            raise TypeError('param3 must be an integer')
+            raise TypeError("param3 must be an integer")
         self._attribute_integer = value
 
     @property
@@ -452,7 +452,7 @@ class ExampleClass(object):
 
         Properties should be documented in their getter method.
         """
-        return 'readonly_property'
+        return "readonly_property"
 
     # pylint: disable=R0201
     def example_method(self, param1, param2):
@@ -510,10 +510,10 @@ class ExampleClass(object):
         pass
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
 
-    print('Running example numpy module')
-    print(f'DEBUG constant set to: {DEBUG}')
+    print("Running example numpy module")
+    print(f"DEBUG constant set to: {DEBUG}")
 
     function_with_types_in_docstring(1, 2)
-    function_with_types_in_docstring(1, 'test')
+    function_with_types_in_docstring(1, "test")

@@ -30,7 +30,6 @@
    cmatools.analysis
    cmatools.cli_copernicus_download
    cmatools.cli_data_download
-   cmatools.cli_hello_world
    cmatools.cli_simple_analysis
    cmatools.combine
    cmatools.common

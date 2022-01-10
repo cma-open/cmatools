@@ -28,9 +28,9 @@ def cli_parser() -> argparse.ArgumentParser:
     parser = argparse.ArgumentParser(
         # Also possible to add prog title to output,
         # if ommitted the filename is used (e.g. cli-simple.py)
-        prog='CLI-DATA-DOWNLOAD',
-        description='A simple example app to aid download of data from remote sources',
-        epilog='  ---  ',
+        prog="CLI-DATA-DOWNLOAD",
+        description="A simple example app to aid download of data from remote sources",
+        epilog="  ---  ",
         formatter_class=argparse.ArgumentDefaultsHelpFormatter,
     )
 
@@ -38,25 +38,25 @@ def cli_parser() -> argparse.ArgumentParser:
     # Add named arguments (that is required for the tool to run)
     # Set the argument type and limit choices from a list
     parser.add_argument(
-        '--x', type=int, help='the x value', required=True, choices=[0, 1, 2, 3, 4, 5]
+        "--x", type=int, help="the x value", required=True, choices=[0, 1, 2, 3, 4, 5]
     )
     parser.add_argument(
-        '--y', type=int, help='the y value', required=True, choices=[0, 1, 2, 3, 4, 5]
+        "--y", type=int, help="the y value", required=True, choices=[0, 1, 2, 3, 4, 5]
     )
 
     parser.add_argument(
-        '--portal',
+        "--portal",
         type=str,
-        help='Data source portal',
+        help="Data source portal",
         required=True,
-        choices=['CEDA', 'HADOBS'],
+        choices=["CEDA", "HADOBS"],
     )
     parser.add_argument(
-        '--dataset',
+        "--dataset",
         type=str,
-        help='Dataset to be downloaded',
+        help="Dataset to be downloaded",
         required=True,
-        choices=['CRUTEM', 'HADCRUT'],
+        choices=["CRUTEM", "HADCRUT"],
     )
 
     # Returns a parser object
@@ -88,17 +88,17 @@ def cli_data_download(parsed_args):
     :return:
     """
     if DEBUG:
-        print('The cli tool: Data Download has run')
-        print(f'Parsed args: {parsed_args}')
-        print(f'The x value is: {parsed_args.x}')
-        print(f'The y value is: {parsed_args.y}')
+        print("The cli tool: Data Download has run")
+        print(f"Parsed args: {parsed_args}")
+        print(f"The x value is: {parsed_args.x}")
+        print(f"The y value is: {parsed_args.y}")
 
     inputs = SourceData(parsed_args.portal, parsed_args.dataset)
     inputs.read_input_source_ini()
 
     if DEBUG:
-        print(f'Downloading {parsed_args.dataset} from {parsed_args.portal}')
-        print(f'Downloading: {inputs.download}')
+        print(f"Downloading {parsed_args.dataset} from {parsed_args.portal}")
+        print(f"Downloading: {inputs.download}")
 
     download(inputs.download)
 
@@ -120,6 +120,6 @@ def cli_data_download_entry_point(argv=None):
     cli_data_download(cli_parse_args(argv))
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     # Runs entry point function when called as main
     cli_data_download_entry_point()

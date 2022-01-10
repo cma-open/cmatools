@@ -37,35 +37,35 @@ DEBUG = True
 
 def test_return_datadir_root_dir_repo_input():
     """Test datadir root value with arg: input."""
-    assert return_datadir_root_dir('repo') == ROOT_DIR
+    assert return_datadir_root_dir("repo") == ROOT_DIR
 
 
 def test_return_datadir_root_dir_temp_input(tmp_path):
     """Test datadir root value with arg: custom path."""
-    root_dir = tmp_path / 'fake_sub_dir'
+    root_dir = tmp_path / "fake_sub_dir"
     root_dir.mkdir()
     assert return_datadir_root_dir(root_dir) == root_dir
 
 
 # Can't know value of home ~ , so use mock
 # Mocked home dir will not be accessible, so also need to mock check_access()
-@patch('cmatools.io.io_common.check_access')
+@patch("cmatools.io.io_common.check_access")
 def test_return_datadir_root_dir_home_input(function_mock, monkeypatch):
     """Test datadir root value with arg: home ~."""
-    monkeypatch.setattr(os.path, 'expanduser', lambda home: '/home/name/datadir')
+    monkeypatch.setattr(os.path, "expanduser", lambda home: "/home/name/datadir")
     function_mock.return_value = True
-    assert return_datadir_root_dir('~') == '/home/name/datadir'
+    assert return_datadir_root_dir("~") == "/home/name/datadir"
 
 
 def test_return_datadir_root_dir_bad_inputs():
     """Test exception raised."""
     with pytest.raises(Exception):
-        return_datadir_root_dir('epor')
+        return_datadir_root_dir("epor")
 
 
 def test_check_access_raises_exception():
     """Test exception raised."""
-    root_dir = '/home/name/not_a_subdir'
+    root_dir = "/home/name/not_a_subdir"
     with pytest.raises(FileNotFoundError):
         check_access(root_dir)
 
@@ -75,5 +75,5 @@ def test_check_access():
     # Root repo dir should be accessible
     assert check_access(ROOT_DIR)
     # User home root dir should be accessible
-    root_dir = os.path.expanduser('~')
+    root_dir = os.path.expanduser("~")
     assert check_access(root_dir)

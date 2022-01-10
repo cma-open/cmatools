@@ -10,7 +10,7 @@ DEBUG = True
 """bool: Debugging module-level constant (Default: True)."""
 
 # Define cli filepath
-CLI = Path(SRC_DIR, 'cmatools', 'cli_simple_analysis.py')
+CLI = Path(SRC_DIR, "cmatools", "cli_simple_analysis.py")
 """str: Filepath to command line tool module."""
 
 
@@ -20,15 +20,15 @@ def test_cli_parser():
     # Confirm output object is correct parser type
     assert isinstance(out, argparse.ArgumentParser)
     # Confirm cli tool name is correct
-    assert out.prog == 'CLI-SIMPLE-ANALYSIS'
+    assert out.prog == "CLI-SIMPLE-ANALYSIS"
 
 
 def test_cli_parse_args():
     """Test for cli_parse_args() function."""
-    user_args = ['1', '2']
+    user_args = ["1", "2"]
     parsed_args = cli_parse_args(user_args)
     if DEBUG:
-        print(f'Parsed args: {parsed_args}')
+        print(f"Parsed args: {parsed_args}")
     assert isinstance(parsed_args, argparse.Namespace)
     assert parsed_args.x == 1
     assert parsed_args.y == 2

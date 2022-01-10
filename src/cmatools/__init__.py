@@ -42,4 +42,4 @@ Modules include:
 # https://github.com/sphinx-doc/sphinx/blob/4.x/sphinx/__init__.py
 
 
-__version__ = '0.0.1'
+__version__ = "0.0.1"

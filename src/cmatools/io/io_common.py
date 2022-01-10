@@ -13,11 +13,11 @@ from cmatools.definitions import CONFIGFILE, CONFIGLOGS, ROOT_DIR
 config = configparser.ConfigParser()
 config.read(CONFIGFILE)
 # Get directory for analysis output files for download
-datadir_outputs = config.get('DATADIR', 'OUTPUTS')
+datadir_outputs = config.get("DATADIR", "OUTPUTS")
 # Get location where local input data will be saved, after download
-datadir_root = config.get('DATADIR', 'ROOT')
-datadir_inputs = config.get('DATADIR', 'INPUTS')
-datadir_archives = config.get('DATADIR', 'ARCHIVES')
+datadir_root = config.get("DATADIR", "ROOT")
+datadir_inputs = config.get("DATADIR", "INPUTS")
+datadir_archives = config.get("DATADIR", "ARCHIVES")
 
 # TODO check and add equiv func for scratchdir, or refactor to deal with both dirs
 
@@ -34,25 +34,25 @@ def return_datadir_root_dir(datadir_root: str) -> None:
     """
     # TODO add link to config file
     # Deal with optional use of home dir
-    if datadir_root == 'repo':
+    if datadir_root == "repo":
         root_dir = ROOT_DIR
     # Deal with optional use of home dir
-    elif datadir_root == '~':
-        root_dir = os.path.expanduser('~')
+    elif datadir_root == "~":
+        root_dir = os.path.expanduser("~")
     # Set path based on user selected config value
     else:
         root_dir = datadir_root
     if DEBUG:
-        print(f'Root data directory user config setting: {datadir_root}')
-        print(f'Root data directory path set as: {root_dir}')
+        print(f"Root data directory user config setting: {datadir_root}")
+        print(f"Root data directory path set as: {root_dir}")
 
     # Validate the user selected datadir is a directory and files are writeable
     if check_access(root_dir):
         return root_dir
     else:
         raise Exception(
-            'Datadir root directory not accessible: check value of '
-            'DATADIR / ROOT in config.ini'
+            "Datadir root directory not accessible: check value of "
+            "DATADIR / ROOT in config.ini"
         )
 
 
@@ -61,7 +61,7 @@ def return_datadir_archives_dir() -> Path:
     archivedir = Path(return_datadir_root_dir(datadir_root)) / datadir_archives
     archivedir.mkdir(parents=True, exist_ok=True)
     if DEBUG:
-        print(f'Archive data directory path: {archivedir}')
+        print(f"Archive data directory path: {archivedir}")
     return archivedir
 
 
@@ -70,7 +70,7 @@ def return_datadir_inputs_dir() -> Path:
     inputdir = Path(return_datadir_root_dir(datadir_root)) / datadir_inputs
     inputdir.mkdir(parents=True, exist_ok=True)
     if DEBUG:
-        print(f'Input data directory path: {inputdir}')
+        print(f"Input data directory path: {inputdir}")
     return inputdir
 
 
@@ -79,7 +79,7 @@ def return_datadir_outputs_dir() -> Path:
     outputdir = Path(return_datadir_root_dir(datadir_root)) / datadir_outputs
     outputdir.mkdir(parents=True, exist_ok=True)
     if DEBUG:
-        print(f'Outputs data directory: {datadir_outputs}')
+        print(f"Outputs data directory: {datadir_outputs}")
     return outputdir
 
 
@@ -89,14 +89,13 @@ def write_source_config(archivename, extractname) -> None:
     config = configparser.ConfigParser()
     config.read(CONFIGLOGS)
     # config.add_section('SECTION_NAME')
-    config['SOURCES']['COP_ARCHIVENAME'] = archivename
-    config['SOURCES']['COP_FILENAME'] = extractname
-    with open(CONFIGLOGS, 'w') as configfile:
+    config["SOURCES"]["COP_ARCHIVENAME"] = archivename
+    config["SOURCES"]["COP_FILENAME"] = extractname
+    with open(CONFIGLOGS, "w") as configfile:
         config.write(configfile)
 
 
-def extract_archive_singlefile(
-        archivedir: Path, inputsdir: Path, filename: str) -> str:
+def extract_archive_singlefile(archivedir: Path, inputsdir: Path, filename: str) -> str:
     """Extract files from tarfile.
 
     Parameters
@@ -115,15 +114,15 @@ def extract_archive_singlefile(
     """
     # Set the full path to the archive file
     archivefilepath = archivedir / filename
-    with tarfile.open(archivefilepath, 'r') as archive:
+    with tarfile.open(archivefilepath, "r") as archive:
         if DEBUG:
             print(archive.getmembers())
             print(archive.getnames()[0])
         content_filename = archive.getnames()[0]
-        print('---')
+        print("---")
         # extract all files
         archive.extract(archive.getnames()[0], path=inputsdir)
-        print(f'Tar file extracted to: {inputsdir}/{content_filename}')
+        print(f"Tar file extracted to: {inputsdir}/{content_filename}")
         return content_filename
 
 
@@ -137,7 +136,7 @@ def extract_archive_multi(filename: str) -> None:
     """
     # TODO refactor
     outputfilepath = Path(return_datadir_inputs_dir()) / filename
-    with tarfile.open(outputfilepath, 'r') as archive:
+    with tarfile.open(outputfilepath, "r") as archive:
         print(archive.getmembers())
         print(archive.getnames())
         # Extract all files
@@ -159,25 +158,25 @@ def download(url) -> None:
     # Set full path + name to downloaded location
     file_path = return_datadir_inputs_dir() / urlfilename
     # Open in binary mode
-    with open(file_path, 'wb') as file:
+    with open(file_path, "wb") as file:
         # Get response request
         response = requests.get(url)
         # Check if an error has occurred
         response.raise_for_status()
         # Deal with potentially missing encoding header
-        encoding = 'None listed'
-        if 'Content-Encoding' in response.headers:
-            encoding = response.headers['Content-Encoding']
+        encoding = "None listed"
+        if "Content-Encoding" in response.headers:
+            encoding = response.headers["Content-Encoding"]
         if DEBUG:
-            print(f'Request sent: {response.request.headers}')
+            print(f"Request sent: {response.request.headers}")
             print(
                 f'Request response Content-Type: {response.headers["content-type"]} '
-                f'with Content-Encoding: {encoding}'
+                f"with Content-Encoding: {encoding}"
             )
-            print(f'Request response status code: {response.status_code}')
-            print(f'Request response headers: {response.headers}')
-            print(f'Response response filename: {urlfilename}')
-            print(f'Download destination: {file_path}')
+            print(f"Request response status code: {response.status_code}")
+            print(f"Request response headers: {response.headers}")
+            print(f"Response response filename: {urlfilename}")
+            print(f"Download destination: {file_path}")
         # Write downloaded content to file (raw response bytes)
         file.write(response.content)
 
@@ -196,12 +195,12 @@ def check_access(directory: str) -> bool:
        Returns True if directory is accessible
     """
     path = Path(directory)
-    file = path / 'test.txt'
+    file = path / "test.txt"
     try:
         file.touch(exist_ok=True)
         file.unlink()  # Remove file
         return True
     except FileNotFoundError as error:
         print(error)
-        print('Check that root dir has been correctly set in config.ini')
+        print("Check that root dir has been correctly set in config.ini")
         raise FileNotFoundError
