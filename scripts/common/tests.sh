@@ -21,8 +21,8 @@ echo " ---- * ----"
 # Set test subdirectories
 readonly UNIT="${TESTS_DIR}/a_unit"
 readonly INTEGRATION="${TESTS_DIR}/b_integration"
-readonly END2END="${TESTS_DIR}/c_end-to-end"
-readonly INTERFACE="${TESTS_DIR}/d_user-interface"
+readonly END2END="${TESTS_DIR}/c_end_to_end"
+readonly INTERFACE="${TESTS_DIR}/d_user_interface"
 
 if [ "${VERBOSE}" == "true" ]; then
     echo "---"
