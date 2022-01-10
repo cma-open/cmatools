@@ -71,8 +71,8 @@ on the first line, separated by a colon.
 
 def confirm_version() -> None:
     """Print package and numpy version numbers."""
-    print(f'Numpy version: {numpy.__version__}')
-    print(f'Package version: {PACKAGE} - {version(PACKAGE)}')
+    print(f"Numpy version: {numpy.__version__}")
+    print(f"Package version: {PACKAGE} - {version(PACKAGE)}")
 
 
 def function_with_pep484_type_annotations(param1: int, param2: str) -> bool:
@@ -114,13 +114,13 @@ def function_with_pep484_type_annotations(param1: int, param2: str) -> bool:
         else:
             result = False
     except ValueError:
-        print('Parameter 2 must be a string representing a number using digits [0-10]')
+        print("Parameter 2 must be a string representing a number using digits [0-10]")
         raise ValueError
     except TypeError:
-        print('Parameter 1 must be an integer')
+        print("Parameter 1 must be an integer")
         raise TypeError
-    print(f'Function called with: {param1} and {param2}')
-    print(f'Function returns: {result}')
+    print(f"Function called with: {param1} and {param2}")
+    print(f"Function returns: {result}")
     return result
 
 
@@ -196,8 +196,8 @@ def module_level_function(param1, param2=None, *args, **kwargs) -> bool:
 
     """
     if param1 == param2:
-        print(f'param1: {param1}, param2: {param2}')
-        error_message = 'param1 may not be equal to param2'
+        print(f"param1: {param1}, param2: {param2}")
+        error_message = "param1 may not be equal to param2"
         print(error_message)
         raise ValueError(error_message)
     # Collect the params and find the max value
@@ -206,7 +206,7 @@ def module_level_function(param1, param2=None, *args, **kwargs) -> bool:
     if param2:
         # check type
         if not isinstance(param2, str):
-            error_message = 'param2 must be a string'
+            error_message = "param2 must be a string"
             print(error_message)
             raise ValueError(error_message)
         else:
@@ -217,22 +217,22 @@ def module_level_function(param1, param2=None, *args, **kwargs) -> bool:
         for x in args:
             # check type
             if not isinstance(x, int):
-                error_message = 'args values must be integers'
+                error_message = "args values must be integers"
                 print(error_message)
                 raise ValueError(error_message)
             value_list.append(x)
     if kwargs:
-        print('Metadata content')
+        print("Metadata content")
         for key, value in kwargs.items():
-            print(f'{key}: {value}')
-            if key == 'verbose' and value is True:
-                print('Additional verbose output: ......................')
+            print(f"{key}: {value}")
+            if key == "verbose" and value is True:
+                print("Additional verbose output: ......................")
 
     # Find max value from the compiled list
     max_value = max(value_list)
     print(
-        f'param1: {param1}, param2: {param2}, args: {args}, '
-        f'kwargs: {kwargs}. Max value: {max_value}'
+        f"param1: {param1}, param2: {param2}, args: {args}, "
+        f"kwargs: {kwargs}. Max value: {max_value}"
     )
 
     # Function returns True if any of the params are greater than 100
@@ -278,7 +278,7 @@ def example_generator(n):
         for i in range(n):
             yield i
     except TypeError as err:
-        print('n must be an integer')
+        print("n must be an integer")
         raise err
 
 
@@ -315,7 +315,7 @@ class ExampleCMAError(Exception):
     def __init__(self, msg, code=None):
         self.msg = msg
         self.code = code
-        self.coded_message = f'{str(code)}: {msg}'
+        self.coded_message = f"{str(code)}: {msg}"
 
     # def __str__(self):
     #   return f'{self.msg}, {self.code}'
@@ -377,7 +377,7 @@ class SimpleClass(object):
     @attribute_string.setter
     def attribute_string(self, value):
         if not isinstance(value, str):
-            raise TypeError('param1 must be a string')
+            raise TypeError("param1 must be a string")
         self._attribute_string = value
 
     @property
@@ -392,11 +392,11 @@ class SimpleClass(object):
     @attribute_list.setter
     def attribute_list(self, value):
         if not isinstance(value, list):
-            raise TypeError('param2 must be a list of strings')
+            raise TypeError("param2 must be a list of strings")
         else:
             for element in value:
                 if not isinstance(element, str):
-                    raise TypeError('param2 must be a list of strings')
+                    raise TypeError("param2 must be a list of strings")
         self._attribute_list = value
 
 
@@ -458,7 +458,7 @@ class ExampleCMAClass(object):
         self.attribute_string = param1
         self.attribute_list = param2
         self.attribute_integer = param3
-        self.attr4 = ['attr4']
+        self.attr4 = ["attr4"]
         self.attr5 = None
 
     @property
@@ -473,7 +473,7 @@ class ExampleCMAClass(object):
     @attribute_string.setter
     def attribute_string(self, value):
         if not isinstance(value, str):
-            raise TypeError('param1 must be a string')
+            raise TypeError("param1 must be a string")
         self._attribute_string = value
 
     @property
@@ -488,11 +488,11 @@ class ExampleCMAClass(object):
     @attribute_list.setter
     def attribute_list(self, value):
         if not isinstance(value, list):
-            raise TypeError('param2 must be a list of strings')
+            raise TypeError("param2 must be a list of strings")
         else:
             for element in value:
                 if not isinstance(element, str):
-                    raise TypeError('param2 must be a list of strings')
+                    raise TypeError("param2 must be a list of strings")
         self._attribute_list = value
 
     @property
@@ -507,7 +507,7 @@ class ExampleCMAClass(object):
     @attribute_integer.setter
     def attribute_integer(self, value):
         if not isinstance(value, int):
-            raise TypeError('param3 must be an integer')
+            raise TypeError("param3 must be an integer")
         self._attribute_integer = value
 
     @property
@@ -516,7 +516,7 @@ class ExampleCMAClass(object):
 
         Properties should be documented in their getter method.
         """
-        return 'readonly_property'
+        return "readonly_property"
 
     def example_method(self, param1: int, param2: int) -> bool:
         """Methods are similar to regular functions.
@@ -651,7 +651,7 @@ class ExampleOtherClass(object):
     @attribute_integer.setter
     def attribute_integer(self, value):
         if not isinstance(value, int):
-            raise TypeError('integer param must be an integer')
+            raise TypeError("integer param must be an integer")
         self._attribute_integer = value
 
     @property
@@ -677,7 +677,7 @@ class ExampleOtherClass(object):
     # setter used to raise custom exceptions if user attempts modification
     @metadata.setter
     def metadata(self, value):
-        raise Exception('Metadata is read-only and cannot be modified')
+        raise Exception("Metadata is read-only and cannot be modified")
 
     # set data as valid if object has metadata and quality is High
     @property
@@ -686,10 +686,10 @@ class ExampleOtherClass(object):
 
         Properties should be documented in their getter method.
         """
-        if self.quality == 'High' and self.metadata is True:
-            return 'valid'
+        if self.quality == "High" and self.metadata is True:
+            return "valid"
         else:
-            return 'invalid'
+            return "invalid"
 
     @property
     def archive(self):
@@ -706,7 +706,7 @@ class ExampleOtherClass(object):
     @archive.setter
     def archive(self, value):
         if not isinstance(value, bool):
-            raise TypeError('archive must be True or False')
+            raise TypeError("archive must be True or False")
         self._archive = value
 
     # read-write property
@@ -724,16 +724,16 @@ class ExampleOtherClass(object):
         mentioned here.
         """
         if self.archive is True:
-            return 'Production'
+            return "Production"
         else:
-            return 'development'
+            return "development"
 
     # if status is reset to development, then archive is modified
     @status.setter
     def status(self, value):
-        if value not in ['development', 'Production']:
-            raise ValueError('Status must be Production or development')
-        if value == 'development':
+        if value not in ["development", "Production"]:
+            raise ValueError("Status must be Production or development")
+        if value == "development":
             self.archive = False
         else:
             pass
@@ -752,7 +752,7 @@ class ExampleOtherClass(object):
         The setter method validates the value is an integer.
         The getter method raises an error. This attribute is write-only.
         """
-        raise AttributeError('Unique ID is write-only')
+        raise AttributeError("Unique ID is write-only")
 
     # pylint: disable=R0201
     @uniqueid.setter
@@ -761,7 +761,7 @@ class ExampleOtherClass(object):
         try:
             isinstance(value, int) is True
         except TypeError:
-            raise TypeError('Unique Id must be an integer')
+            raise TypeError("Unique Id must be an integer")
         # check the value is unique
         # TODO
 
@@ -807,11 +807,11 @@ class ExampleClassAnother(object):
     # Class attributes
 
     # Accessed e.g. by ExampleClassAnother.reference_period
-    reference_period = '1990-2020'
+    reference_period = "1990-2020"
     """str: Description of `reference_period` (class attribute)."""
 
     # Class attribute (convention indicates constant)
-    QC_LEVEL = 'High'
+    QC_LEVEL = "High"
     """str: Description of `QC_LEVEL`(class attribute: CONSTANT)."""
 
     def __init__(self, param1, param2, param3):
@@ -831,7 +831,7 @@ class ExampleClassAnother(object):
     @attribute_integer.setter
     def attribute_integer(self, value):
         if not isinstance(value, int):
-            raise TypeError('integer param must be an integer')
+            raise TypeError("integer param must be an integer")
         self._attribute_integer = value
 
     def example_method(self) -> bool:
@@ -856,8 +856,8 @@ class ExampleClassAnother(object):
         """
         result = self.attribute_integer
         if DEBUG:
-            print(f'Result: {result}, type - {type(result)}')
-            print(f'CONSTANT: {CONSTANT}, type - {type(CONSTANT)}')
+            print(f"Result: {result}, type - {type(result)}")
+            print(f"CONSTANT: {CONSTANT}, type - {type(CONSTANT)}")
         if result > CONSTANT:
             return True
         else:
@@ -885,8 +885,8 @@ class ExampleClassAnother(object):
         """
         result = self.attribute_integer + score + rating
         if DEBUG:
-            print(f'Result: {result}, type - {type(result)}')
-            print(f'CONSTANT: {CONSTANT}, type - {type(CONSTANT)}')
+            print(f"Result: {result}, type - {type(result)}")
+            print(f"CONSTANT: {CONSTANT}, type - {type(CONSTANT)}")
         if result > CONSTANT:
             return True
         else:
