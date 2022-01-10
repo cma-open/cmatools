@@ -1,4 +1,1 @@
-"""
-docstring for helloworld subpackage
-
-"""
+"""docstring for helloworld subpackage."""
