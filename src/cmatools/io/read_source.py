@@ -7,7 +7,7 @@ from cmatools.definitions import SRC_DIR
 config = configparser.ConfigParser()
 
 # Set path to user edited config file
-configfile = f'{SRC_DIR}/cmatools/config.ini'
+configfile = f"{SRC_DIR}/cmatools/config.ini"
 # Not supplied with docstring so filepath is not visible in sphinx docs
 
 
@@ -55,37 +55,37 @@ class SourceData:
         """Read input sources from the ini config file."""
         config.read(configfile)
 
-        if self.service == 'COP':
-            if self.dataset == 'E-OBS':
-                self.long = config.get('COP', 'COP_DATASET')
+        if self.service == "COP":
+            if self.dataset == "E-OBS":
+                self.long = config.get("COP", "COP_DATASET")
 
-            self.format = config.get('COP', 'COP_FORMAT')
-            self.product_type = config.get('COP', 'COP_PRODUCT_TYPE')
-            self.variables = config.get('COP', 'COP_VARIABLES')
-            self.grid_res = config.get(('COP'), 'COP_GRID_RES')
-            self.period = config.get('COP', 'COP_PERIOD')
-            self.version = config.get('COP', 'COP_VERSION')
+            self.format = config.get("COP", "COP_FORMAT")
+            self.product_type = config.get("COP", "COP_PRODUCT_TYPE")
+            self.variables = config.get("COP", "COP_VARIABLES")
+            self.grid_res = config.get(("COP"), "COP_GRID_RES")
+            self.period = config.get("COP", "COP_PERIOD")
+            self.version = config.get("COP", "COP_VERSION")
 
-        if self.service == 'CEDA':
-            self.server = config.get('CEDA', 'SERVER')
-            if self.dataset == 'CRUTEM':
-                self.filename = config.get('CEDA', 'CRUTEM_FILENAME')
-                self.path = config.get('CEDA', 'CRUTEM_PATH')
-            if self.dataset == 'HADCRUT':
-                self.filename = config.get('CEDA', 'HADCRUT_FILENAME')
-                self.path = config.get('CEDA', 'HADCRUT_PATH')
+        if self.service == "CEDA":
+            self.server = config.get("CEDA", "SERVER")
+            if self.dataset == "CRUTEM":
+                self.filename = config.get("CEDA", "CRUTEM_FILENAME")
+                self.path = config.get("CEDA", "CRUTEM_PATH")
+            if self.dataset == "HADCRUT":
+                self.filename = config.get("CEDA", "HADCRUT_FILENAME")
+                self.path = config.get("CEDA", "HADCRUT_PATH")
 
-        if self.service == 'HADOBS':
-            self.server = config.get('HADOBS', 'SERVER')
-            if self.dataset == 'CRUTEM':
-                self.filename = config.get('HADOBS', 'CRUTEM_FILENAME')
-                self.path = config.get('HADOBS', 'CRUTEM_PATH')
-            if self.dataset == 'HADCRUT':
-                self.filename = config.get('HADOBS', 'HADCRUT_FILENAME')
-                self.path = config.get('HADOBS', 'HADCRUT_PATH')
+        if self.service == "HADOBS":
+            self.server = config.get("HADOBS", "SERVER")
+            if self.dataset == "CRUTEM":
+                self.filename = config.get("HADOBS", "CRUTEM_FILENAME")
+                self.path = config.get("HADOBS", "CRUTEM_PATH")
+            if self.dataset == "HADCRUT":
+                self.filename = config.get("HADOBS", "HADCRUT_FILENAME")
+                self.path = config.get("HADOBS", "HADCRUT_PATH")
 
         # Set full download path to file
-        self.download = f'{self.server}{self.path}{self.filename}'
+        self.download = f"{self.server}{self.path}{self.filename}"
 
     # pylint: disable=R0201
     def validate(self):
