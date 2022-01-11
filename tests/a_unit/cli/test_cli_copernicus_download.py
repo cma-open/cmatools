@@ -1,7 +1,10 @@
 """Test the cli_coperncius_download tool."""
 
 import argparse
+import os
 from pathlib import Path
+
+import pytest
 
 from cmatools.cli_copernicus_download import (
     cli_copernicus_download,
@@ -43,7 +46,9 @@ def test_cli_parse_args():
 
 
 #
-#
+@pytest.mark.skipif(
+    os.environ["REMOTE_TESTS"] is True, reason="Only runs locally due to API auth"
+)
 def test_cli_copernicus_download_dryrun():
     """Test for cli_coperncius_download() function."""
     parsed_args = argparse.Namespace(portal="COP", dataset="E-OBS", dryrun="True")
@@ -55,6 +60,9 @@ def test_cli_copernicus_download_dryrun():
 
 # TODO mark as slow
 # Keep this simple test, but mock so no actual download occurs
+@pytest.mark.skipif(
+    os.environ["REMOTE_TESTS"] is True, reason="Only runs locally due to API auth"
+)
 def test_cli_copernicus_download():
     """Test for cli_coperncius_download() function."""
     parsed_args = argparse.Namespace(portal="COP", dataset="E-OBS", dryrun="False")
