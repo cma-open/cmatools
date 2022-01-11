@@ -52,6 +52,8 @@ jobs:
         cd scripts/tests
         chmod +x a-unit.sh
         ./a-unit.sh
+      env:
+        REMOTE_TESTS: True
     - name: Test with coverage
       # Re-run the tests and report test coverage
       # Does not fail with error code if any tests fail, output is for info only
