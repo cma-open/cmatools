@@ -16,4 +16,5 @@ dependencies:
  - pytest
  - pytest-cov
  - cdsapi
+ - humanize
  - pip
