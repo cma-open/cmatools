@@ -47,6 +47,7 @@ def test_cli_parse_args():
 
 # Test if remote test environment variable is True/False
 REMOTE = os.environ.get("REMOTE_TESTS") in ("True", "true")
+localonly = pytest.mark.skipif(REMOTE, reason="Only runs locally due to API auth")
 
 
 @pytest.mark.skipif(REMOTE, reason="Only runs locally due to API auth")
@@ -61,9 +62,7 @@ def test_cli_copernicus_download_dryrun():
 
 # TODO mark as slow
 # Keep this simple test, but mock so no actual download occurs
-@pytest.mark.skipif(
-    os.environ["REMOTE_TESTS"] == "true", reason="Only runs locally due to API auth"
-)
+@localonly
 def test_cli_copernicus_download():
     """Test for cli_coperncius_download() function."""
     parsed_args = argparse.Namespace(portal="COP", dataset="E-OBS", dryrun="False")
