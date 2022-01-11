@@ -46,7 +46,7 @@ jobs:
         source /usr/share/miniconda/etc/profile.d/conda.sh
         conda activate $CONDA_ENV
         cd scripts/tests/run-coverage
-        chmod +x coveragez--compare.sh
+        chmod +x coverage-z-compare.sh
         ./coverage-z-compare.sh
     - name: Test with coverage
       # Run all the unit tests and report test coverage
