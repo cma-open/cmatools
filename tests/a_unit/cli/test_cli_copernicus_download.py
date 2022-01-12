@@ -1,10 +1,7 @@
 """Test the cli_coperncius_download tool."""
 
 import argparse
-import os
 from pathlib import Path
-
-import pytest
 
 from cmatools.cli_copernicus_download import (
     cli_copernicus_download,
@@ -12,6 +9,7 @@ from cmatools.cli_copernicus_download import (
     cli_parser,
 )
 from cmatools.definitions import SRC_DIR
+from tests.markers import localonly
 
 DEBUG = True
 """bool: Debugging module-level constant (Default: True)."""
@@ -45,12 +43,7 @@ def test_cli_parse_args():
     assert parsed_args.dryrun == "True"
 
 
-# Test if remote test environment variable is True/False
-REMOTE = os.environ.get("REMOTE_TESTS") in ("True", "true")
-localonly = pytest.mark.skipif(REMOTE, reason="Only runs locally due to API auth")
-
-
-@pytest.mark.skipif(REMOTE, reason="Only runs locally due to API auth")
+@localonly
 def test_cli_copernicus_download_dryrun():
     """Test for cli_coperncius_download() function."""
     parsed_args = argparse.Namespace(portal="COP", dataset="E-OBS", dryrun="True")
