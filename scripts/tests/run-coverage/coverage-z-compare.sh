@@ -10,9 +10,7 @@ readonly CODE_DIR="$(dirname "$(dirname "$(dirname "${PWD}")")")"
 # Source variables from common
 source "${CODE_DIR}/scripts/common/common.sh"
 source "${CODE_DIR}/scripts/common/tests.sh"
-sleep 4
-echo "Running tests under: ${UNIT}"
-sleep 4
+sleep 2
 echo "Current working directory: ${PWD}"
 
 # Discover and run tests on specified path, with coverage stats
@@ -21,6 +19,12 @@ echo "Current working directory: ${PWD}"
 #  - unit + integration combined
 #  - end-to-end
 #  - user focussed
+
+# Unit tests
+# Discover and run tests on specified path, with coverage stats
+pytest --cov-report term-missing:skip-covered --cov="${PACKAGE}" "${UNIT}"
+
+echo "///////////////////////////////////////////////////////////////////"
 
 # Test unit tests
 pytest --cov-config="${COV_CONFIG}" \
