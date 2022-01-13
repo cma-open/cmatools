@@ -45,7 +45,7 @@ env:
   PACKAGE: cmatools
   CONDA_ENV: cmatools-tests-env # Name is set in the $ENV_FILE
   ENV_FILE: environment_tests.yml # File to list environment dependencies
-
+  REMOTE_TESTS: True # Used by pytest to skip tests if remote
 jobs:
   test-structure:
     timeout-minutes: 10 # Limit time use of the workflow action, in case of problems

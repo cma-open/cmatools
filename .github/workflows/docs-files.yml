@@ -21,6 +21,7 @@ env:
   CONDA_ENV: cmatools-docs-env # Name is set in the $ENV_FILE
   ENV_FILE: environment_docs.yml
   DISPATCH_NAME: docs-build-true # Name to use for dispatch event type
+  REMOTE_TESTS: True # Used by pytest to skip tests if remote
 
 jobs:
   docs-build:
