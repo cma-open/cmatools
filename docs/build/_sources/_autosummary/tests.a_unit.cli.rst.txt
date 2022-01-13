@@ -27,5 +27,7 @@ tests.a\_unit.cli
    :toctree:
    :recursive:
 
+   tests.a_unit.cli.test_cli_copernicus_download
+   tests.a_unit.cli.test_cli_data_download
    tests.a_unit.cli.test_unit_cli_simple_analysis
 

@@ -1,1 +1,3 @@
-updated sphinx files
+- updated sphinx files
+- added canned data dir within tests
+- increased test code coverage

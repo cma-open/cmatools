@@ -15,6 +15,12 @@ cmatools.definitions
 
    
    
+   .. rubric:: Functions
+
+   .. autosummary::
+   
+      main
+   
    
 
    

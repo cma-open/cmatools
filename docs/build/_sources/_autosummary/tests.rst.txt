@@ -32,4 +32,5 @@
    tests.c_end_to_end
    tests.conftest
    tests.d_user_interface
+   tests.markers
 

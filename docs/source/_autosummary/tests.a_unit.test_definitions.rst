@@ -20,6 +20,7 @@ tests.a\_unit.test\_definitions
    .. autosummary::
    
       test_definitions
+      test_main
    
    
 

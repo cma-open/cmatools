@@ -10,6 +10,7 @@ See:
 
 """
 
+from pathlib import Path
 
 import cdsapi
 import humanize
@@ -18,7 +19,9 @@ DEBUG = True
 """bool : Debugging level, module constant."""
 
 
-def copernicus_downloads(dataset: str, content: str, outputfilepath: str) -> None:
+def copernicus_downloads(
+    dataset: str, content: dict[str, any], outputfilepath: Path
+) -> None:
     """Wrap api call to download dataset, with options, from Copernicus.
 
     Parameters
@@ -28,6 +31,7 @@ def copernicus_downloads(dataset: str, content: str, outputfilepath: str) -> Non
     content
         The second parameter.
     outputfilepath
+        Path to output location.
     """
     c = cdsapi.Client()
     c.retrieve(dataset, content, outputfilepath)
@@ -35,7 +39,7 @@ def copernicus_downloads(dataset: str, content: str, outputfilepath: str) -> Non
     c.session.close()
 
 
-def copernicus_check_downloads(dataset: str, content: str) -> None:
+def copernicus_check_downloads(dataset: str, content: dict[str, any]) -> None:
     """Check api call to dataset, with options, from Copernicus.
 
     Parameters

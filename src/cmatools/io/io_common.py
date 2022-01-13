@@ -24,7 +24,7 @@ datadir_archives = config.get("DATADIR", "ARCHIVES")
 DEBUG = True
 
 
-def return_datadir_root_dir(datadir_root: str) -> None:
+def return_datadir_root_dir(datadir_root: str):
     """Set datadir root directory, based on user config input.
 
     Parameters

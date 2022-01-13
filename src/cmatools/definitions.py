@@ -20,8 +20,13 @@ CONFIGLOGS = f"{SRC_DIR}/cmatools/config-logs.ini"
 PACKAGE = "cmatools"  # Set the package name
 """str: Package name."""
 
-if __name__ == "__main__":
-    # Print and confirms current constants
+
+def main():
+    """Print to confirm current constants."""
     print(f"Source dir: {SRC_DIR}")
     print(f"Root dir: {ROOT_DIR}")
     print(f"Config file: {CONFIGFILE}")
+
+
+if __name__ == "__main__":
+    main()
