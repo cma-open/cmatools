@@ -72,7 +72,7 @@ jobs:
         echo " --- "
         # Run pytest with pytest-cov to exaime the code coverage from unit test
         # Capture standard error to shell script variable, discard standard out to dev null
-        error=$(pytest --cov-report= --cov="${PACKAGE}" "${GITHUB_WORKSPACE}"/tests/unit  2>&1 > /dev/null)
+        error=$(pytest --cov-report= --cov="${PACKAGE}" "${GITHUB_WORKSPACE}"/tests/a_unit  2>&1 > /dev/null)
         echo " --- "
         echo "${error}"
         echo " --- "
@@ -112,7 +112,7 @@ jobs:
         echo " --- "
         # Run pytest with pytest-cov to exaime the code coverage from unit test
         # Capture standard error to shell script variable, discard standard out to dev null
-        error=$(pytest --cov-report= --cov=$PACKAGE $GITHUB_WORKSPACE/tests/unit 2>&1 > /dev/null)
+        error=$(pytest --cov-report= --cov=$PACKAGE $GITHUB_WORKSPACE/tests/a_unit 2>&1 > /dev/null)
         echo " --- "
         echo "${error}"
         echo " --- "
