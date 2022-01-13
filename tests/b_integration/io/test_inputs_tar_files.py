@@ -5,7 +5,7 @@ from pathlib import Path
 
 import iris
 
-from cmatools.definitions import ROOT_DIR
+from cmatools.definitions import SRC_DIR
 
 # TODO - refactor
 # TODO add code to deal with file does not exist yet
@@ -14,7 +14,7 @@ from cmatools.definitions import ROOT_DIR
 DEBUG = True
 
 filename = "hadcrut_example.tar.gz"
-canned_data = f"{ROOT_DIR}/tests/_data"
+canned_data = f"{SRC_DIR}/cmatools/_data"
 test_data_file = Path(canned_data) / filename
 
 
