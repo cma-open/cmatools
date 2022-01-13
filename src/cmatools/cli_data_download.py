@@ -27,7 +27,7 @@ def cli_parser() -> argparse.ArgumentParser:
     # (e.g. cli-simple,py)
     parser = argparse.ArgumentParser(
         # Also possible to add prog title to output,
-        # if ommitted the filename is used (e.g. cli-simple.py)
+        # if ommitted the filename is used (e.g. cli_data_download.py)
         prog="CLI-DATA-DOWNLOAD",
         description="A simple example app to aid download of data from remote sources",
         epilog="  ---  ",
@@ -37,12 +37,6 @@ def cli_parser() -> argparse.ArgumentParser:
     # Arguments in argparse can be optional, positional or required
     # Add named arguments (that is required for the tool to run)
     # Set the argument type and limit choices from a list
-    parser.add_argument(
-        "--x", type=int, help="the x value", required=True, choices=[0, 1, 2, 3, 4, 5]
-    )
-    parser.add_argument(
-        "--y", type=int, help="the y value", required=True, choices=[0, 1, 2, 3, 4, 5]
-    )
 
     parser.add_argument(
         "--portal",
@@ -80,7 +74,7 @@ def cli_parse_args(argv=None) -> argparse.Namespace:
     return parser.parse_args(argv)
 
 
-def cli_data_download(parsed_args):
+def cli_data_download(parsed_args) -> bool:
     """
     Run the requested data download.
 
@@ -90,8 +84,6 @@ def cli_data_download(parsed_args):
     if DEBUG:
         print("The cli tool: Data Download has run")
         print(f"Parsed args: {parsed_args}")
-        print(f"The x value is: {parsed_args.x}")
-        print(f"The y value is: {parsed_args.y}")
 
     inputs = SourceData(parsed_args.portal, parsed_args.dataset)
     inputs.read_input_source_ini()
@@ -100,12 +92,14 @@ def cli_data_download(parsed_args):
         print(f"Downloading {parsed_args.dataset} from {parsed_args.portal}")
         print(f"Downloading: {inputs.download}")
 
-    download(inputs.download)
+    try:
+        download(inputs.download)
+        return True
+    except Exception:
+        return False
 
     # analysis_sum = parsed_args.x * parsed_args.y
     # print(f'The sum is: {analysis_sum}')
-
-    return None
 
 
 def cli_data_download_entry_point(argv=None):

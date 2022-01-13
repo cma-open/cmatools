@@ -15,4 +15,6 @@ dependencies:
  - coverage
  - pytest
  - pytest-cov
+ - cdsapi
+ - humanize
  - pip

@@ -1,15 +1,16 @@
 #!/bin/bash
 
-######################################################################################################################
+#######################################################################################
 # Script to hold common code used by the test scripts
-######################################################################################################################
+#######################################################################################
 
 # Set python package root dir as script constant
 readonly CODE_DIR="$(dirname "$(dirname "${PWD}")")"
 readonly PACKAGE="cmatools"
 # Set coverage config file as script constant
 readonly COV_CONFIG="${CODE_DIR}"/.coveragerc
-# Get location of the installed package (local if editable install, site-packages if full install)
+# Get location of the installed package
+# (local if editable install, site-packages if full install)
 PACKAGE_DIR=$(python -c 'import inspect; \
 import pathlib; import cmatools; \
 package = pathlib.Path(inspect.getfile(cmatools)); \
@@ -27,8 +28,8 @@ echo "Script tests directory: ${TESTS_DIR}"
 echo "Coverage config file: ${COV_CONFIG}"
 echo " ---- * ----"
 
-######################################################################################################################
+#######################################################################################
 # Code review and system context notes
 # ====================================
-# Further refactor could extract code into functions
-######################################################################################################################
+#
+#######################################################################################

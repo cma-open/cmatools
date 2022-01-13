@@ -79,7 +79,7 @@ def cli_parse_args(argv=None) -> argparse.Namespace:
     return parser.parse_args(argv)
 
 
-def cli_copernicus_download(parsed_args):
+def cli_copernicus_download(parsed_args) -> bool:
     """Run the requested data download.
 
     :param parsed_args:
@@ -115,9 +115,11 @@ def cli_copernicus_download(parsed_args):
         print(f"Downloading content: {content}")
 
     # Move later to different location
+    # TDO check re try/catch
 
     if parsed_args.dryrun == "True":
         copernicus_check_downloads(dataset, content)
+        return True
 
     else:
         copernicus_downloads(dataset, content, outputfilepath)
@@ -126,8 +128,7 @@ def cli_copernicus_download(parsed_args):
         extract_archive_singlefile(
             return_datadir_archives_dir(), return_datadir_inputs_dir(), filename
         )
-
-    return None
+        return True
 
 
 def cli_copernicus_download_entry_point(argv=None):
@@ -146,6 +147,7 @@ def cli_copernicus_download_entry_point(argv=None):
 if __name__ == "__main__":
     # Runs entry point function when called as main
     cli_copernicus_download_entry_point()
+    # TODO move into function or remove
     # print current status
     print(f"Debug status: {DEBUG}")
     print(f"Logs: {CONFIGLOGS}")

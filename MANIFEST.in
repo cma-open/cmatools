@@ -1,4 +1,6 @@
 include README.rst
 include src/cmatools/config.ini
 include src/cmatools/config-logs.ini
+include src/cmatools/_data/hadcrut_example.tar.gz
+include src/cmatoools/_data/HadCRUT.5.0.0.0_component-series_global_annual.nc
 #include docs/*.txt

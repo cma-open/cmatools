@@ -24,7 +24,7 @@ env:
   PACKAGE: cmatools # Name of package directory within repo
   TESTS: tests # Name of tests directory within repo
   DISPATCH_NAME: code-style-true # Name to use for dispatch event type
-
+  REMOTE_TESTS: True # Used by pytest to skip tests if remote
 jobs:
   check-code-style:
     timeout-minutes: 5 # Limit  time use of the workflow action, in case of problems

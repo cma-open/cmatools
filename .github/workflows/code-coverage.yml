@@ -23,7 +23,7 @@ env:
   PACKAGE: cmatools # Name of package directory within repo
   TESTS: tests # Name of tests directory within repo
   DISPATCH_NAME: code-style-true # Name to use for dispatch event type
-
+  REMOTE_TESTS: True # Used by pytest to skip tests if remote
 jobs:
   check-code-coverage:
     timeout-minutes: 10 # Limit time use of the workflow action, in case of problems
@@ -46,7 +46,7 @@ jobs:
         source /usr/share/miniconda/etc/profile.d/conda.sh
         conda activate $CONDA_ENV
         cd scripts/tests/run-coverage
-        chmod +x coveragez--compare.sh
+        chmod +x coverage-z-compare.sh
         ./coverage-z-compare.sh
     - name: Test with coverage
       # Run all the unit tests and report test coverage

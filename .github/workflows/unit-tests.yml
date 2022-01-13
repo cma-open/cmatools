@@ -21,7 +21,7 @@ env:
   REPO_NAME: cmatools
   CONDA_ENV: cmatools-tests-env # Name is set in the $ENV_FILE
   ENV_FILE: environment_tests.yml
-
+  REMOTE_TESTS: True # Used by pytest to skip tests if remote
 jobs:
   run-tests:
     timeout-minutes: 10 # Limit time use of the workflow action, in case of problems
@@ -72,5 +72,3 @@ jobs:
         #pytest --cov-report term-missing:skip-covered --trace --cov=$GITHUB_WORKSPACE/cmatools $GITHUB_WORKSPACE/tests/unit
         #below call works locally via script
         #pytest --cov-report term-missing:skip-covered --cov="${CODE_DIR}"/cmatools "${TESTS_DIR}"/unit
-      env:
-        REMOTE_TESTS: True
