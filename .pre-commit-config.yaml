@@ -34,6 +34,7 @@ repos: # List of repository mappings
     hooks:
     -   id: isort
         name: isort (python)
+        args: ["--profile", "black"]
 
 # Run flake8 code linter for syntax errors, possible bugs, stylistic errors
 -   repo: https://github.com/PyCQA/flake8
