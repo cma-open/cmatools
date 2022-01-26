@@ -63,7 +63,7 @@ def generate_synthetic_stations(sample, save=False) -> pd.DataFrame:
     Parameters
     ----------
     sample: int
-        Sampe size to set number of records, rows
+        Sample size to set number of records, rows
     save: bool, optional
 
 
