@@ -39,8 +39,8 @@ def generate_random_lat_lon(sample, ziplist=False) -> tuple or zip:
 
     Returns
     -------
-    tuple or zip
-        lat lon values are either tuple of lists, or a zip object.
+    tuple or list
+        lat lon values are either tuple of two lists, or a list of tuples.
     """
     # Generate populations to sample from
     # Use div by 100 to generate float values
@@ -51,8 +51,8 @@ def generate_random_lat_lon(sample, ziplist=False) -> tuple or zip:
     # Sample from the longitudes
     longitude_values = random.sample(longitude_population, sample)
     if ziplist is True:
-        # Return as a zip object
-        return zip(latitude_values, longitude_values)
+        # Return as a list of tuples
+        return list(zip(latitude_values, longitude_values))
     else:
         # Return two lists
         return latitude_values, longitude_values
@@ -61,8 +61,8 @@ def generate_random_lat_lon(sample, ziplist=False) -> tuple or zip:
 def random_lat_lon(n) -> np.ndarray:
     """Return array of lat lon values, to desired sample size.
 
-    Paramters
-    ---------
+    Parameters
+    ----------
     n : int
         Sample size number, to generate array size
 
@@ -84,6 +84,7 @@ def random_lat_lon(n) -> np.ndarray:
         print("")
         print(f"lat ndarray head: {lat[:5]}")
         print(f"lon ndarray head: {lon[:5]}")
+    # TODO expand to desc
     return np.array(tuple(zip(lat, lon)))
 
 
