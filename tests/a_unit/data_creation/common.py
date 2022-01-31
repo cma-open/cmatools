@@ -47,7 +47,7 @@ def verify_lat_lon_array(array: np.ndarray):
         raise
 
 
-def verify_lat_lon_df(df, lat, lon):
+def verify_lat_lon_dataframe(df, lat, lon):
     """Verify a dataframe of latitude and longitude values are valid.
 
     Parameters
