@@ -1,3 +1,5 @@
+"""Setup script for cmatools."""
+
 import setuptools
 
 # Use text from the main repo readme for the package long description
@@ -14,35 +16,37 @@ setuptools.setup(
     long_description_content_type="text/markdown",
     url="https://github.com/cma-open/cmatools",
     # find and install all packages
-    package_dir={"" : "src"},
-    # Legacy / Maintenance note: As the package dir is  specified, then don't need to also exclude the tests here
-    # However being retained as a failsafe in case future tests are accidentally added in the main package
+    package_dir={"": "src"},
+    # Legacy / Maintenance note:
+    # As the package dir is  specified, then don't need to also exclude the tests here
+    # However retained as a failsafe in case future tests are accidentally added
+    # in the main package
     packages=setuptools.find_packages(where="src", exclude=["*tests.*", "*tests"]),
     license="BSD",
     classifiers=[
         "Programming Language :: Python :: 3",
-        'License :: OSI Approved :: BSD License',
+        "License :: OSI Approved :: BSD License",
         "Operating System :: OS Independent",
     ],
     # Set minimum python version to allow installation
-    python_requires='>=3.9',
+    python_requires=">=3.9",
     # Set key dependency versions required to allow installation
     install_requires=[
-       'scitools-iris>=3.0',  # Note the alternative name for iris when called via pip, c.f. conda-forge
-       'numpy>=1.19'
+        "scitools-iris>=3.0",  # Note alt name for iris when via pip, c.f. conda-forge
+        "numpy>=1.19",
     ],
-    # include_package_data = True,
-
+    # Include data files, as listed in MANIFEST.in (e.g. config.ini)
+    include_package_data=True,
     # Register command line scripts from the relevant package module
     # These are added as command line options once the system is installed
     entry_points={
-        'console_scripts': [
+        "console_scripts": [
             # Name the tool, link to the package function
-            'cli-hello='
-            'cmatools.cli_hello_world:cli_entry_point',
+            "cli-hello=" "cmatools.cli_hello_world:cli_entry_point",
             # Name the tool, link to the package function
-            'cli-data='
-            'cmatools.cli_data_creation:cli_entry_point',
-                        ]
-    }
+            "cli-data=" "cmatools.cli_data_creation:cli_entry_point",
+            # Name the tool, link to the package function
+            "cli-canned=" "cmatools.cli_canned_data:cli_entry_point",
+        ]
+    },
 )
