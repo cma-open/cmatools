@@ -1,15 +1,15 @@
-"""
-.. module: definitions
+"""Common code constants.
 
-Source definitions file to generate constants.
+.. module: definitions
 Currently used to generate main code source root path and package name
-for use by other modules
+for use by other modules.
 
 """
 
 import os
 
 # Set the dir relative to this file
+SRC_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 PACKAGE_DIR = os.path.dirname(os.path.abspath(__file__))
 ROOT_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 REPO_DIR = os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
@@ -18,8 +18,7 @@ REPO_DIR = os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__fil
 # TODO check r.e. take name from setup.py to minimise duplication
 PACKAGE = "cmatools"
 
-if __name__ == '__main__':
-
+if __name__ == "__main__":
     print(ROOT_DIR)
     print(PACKAGE_DIR)
     print(REPO_DIR)
