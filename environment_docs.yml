@@ -4,15 +4,17 @@ name: cmatools-docs-env
 channels:
  - conda-forge
 dependencies:
+ # core
  - python=3.9
  - iris>=3.0
  - numpy>=1.19
+ # codestyle
  - black
+ # documentation
  - sphinx
  - sphinx_rtd_theme
  - sphinx-argparse
  - sphinx-gallery
+ - sphinxcontrib-mermaid
+ # other
  - pip
-
- - pip:
-   - sphinxcontrib-mermaid

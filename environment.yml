@@ -4,26 +4,30 @@ name: cmatools-env
 channels:
  - conda-forge
 dependencies:
+ # core
  - python=3.9
  - iris>=3.0
- - black
- - nccmp
- - libnetcdf
- - coverage
- - pytest
- - pytest-cov
- - sphinx
- - sphinx_rtd_theme
- - sphinx-argparse
- - sphinx-gallery
- - cdsapi
- - holoviews
- - geoviews
  - numpy>=1.19
  - pandas
  - xarray
  - jupyter
+ # codestyle
+ - black
+ # testing
+ - nccmp
+ - coverage
+ - pytest
+ - pytest-cov
+ # documentation
+ - sphinx
+ - sphinx_rtd_theme
+ - sphinx-argparse
+ - sphinx-gallery
+ - sphinxcontrib-mermai
+ # visualisation
+ - holoviews
+ - geoviews
+# other
  - pip
-
- - pip:
-   - sphinxcontrib-mermaid
+ - cdsapi
+ - libnetcdf

@@ -4,31 +4,33 @@ name: cmatools-dev-env
 channels:
  - conda-forge
 dependencies:
+ # core
  - python=3.9
  - iris>=3.0
+ - numpy>=1.19
+ - pandas
+ # codestyle
  - black
- - libnetcdf
  # testing
  - coverage
  - pytest
  - pytest-cov
  - nccmp
  - cfchecker
+ - compliance-checker
  # documentation
  - sphinx
  - sphinx_rtd_theme
  - sphinx-argparse
  - sphinx-gallery
- # other
- - cdsapi
+ - sphinxcontrib-mermaid
+ # visualisation
  - holoviews
  - geoviews
- - numpy>=1.19
- - pandas
+ # other
+ - cdsapi
+ - libnetcdf
  - pip
-
- - pip:
-   - sphinxcontrib-mermaid
 
 # Removed from dev environment to speed up builds, installs, uninstalls
 # - xarray

@@ -4,18 +4,23 @@ name: cmatools-tests-env
 channels:
  - conda-forge
 dependencies:
+ # core
  - python=3.9
  - iris>=3.0
+ # codestyle
  - black
+ # testing
  - nccmp
+ - cfchecker
+ - compliance-checker
  - coverage
  - pytest
  - pytest-cov
+ # documentation
  - sphinx
  - sphinx_rtd_theme
  - sphinx-argparse
  - sphinx-gallery
+ - sphinxcontrib-mermaid
+ # other
  - pip
-
- - pip:
-   - sphinxcontrib-mermaid
