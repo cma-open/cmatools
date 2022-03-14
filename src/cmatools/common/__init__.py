@@ -1,1 +1,1 @@
-"""Common code potentially used accross the main package."""
+"""Common code potentially used across the main package."""
