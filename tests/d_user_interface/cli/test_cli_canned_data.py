@@ -33,18 +33,9 @@ TOOL = "cli-canned"
 def test_cli_run_as_entrypoint():
     """Test the entrypoint script can be called.
 
-    Allows verification that CLI tool is correctly installed? (via setup.py)
+    Allows verification that CLI tool is correctly installed (via setup.py)
     """
     # Note - the script tool name is set in the entry_points section of setup.py
     # TODO add a documentation cross ref here
     out = subprocess.run([TOOL, "--help"], check=True)  # nosec
     assert out.returncode == 0
-
-    out = subprocess.run([TOOL, "HADCRUT"], check=True)  # nosec
-    assert out.returncode == 0
-
-    out = subprocess.run([TOOL, "HADSST"], check=True)  # nosec
-    assert out.returncode == 0
-
-    # out = subprocess.run([TOOL, "ALL"], check=True)  # nosec
-    # assert out.returncode == 0

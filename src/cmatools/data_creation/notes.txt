@@ -1,0 +1,4 @@
+notes - to potn add to docs, with links to code examples
+
+
+coords dont have data, have points
